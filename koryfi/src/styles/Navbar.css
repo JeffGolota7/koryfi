@@ -1,0 +1,22 @@
+.navbar-list {
+  display: flex;
+  height: 50px;
+  background-color: lightgrey;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  text-indent: 0;
+  list-style-type: none;
+  justify-content: space-between;
+  padding: 1rem;
+  align-items: center;
+}
+
+.links {
+  display: flex;
+}
+
+.links a {
+  text-decoration: none;
+  margin: 1rem;
+}
