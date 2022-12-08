@@ -1,8 +1,10 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
 import "../styles/Navbar.css";
+import { useAuth } from "../contexts/AuthContext";
 
 function Navbar() {
+  const { currentUser } = useAuth();
   return (
     <>
       <nav className="navbar">
@@ -15,12 +17,20 @@ function Navbar() {
             <li>
               <Link to="/about">About</Link>
             </li>
-            <li>
-              <Link to="/sign-up">Sign Up</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
+            {currentUser ? (
+              <li>
+                <Link to="/account">Account</Link>
+              </li>
+            ) : (
+              <>
+                <li>
+                  <Link to="/sign-up">Sign Up</Link>
+                </li>
+                <li>
+                  <Link to="/login">Login</Link>
+                </li>
+              </>
+            )}
           </div>
         </ul>
       </nav>

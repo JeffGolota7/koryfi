@@ -32,25 +32,27 @@ function Login() {
   };
   return (
     <div className="loginWrapper">
-      <div className="leftSide">
-        <h2>Welcome Back</h2>
-      </div>
-      <div className="rightSide">
-        <form className="loginForm" onSubmit={register}>
-          <div id="email">
-            <label>Email</label>
-            <input ref={emailRef} type="text" required />
+      <div className="loginCard">
+        <div className="leftSide">
+          <h2>Welcome Back</h2>
+        </div>
+        <div className="rightSide">
+          <form className="loginForm" onSubmit={register}>
+            <div id="email">
+              <label>Email</label>
+              <input ref={emailRef} type="text" required />
+            </div>
+            <div id="password">
+              <label>Password</label>
+              <input ref={passwordRef} type="password" required />
+            </div>
+            <button disabled={isLoading} type="submit">
+              Log In
+            </button>
+          </form>
+          <div className="signupLinkWrapper">
+            Not Signed Up? <Link to="/sign-up">Sign-Up</Link>
           </div>
-          <div id="password">
-            <label>Password</label>
-            <input ref={passwordRef} type="password" required />
-          </div>
-          <button disabled={isLoading} type="submit">
-            Log In
-          </button>
-        </form>
-        <div className="signupLinkWrapper">
-          Not Signed Up? <Link to="/sign-up">Sign-Up</Link>
         </div>
       </div>
     </div>

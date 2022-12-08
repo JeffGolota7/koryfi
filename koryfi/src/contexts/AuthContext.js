@@ -3,7 +3,10 @@ import {
   auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
+  db,
 } from "../firebase/firebase";
+import { doc, getDoc, collection } from "firebase/firestore";
 const AuthContext = React.createContext();
 
 export function useAuth() {
@@ -22,8 +25,30 @@ export function AuthProvider({ children }) {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
+  function logout() {
+    return signOut(auth);
+  }
+
+  async function getUserFromDatabase(user) {
+    const docRef = doc(db, "users", user.uid);
+    try {
+      const docSnap = await getDoc(docRef);
+      if (docSnap) {
+        return await docSnap.data();
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        getUserFromDatabase(user).then((data) => {
+          user.firstName = data.firstName;
+          user.lastName = data.lastName;
+        });
+      }
       setCurrentUser(user);
       setLoading(false);
     });
@@ -35,6 +60,7 @@ export function AuthProvider({ children }) {
     currentUser,
     login,
     signup,
+    logout,
   };
 
   return (

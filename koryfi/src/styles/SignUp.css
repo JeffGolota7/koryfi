@@ -1,21 +1,42 @@
 .signupWrapper {
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+}
+
+.signUpCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30%;
 }
 
 .leftSide {
   background-color: cornsilk;
   border-radius: 8px 0 0 8px;
+  height: 100%;
 }
 .rightSide {
   background-color: rgb(234, 234, 234);
   border-radius: 0 8px 8px 0;
+  height: 100%;
 }
 
 .leftSide,
 .rightSide {
   padding: 3rem;
-  height: 30%;
+}
+
+#name {
+  display: flex;
+}
+.first {
+  display: flex;
+  flex-direction: column;
+}
+.last {
+  display: flex;
+  flex-direction: column;
 }
