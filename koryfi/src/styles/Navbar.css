@@ -1,7 +1,8 @@
 .navbar-list {
   display: flex;
-  height: 50px;
-  background-color: lightgrey;
+  height: 80px;
+  width: 55%;
+  background-color: #f8f8f8;
   text-decoration: none;
   margin: 0;
   padding: 0;
@@ -13,13 +14,25 @@
 }
 
 .navbar {
-  position: fixed;
+  width: 100%;
+  background-color: #f8f8f8;
+  display: flex;
+  justify-content: center;
+  position: sticky;
   top: 0px;
   width: 100%;
+  z-index: 100000;
+  white-space: nowrap;
+}
+
+.accountIcon {
+  height: 25px;
+  cursor: pointer;
 }
 
 .links {
   display: flex;
+  align-items: center;
 }
 
 .links a {

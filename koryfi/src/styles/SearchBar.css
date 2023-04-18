@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+}
+
+.results {
+  width: 100%;
+  background-color: grey;
+  display: flex;
+  flex-direction: column;
+  max-height: 300px;
+  overflow: scroll;
+  position: absolute;
+}
+.results a {
+  color: white;
+}
+.searchbar {
+  position: relative;
+}
+.searchbar input {
+  padding: 9px 17px;
+  border-radius: 34px;
+  background-color: white;
+  border: 1px solid #ffcc00;
+}

@@ -1,0 +1,9 @@
+.accountIconWrapper {
+  position: relative;
+  width: 5rem;
+  text-align: center;
+}
+.accountIconWrapper svg {
+  height: 35px;
+  cursor: pointer;
+}

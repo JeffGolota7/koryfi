@@ -2,35 +2,44 @@ import React from "react";
 import { Outlet, Link } from "react-router-dom";
 import "../styles/Navbar.css";
 import { useAuth } from "../contexts/AuthContext";
+import { useCart } from "../contexts/CartContext";
+import SearchBar from "./SearchBar";
+import AccountIcon from "../components/AccountIcon.js";
+import Cart from "../components/Cart.js";
 
 function Navbar() {
   const { currentUser } = useAuth();
+  const { cart } = useCart();
+
   return (
     <>
       <nav className="navbar">
         <ul className="navbar-list">
-          <div className="logo">Koryfi Sports</div>
+          <Link to="/">
+            <img src="/images/Koryfi Logo.svg" alt="" />
+          </Link>
           <div className="links">
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/about">About Us</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to="/products">Products</Link>
             </li>
+            <SearchBar />
+
             {currentUser ? (
               <li>
-                <Link to="/account">Account</Link>
+                <AccountIcon className="accountIcon" />
               </li>
             ) : (
               <>
                 <li>
                   <Link to="/sign-up">Sign Up</Link>
                 </li>
-                <li>
-                  <Link to="/login">Login</Link>
-                </li>
               </>
             )}
+
+            <Cart />
           </div>
         </ul>
       </nav>

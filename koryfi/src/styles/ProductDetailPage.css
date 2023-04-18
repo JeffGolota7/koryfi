@@ -1,0 +1,61 @@
+body {
+  background-color: #f8f8f8;
+}
+
+.thumbnail {
+  width: 120px;
+  height: auto;
+  cursor: pointer;
+}
+
+.thumbnails {
+  display: flex;
+}
+
+.zoom-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  cursor: pointer;
+}
+
+.images {
+  margin-right: 15px;
+}
+
+.activeImage {
+  max-width: 610px;
+  max-height: 610px;
+  transition: transform 0.25s ease-in-out;
+  transform-origin: center center;
+}
+
+.pdp-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pdp-container .product-information {
+  display: flex;
+  width: 55%;
+}
+.info {
+  white-space: pre-line;
+}
+
+.pdp-container .img-wrapper {
+  overflow: hidden;
+}
+
+.pdp-container .zoom-container:hover .activeImage {
+  transform: scale(1.25);
+}
+.snowboard-info {
+  display: flex;
+}
+.right-column {
+  display: flex;
+  flex-direction: column;
+}

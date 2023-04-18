@@ -4,9 +4,11 @@
     "name": "The Summit",
     "description": "The Summit is the ultimate snowboard for advanced riders looking for a high-performance board that can tackle any terrain. With a carbon fiber construction, this board is incredibly light and responsive, giving you the confidence to push your limits.",
     "price": 499.99,
-    "image": "https://koryfi.com/products/the-summit.jpg",
+    "rating": 4,
+    "images": [],
     "type": "Snowboard",
     "category": "snowboard",
+    "camber": "Traditional",
     "difficulty": "Advanced",
     "width": "25.5 cm",
     "length": "153 cm",
@@ -15,11 +17,17 @@
   {
     "id": 2,
     "name": "The Trailblazer",
-    "description": "The Trailblazer is the perfect snowboard for beginner and intermediate riders looking to explore the mountain. With a forgiving flex and a directional shape, this board makes it easy to learn and improve your skills.",
+    "description": "The Trailblazer is a versatile all-mountain snowboard that is perfect for riders looking to explore new terrain and push their limits. With its lightweight design and responsive camber profile, this board excels in a variety of conditions, from steep groomers to fresh powder. \n The board's advanced construction features a durable wood core and triax fiberglass laminate, which provide excellent stability and control at high speeds. The sintered base is ultra-fast and highly durable, ensuring that you'll be able to charge through any terrain without hesitation. \n In addition to its impressive performance, The Trailblazer also boasts a stunning aesthetic, with a bold graphic that features a mountain range against a gradient blue sky. This eye-catching design is sure to turn heads on the mountain and make you stand out from the crowd. \n Whether you're a seasoned veteran or just getting started, The Trailblazer is the perfect snowboard for riders who demand the best. So get out there and blaze your own trail with The Trailblazer!",
     "price": 299.99,
-    "image": "https://koryfi.com/products/the-trailblazer.jpg",
+    "rating": 4,
+    "images": [
+      "/images/snowboards/trailblazer/trailblazer-both.jpg",
+      "/images/snowboards/trailblazer/trailblazer-front.jpg",
+      "/images/snowboards/trailblazer/trailblazer-back.jpg"
+    ],
     "type": "Snowboard",
     "category": "snowboard",
+    "camber": "Traditional",
     "difficulty": "Beginner/Intermediate",
     "width": "24.5 cm",
     "length": "149 cm",
@@ -30,9 +38,11 @@
     "name": "The Freeride",
     "description": "The Freeride is a versatile snowboard for riders looking for a board that can handle any type of snow conditions. With a hybrid camber and a twin shape, this board is stable and responsive, giving you the confidence to charge down the mountain.",
     "price": 399.99,
-    "image": "https://koryfi.com/products/the-freeride.jpg",
+    "rating": 4,
+    "images": [],
     "type": "Snowboard",
     "category": "snowboard",
+    "camber": "Traditional",
     "difficulty": "Intermediate/Advanced",
     "width": "25.0 cm",
     "length": "155 cm",
@@ -43,9 +53,11 @@
     "name": "The Powder Hound",
     "description": "The Powder Hound is a specialized snowboard for riders looking for a board that excels in deep powder. With a wide nose and a swallowtail, this board floats effortlessly in the snow and gives you the ability to surf the mountain.",
     "price": 499.99,
-    "image": "https://koryfi.com/products/the-powder-hound.jpg",
+    "rating": 4,
+    "images": [],
     "type": "Snowboard",
     "category": "snowboard",
+    "camber": "Traditional",
     "difficulty": "Advanced",
     "width": "26.5 cm",
     "length": "158 cm",
@@ -57,7 +69,7 @@
     "price": 249.99,
     "category": "jacket",
     "description": "Stay warm and stylish on the slopes with the Koryfi Insulated Jacket. This jacket features a waterproof, breathable fabric that will keep you dry and comfortable no matter the conditions. The high-loft insulation provides excellent warmth, making it the perfect choice for cold and wet weather. With a modern design and a range of colors to choose from, this jacket is sure to become a staple in your winter wardrobe.",
-    "image": "/images/jacket1.jpg"
+    "images": "/imagess/jacket1.jpg"
   },
   {
     "id": 2,
@@ -65,7 +77,7 @@
     "price": 329.99,
     "category": "jacket",
     "description": "Get the versatility you need for a full day on the mountain with the Koryfi 3-in-1 Ski Jacket. This jacket features a removable inner layer, allowing you to adjust your warmth level based on the conditions. The waterproof, breathable outer shell provides protection from the elements, while the inner layer provides additional insulation. Whether you're facing a cold and wet day, or a milder one, this jacket has you covered.",
-    "image": "/images/jacket2.jpg"
+    "images": []
   },
   {
     "id": 3,
@@ -73,7 +85,7 @@
     "price": 199.99,
     "category": "jacket",
     "description": "Stay protected from the elements during milder conditions with the Koryfi Softshell Jacket. This jacket features a water-resistant and wind-resistant exterior, and a comfortable, stretchy interior. The adjustable hood, cuffs, and hem provide a customizable fit, while the zippered pockets provide secure storage for your essentials. Whether you're out for a casual day on the slopes, or just running errands around town, this jacket is the perfect choice.",
-    "image": "/images/jacket3.jpg"
+    "images": []
   },
   {
     "id": 4,
@@ -81,6 +93,6 @@
     "price": 129.99,
     "category": "jacket",
     "description": "Stay cozy and comfortable on the mountain or around town with the Koryfi Fleece Jacket. This jacket features a soft and warm fleece interior, and a stylish, modern design. The zippered pockets provide secure storage for your essentials, while the adjustable cuffs and hem allow for a customized fit. Whether you're layering up for a day on the slopes, or just looking for a comfortable and warm jacket for everyday wear, this fleece jacket is the perfect choice.",
-    "image": "/images/jacket4.jpg"
+    "images": []
   }
 ]

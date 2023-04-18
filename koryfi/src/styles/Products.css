@@ -1,0 +1,37 @@
+.product-page {
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  margin: auto;
+}
+
+.filter-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+}
+
+.search input {
+  padding: 9px 17px;
+  border-radius: 34px;
+  width: 100%;
+}
+.search {
+  width: 100%;
+}
+.right-column {
+  width: 80%;
+}
+.left-column {
+  width: 20%;
+}
+.product-gallery {
+  width: 100%;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}

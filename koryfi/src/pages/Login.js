@@ -9,7 +9,7 @@ function Login() {
   const [isLoading, setLoading] = useState(false);
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
+  const { login, forgotPassword } = useAuth();
   const navigate = useNavigate();
 
   const register = (e) => {
@@ -30,6 +30,16 @@ function Login() {
       alert("User Name and/or Password Cannot be Blank!");
     }
   };
+
+  function handleForgotPassword(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(email)) {
+      forgotPassword(email);
+    } else {
+      alert("Enter a valid email");
+    }
+  }
+
   return (
     <div className="loginWrapper">
       <div className="loginCard">
@@ -45,6 +55,12 @@ function Login() {
             <div id="password">
               <label>Password</label>
               <input ref={passwordRef} type="password" required />
+              <span
+                onClick={() => handleForgotPassword(emailRef.current.value)}
+                className="forgotPassword"
+              >
+                Forgot Password?
+              </span>
             </div>
             <button disabled={isLoading} type="submit">
               Log In

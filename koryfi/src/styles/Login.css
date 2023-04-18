@@ -25,13 +25,13 @@
   padding: 10px;
   cursor: pointer;
 }
-.leftSide {
-  background-color: cornsilk;
+.loginWrapper .leftSide {
+  background-color: #ffcc00;
   border-radius: 8px 0 0 8px;
   height: 100%;
 }
-.rightSide {
-  background-color: rgb(234, 234, 234);
+.loginWrapper .rightSide {
+  background-color: White;
   border-radius: 0 8px 8px 0;
   height: 100%;
 }

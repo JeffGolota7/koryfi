@@ -15,6 +15,8 @@ import About from "./pages/About";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Account from "./pages/Account";
+import Products from "./pages/Products";
+import ProductDetailPage from "./pages/ProductDetailPage";
 import useProductContext from "./contexts/ProductContext";
 
 const ProductContext = createContext({});
@@ -24,7 +26,17 @@ function App() {
 
   const fetchProducts = useMemo(() => {});
 
-  useEffect(() => {}, [fetchProducts]);
+  useEffect(() => {
+    const script = document.createElement("script");
+
+    script.src = "https://smtpjs.com/v3/smtp.js";
+
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  });
 
   return (
     <ProductContext.Provider value={products}>
@@ -34,7 +46,9 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/products" element={<Products />} />
         <Route path="/account" element={<Account />} />
+        <Route path="/product-information" element={<ProductDetailPage />} />
       </Routes>
     </ProductContext.Provider>
   );

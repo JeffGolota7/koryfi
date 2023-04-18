@@ -1,11 +1,66 @@
 import React, { useContext, useState, useEffect } from "react";
 import { db } from "../firebase/firebase";
-import { doc, getDocs, collection, query, setDoc } from "firebase/firestore";
+import {
+  doc,
+  getDocs,
+  collection,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
 import data from "./products.json";
 export const ProductContext = React.createContext();
 
 export function useProduct() {
   return useContext(ProductContext);
+}
+
+let productCache;
+
+export async function getProductsFromDatabaseByText(queryText) {
+  if (queryText) {
+    let docSnap;
+    if (!productCache) {
+      docSnap = await getDocs(collection(db, "products"));
+      productCache = docSnap;
+    } else {
+      docSnap = productCache;
+    }
+    if (docSnap) {
+      const products = [{}];
+      docSnap.docs.forEach((prod) => {
+        let currentProd = prod.data();
+        if (
+          currentProd.name.includes(queryText) ||
+          currentProd.name.toLowerCase().includes(queryText) ||
+          currentProd.category.includes(queryText)
+        ) {
+          products.push(prod.data());
+        }
+      });
+
+      return await products;
+    }
+  } else {
+    return [];
+  }
+}
+
+export async function getAllProductsFromDatabase() {
+  try {
+    const docSnap = await getDocs(collection(db, "products"));
+    if (docSnap) {
+      const products = [{}];
+
+      docSnap.docs.forEach((prod) => {
+        products.push(prod.data());
+      });
+      products.shift();
+      return await products;
+    }
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 export function ProductProvider({ children }) {
@@ -18,8 +73,10 @@ export function ProductProvider({ children }) {
         name: product.name,
         description: product.description,
         price: product.price,
-        image: product.image,
+        rating: product.rating,
+        images: product.images,
         type: product.type,
+        camber: product.camber,
         category: product.category,
         difficulty: product.difficulty,
         width: product.width,
@@ -34,30 +91,35 @@ export function ProductProvider({ children }) {
         price: product.price,
         category: product.category,
         description: product.description,
-        image: product.image,
+        images: product.images,
       });
     }
   });
 
-  async function getProductsFromDatabase() {
-    try {
-      const docSnap = await getDocs(collection(db, "products"));
-      if (docSnap) {
-        const products = [{}];
+  async function getAllProductsFromDatabase() {
+    if (!products) {
+      try {
+        const docSnap = await getDocs(collection(db, "products"));
+        if (docSnap) {
+          const prods = [{}];
 
-        docSnap.docs.forEach((prod) => {
-          products.push(prod.data());
-        });
-
-        return await products;
+          docSnap.docs.forEach((prod) => {
+            prods.push(prod.data());
+          });
+          prods.shift();
+          updateProducts(prods);
+          return await prods;
+        }
+      } catch (e) {
+        console.log(e);
       }
-    } catch (e) {
-      console.log(e);
+    } else {
+      return products;
     }
   }
 
   useEffect(() => {
-    getProductsFromDatabase().then((data) => {
+    getAllProductsFromDatabase().then((data) => {
       updateProducts(data);
     });
     setLoading(false);

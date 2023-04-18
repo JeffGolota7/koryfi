@@ -1,0 +1,26 @@
+.card {
+  margin: 1rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.cardContent {
+  padding: 1rem;
+  background-color: white;
+  width: 100%;
+  color: #ffcc00;
+  border-radius: 0 0 8px 8px;
+}
+.image {
+  height: 200px;
+  width: 200px;
+  margin: 0;
+}
+.image img {
+  width: 100%;
+  height: auto;
+}

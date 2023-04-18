@@ -6,20 +6,24 @@
   align-items: center;
 }
 
+label {
+  color: #2e2e2e;
+}
+
 .signUpCard {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30%;
+  height: 40%;
 }
 
-.leftSide {
-  background-color: cornsilk;
+.signupWrapper .leftSide {
+  background-color: #ffcc00;
   border-radius: 8px 0 0 8px;
   height: 100%;
 }
-.rightSide {
-  background-color: rgb(234, 234, 234);
+.signupWrapper .rightSide {
+  background-color: white;
   border-radius: 0 8px 8px 0;
   height: 100%;
 }
@@ -39,4 +43,27 @@
 .last {
   display: flex;
   flex-direction: column;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 0;
+}
+
+.input input {
+  margin: 0;
+  border: none;
+  border-bottom: 1px solid #ffcc00;
+}
+
+.input input:focus-visible,
+.input input:focus {
+  border-radius: 0px;
+  background-color: #f8f8f8;
+  outline: none;
+  border-bottom: 1px solid #ffcc00;
+}
+.last {
+  margin-left: 8px;
 }
