@@ -1,15 +1,24 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import { useCart } from "../contexts/CartContext";
 import { useAuth } from "../contexts/AuthContext";
 import "../styles/Dropdown.css";
 
-export default function Dropdown({ toggleIsOpen, type }) {
+export default function Dropdown({ toggleIsOpen, type, parentRef }) {
   const { cart, removeItem } = useCart();
   const { logout } = useAuth();
-  // const accountDropdownRef = useRef(null);
+  const [total, setTotal] = useState(0);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    let totalPrice = 0;
+    cart.forEach((item) => {
+      totalPrice += item.price * item.count;
+      console.log(item);
+    });
+    setTotal(totalPrice);
+  }, [cart]);
 
   async function handleLogout() {
     await logout()
@@ -22,7 +31,6 @@ export default function Dropdown({ toggleIsOpen, type }) {
     navigate("/");
   }
 
-  // useOutsideClick(accountDropdownRef);
   return (
     <>
       {type === "cart" ? (
@@ -32,9 +40,28 @@ export default function Dropdown({ toggleIsOpen, type }) {
               cart.map((item, index) => {
                 return (
                   <li className="cartItem">
-                    <img className="cartItemImg" src={item.images[0]} alt="" />
+                    {item.images && (
+                      <img
+                        className="cartItemImg"
+                        src={item.images[0]}
+                        alt=""
+                      />
+                    )}
+
                     <div className="nameAndButton">
-                      <h3 className="cartItemName">{item.name}</h3>
+                      <div className="nameAndPrice">
+                        <div className="name">
+                          <h4 className="cartItemName">{item.name}</h4>
+                          {item.count && (
+                            <div className="count">
+                              <span className="minus">-</span>
+                              <h5 className="countAmount">x{item.count}</h5>
+                              <span className="plus">+</span>
+                            </div>
+                          )}
+                        </div>
+                        <h6 className="cartItemPrice">{item.price}</h6>
+                      </div>
                       <div
                         className="remove"
                         onClick={() => {
@@ -48,6 +75,7 @@ export default function Dropdown({ toggleIsOpen, type }) {
                 );
               })}
           </div>
+          <div className="total">{total > 0 && total}</div>
           <button className="checkOutButton">Check Out</button>
         </div>
       ) : (

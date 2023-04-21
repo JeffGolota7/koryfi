@@ -1,0 +1,36 @@
+.formWrapper {
+  height: 90%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.225);
+}
+
+.formWrapper .leftSide {
+  background-color: #ffcc00;
+  border-radius: 8px 0 0 8px;
+  flex-grow: 1;
+}
+.formWrapper .rightSide {
+  background-color: white;
+  border-radius: 0 8px 8px 0;
+  flex-grow: 1;
+  align-self: stretch;
+}
+
+.leftSide,
+.rightSide {
+  padding: 3rem;
+}
+
+.rightSide input:-internal-autofill-selected {
+  background-color: #fff4c6 !important;
+}

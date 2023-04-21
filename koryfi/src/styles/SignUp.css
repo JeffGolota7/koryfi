@@ -1,36 +1,5 @@
-.signupWrapper {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 label {
-  color: #2e2e2e;
-}
-
-.signUpCard {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40%;
-}
-
-.signupWrapper .leftSide {
-  background-color: #ffcc00;
-  border-radius: 8px 0 0 8px;
-  height: 100%;
-}
-.signupWrapper .rightSide {
-  background-color: white;
-  border-radius: 0 8px 8px 0;
-  height: 100%;
-}
-
-.leftSide,
-.rightSide {
-  padding: 3rem;
+  color: #3e3e3e;
 }
 
 #name {

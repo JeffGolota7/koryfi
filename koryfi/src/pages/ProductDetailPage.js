@@ -23,7 +23,7 @@ export default function ProductDetailPage() {
 
   function handleOnClick() {
     if (cart) {
-      setCart(cart.concat(product));
+      setCart(product);
     } else {
       setCart([{}]);
     }

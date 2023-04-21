@@ -32,8 +32,11 @@ export async function getProductsFromDatabaseByText(queryText) {
         let currentProd = prod.data();
         if (
           currentProd.name.includes(queryText) ||
+          currentProd.name.includes(queryText.toLowerCase()) ||
           currentProd.name.toLowerCase().includes(queryText) ||
-          currentProd.category.includes(queryText)
+          currentProd.name.toLowerCase().includes(queryText.toLowerCase()) ||
+          currentProd.category.includes(queryText) ||
+          currentProd.category.includes(queryText.toLowerCase())
         ) {
           products.push(prod.data());
         }

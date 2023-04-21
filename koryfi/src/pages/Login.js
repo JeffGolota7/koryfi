@@ -4,6 +4,7 @@ import { auth } from "../firebase/firebase";
 import { useAuth } from "../contexts/AuthContext";
 
 import "../styles/Login.css";
+import "../styles/Form.css";
 
 function Login() {
   const [isLoading, setLoading] = useState(false);
@@ -41,8 +42,8 @@ function Login() {
   }
 
   return (
-    <div className="loginWrapper">
-      <div className="loginCard">
+    <div className="formWrapper">
+      <div className="formCard">
         <div className="leftSide">
           <h2>Welcome Back</h2>
         </div>
@@ -67,7 +68,7 @@ function Login() {
             </button>
           </form>
           <div className="signupLinkWrapper">
-            Not Signed Up? <Link to="/sign-up">Sign-Up</Link>
+            Need an Account? <Link to="/sign-up">Sign-Up</Link>
           </div>
         </div>
       </div>

@@ -28,15 +28,35 @@ export default function Cart() {
     }, [ref]);
   }
   useOutsideClick(cartDropdownRef);
+
+  function totalCountAmount() {
+    let totalCount = 0;
+    cart.forEach((item) => {
+      if (item.count && item.count > 1) {
+        totalCount += item.count;
+      } else {
+        totalCount += 1;
+      }
+    });
+
+    return totalCount;
+  }
+
   return (
     <div className="cartContainer" ref={cartDropdownRef}>
       <div className="iconAndTotal">
         <CartIcon onClick={toggleDropdown} />
         {cart && cart.length > 0 && !isOpen && (
-          <div className="badge">{cart.length}</div>
+          <div className="badge">{totalCountAmount()}</div>
         )}
       </div>
-      {isOpen && <Dropdown toggleIsOpen={toggleIsOpen} type="cart" />}
+      {isOpen && (
+        <Dropdown
+          toggleIsOpen={toggleIsOpen}
+          type="cart"
+          parentRef={cartDropdownRef}
+        />
+      )}
     </div>
   );
 }

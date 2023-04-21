@@ -4,22 +4,42 @@
 
 .results {
   width: 100%;
-  background-color: grey;
+  background-color: white;
   display: flex;
   flex-direction: column;
   max-height: 300px;
-  overflow: scroll;
   position: absolute;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  border-radius: 8px;
 }
 .results a {
-  color: white;
+  color: #3e3e3e;
 }
 .searchbar {
   position: relative;
 }
 .searchbar input {
-  padding: 9px 17px;
+  padding: 5px 17px;
+  width: 200px;
   border-radius: 34px;
   background-color: white;
   border: 1px solid #ffcc00;
+}
+.searchbar input:focus-visible,
+.searchbar input:focus-within,
+.searchbar input:active {
+  outline-color: #ffcc00;
+}
+.searchbar svg {
+  height: 100%;
+}
+
+.searchbar ::-webkit-scrollbar {
+  width: 5px;
+}
+
+.searchbar ::-webkit-scrollbar-thumb {
+  background: #ffcc00;
+  border-radius: 8px;
 }

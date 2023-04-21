@@ -10,7 +10,20 @@ export function CartProvider({ children }) {
   const [initialCart] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
   );
-  const [cart, setCart] = useState(initialCart);
+  const [cart, updateCart] = useState(initialCart);
+
+  function setCart(product) {
+    const existingProduct = cart.find((item) => item.name === product.name);
+    if (existingProduct) {
+      const updatedCart = cart.map((item) =>
+        item.name === product.name ? { ...item, count: item.count + 1 } : item
+      );
+      updateCart(updatedCart);
+    } else {
+      const updatedCart = [...cart, { ...product, count: 1 }];
+      updateCart(updatedCart);
+    }
+  }
 
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
@@ -26,10 +39,9 @@ export function CartProvider({ children }) {
   }, [cart, initialCart]);
 
   const removeItem = (index) => {
-    console.log(cart);
     const updatedCart = [...cart];
     updatedCart.splice(index, 1);
-    setCart(updatedCart);
+    updateCart(updatedCart);
   };
 
   const value = {

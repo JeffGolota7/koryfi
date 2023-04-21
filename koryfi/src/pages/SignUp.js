@@ -3,19 +3,29 @@ import { Outlet, Link, useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase/firebase";
 import { doc, setDoc, collection } from "firebase/firestore";
 import { useAuth, AuthProvider } from "../contexts/AuthContext";
+import { codeToMessage } from "../helpers/errorHandling";
 
 import "../styles/SignUp.css";
+import "../styles/Form.css";
+import Banner from "../components/Banner";
 
 function SignUp() {
   const [isLoading, setLoading] = useState(false);
+  const [isVisible, setVisible] = useState(false);
+  const [message, updateMessage] = useState("");
   const emailRef = useRef();
   const passwordRef = useRef();
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const phoneRef = useRef();
   const confirmPasswordRef = useRef();
-  const { signup, currentUser, sendSignUpEmail } = useAuth();
+  const { signup, currentUser } = useAuth();
   const navigate = useNavigate();
+
+  function showError(code) {
+    updateMessage(codeToMessage(code));
+    setVisible(true);
+  }
 
   const register = async (e) => {
     e.preventDefault();
@@ -36,18 +46,18 @@ function SignUp() {
               password: passwordRef.current.value,
             })
               .then(() => {
-                sendSignUpEmail(emailRef.current.value);
                 alert("success!");
               })
               .catch((e) => {
-                alert(e.message);
+                updateMessage(e.message);
+                setVisible(true);
               });
           })
           .then(() => {
             navigate("/");
           });
       } catch (e) {
-        alert(e.message);
+        showError(e.code);
       }
       setLoading(false);
     } else {
@@ -56,12 +66,19 @@ function SignUp() {
   };
 
   function handleTest() {
-    sendSignUpEmail(emailRef.current.value);
+    setVisible(true);
+    // sendSignUpEmail(emailRef.current.value);
   }
   return (
-    <div className="signupWrapper">
+    <div className="formWrapper">
+      <Banner
+        message={message}
+        duration={3000}
+        isVisible={isVisible}
+        setVisible={setVisible}
+      ></Banner>
       <button onClick={handleTest}>Test</button>
-      <div className="signUpCard">
+      <div className="formCard">
         <div className="leftSide">
           <h2>Join Us</h2>
         </div>

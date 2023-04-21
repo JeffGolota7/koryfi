@@ -19,7 +19,7 @@ export function AuthProvider({ children }) {
   const [isLoading, setLoading] = useState(true);
 
   function signup(email, password) {
-    sendSignUpEmail(email);
+    // sendSignUpEmail(email);
     return createUserWithEmailAndPassword(auth, email, password);
   }
 
@@ -138,7 +138,7 @@ export function AuthProvider({ children }) {
 </head>
 <body>
 	<div class="container">
-		<img src="http://www.koryfisports.com/images/Koryfi-Logo.png" alt="Welcome to the Family!" style="display: block; max-width: 100%; height: auto;">
+		<img src="http://www.koryfisports.netlify.app/images/Koryfi-Logo.png" alt="Welcome to the Family!" style="display: block; max-width: 100%; height: auto;">
 		<h1>Welcome to the Family!</h1>
 		<div class="separator"></div>
 		<div class="message">
