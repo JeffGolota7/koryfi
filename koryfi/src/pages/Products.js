@@ -7,9 +7,20 @@ import {
   useProduct,
 } from "../contexts/ProductContext";
 import "../styles/Products.css";
+import FilterContainer from "../components/FilterContainer.js";
 
 export default function Products() {
   const [displayedProducts, updateDisplayedProducts] = useState([]);
+  const [allProducts, updateProducts] = useState([]);
+  const [selectedFilters, updateSelectedFilters] = useState([
+    {
+      name: "all",
+      minprice: 0,
+      maxprice: 1000,
+      type: "price",
+      filterType: "range",
+    },
+  ]);
   const { products } = useProduct();
 
   async function handleSearch(queryText) {
@@ -27,55 +38,67 @@ export default function Products() {
     }
   }
 
+  function handleFilterChange(filter) {
+    const index = selectedFilters.findIndex((f) => f.name === filter.name);
+
+    const newFilters = [...selectedFilters];
+    if (index === -1) {
+      newFilters.push(filter);
+    } else {
+      if (filter.filterType === "range") {
+        newFilters.splice(index, 1, filter);
+      } else {
+        newFilters.splice(index, 1);
+      }
+    }
+    updateSelectedFilters(newFilters);
+  }
+
+  useEffect(() => {
+    const filteredProducts = [...allProducts].filter((product) => {
+      return selectedFilters.every((filter) => {
+        switch (filter.filterType) {
+          case "range":
+            return (
+              product[filter.type] >= filter[`min${filter.type}`] &&
+              product[filter.type] <= filter[`max${filter.type}`]
+            );
+          case "check":
+            return product.category.includes(filter.name);
+          default:
+            return true;
+        }
+      });
+    });
+    updateDisplayedProducts(filteredProducts);
+  }, [selectedFilters]);
+
   useEffect(() => {
     if (products) {
       updateDisplayedProducts(products);
+      updateProducts(products);
     } else {
       updateDisplayedProducts(getAllProductsFromDatabase());
+      updateProducts(displayedProducts);
     }
   }, [products]);
 
   return (
     <div className="product-page">
       <div className="left-column">
-        <div className="filters">
-          <ul className="filter-list">
-            <label htmlFor="category-list">Category</label>
-            <div className="category-list filter-section">
-              <div className="filter">
-                <input
-                  type="checkbox"
-                  id="snowboard"
-                  name="snowboard"
-                  value="Snowboard"
-                />
-                <label for="snowboard">Snowboard</label>
-              </div>
-              <div className="filter">
-                <input type="checkbox" id="skis" name="skis" value="Skis" />
-                <label for="Skis">Skis</label>
-              </div>
-              <div className="filter">
-                <input
-                  type="checkbox"
-                  id="Clothes"
-                  name="clothes"
-                  value="Clothes"
-                />
-                <label for="clothes">Clothes</label>
-              </div>
-            </div>
-          </ul>
-        </div>
+        <FilterContainer
+          updateSelectedFilters={handleFilterChange}
+          selectedFilters={selectedFilters}
+        />
       </div>
       <div className="right-column">
         <div className="search">
           <input type="text" onChange={(e) => handleSearch(e.target.value)} />
         </div>
         <div className="product-gallery">
-          {displayedProducts !== null &&
-            displayedProducts.map((product) => {
-              return <Card product={product} />;
+          {displayedProducts.length > 0 &&
+            displayedProducts.map((p) => {
+              return <Card product={p} />;
             })}
         </div>
       </div>

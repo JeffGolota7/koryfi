@@ -14,6 +14,8 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
+import Checkout from "./pages/PreCheckoutPage";
+import CheckoutPage from "./pages/CheckoutPage";
 import Account from "./pages/Account";
 import Products from "./pages/Products";
 import ProductDetailPage from "./pages/ProductDetailPage";
@@ -43,6 +45,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkout/confirm" element={<CheckoutPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/login" element={<Login />} />

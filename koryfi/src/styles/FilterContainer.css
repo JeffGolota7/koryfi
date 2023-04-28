@@ -1,0 +1,43 @@
+.checkbox {
+  width: 3px;
+  height: 3px;
+  margin: 0.5rem;
+  border: 1px solid #ffcc00;
+}
+
+.filter-list {
+  width: 100%;
+  padding: 1rem;
+  margin-right: 0.5rem;
+  border-radius: 8px;
+}
+
+.category {
+  color: #3e3e3e;
+  font-weight: bold;
+  margin-top: 2rem;
+}
+
+.category-header {
+  margin: 0;
+}
+
+.category-list,
+.conditionalFilters {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.priceContainer {
+  flex-direction: column;
+}
+
+.priceContainer .category {
+  align-self: flex-start;
+}
+
+.conditionalFilters {
+  margin-top: 0.5rem;
+  min-height: 80vh;
+}

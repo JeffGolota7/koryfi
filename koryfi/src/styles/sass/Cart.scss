@@ -20,24 +20,20 @@
   width: 180px;
   background-color: grey;
 }
-
 .iconAndTotal {
   position: relative;
   height: 100%;
   display: flex;
   align-items: center;
 }
-
 .iconAndTotal svg {
   height: 28px;
   cursor: pointer;
 }
-
 .cartContainer {
   position: relative;
   height: 39px;
 }
-
 .cart {
   background-color: #f8f8f8;
   height: 100%;

@@ -1,0 +1,99 @@
+.accountWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  svg {
+    width: auto;
+    height: 20px;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .infoField .labelWrapper:hover .editIcon {
+    display: inline-block;
+  }
+  .labelWrapper {
+    position: relative;
+  }
+
+  .infoField .editIcon {
+    position: absolute;
+    right: 0;
+    display: none;
+    cursor: pointer;
+  }
+
+  .accountCard {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    max-width: 1250px;
+    .leftSide {
+      background-color: #ffcc00;
+      border-radius: 8px 0 0 8px;
+      align-self: normal;
+      width: 35%;
+    }
+    .rightSide {
+      background-color: white;
+      border-radius: 0 8px 8px 0;
+      width: 65%;
+      height: 750px;
+      overflow-y: scroll;
+      .infoField {
+        margin: 1rem 0;
+      }
+
+      .field {
+        display: flex;
+        align-items: center;
+      }
+      .field .infoValue {
+        width: 100%;
+        padding: 14px 14px 7px 14px;
+        border-bottom: 1px solid #ffcc00;
+      }
+      .field .infoValue:focus,
+      .field .infoValue:focus-visble {
+        background-color: aqua;
+      }
+      .paymentCard {
+        background-color: #3e3e3e;
+        width: 200px;
+        color: white;
+        padding: 0.3rem 0.75rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100px;
+        white-space: break-spaces;
+      }
+      .addCardForm {
+        .inputLabel {
+          margin-bottom: 10px;
+        }
+        .firstLast,
+        .numCSV {
+          display: flex;
+          margin: 10px 0;
+        }
+        .first,
+        .last,
+        .num,
+        .csv {
+          width: 50%;
+        }
+        .last,
+        .csv {
+          margin-left: 10px;
+        }
+        .expDate {
+          margin-bottom: 0.75rem;
+          width: 50%;
+        }
+      }
+    }
+  }
+}

@@ -11,7 +11,7 @@
     "camber": "Traditional",
     "difficulty": "Advanced",
     "width": "25.5 cm",
-    "length": "153 cm",
+    "length": 153,
     "flex": "Stiff"
   },
   {
@@ -21,16 +21,25 @@
     "price": 299.99,
     "rating": 4,
     "images": [
-      "/images/snowboards/trailblazer/trailblazer-both.jpg",
-      "/images/snowboards/trailblazer/trailblazer-front.jpg",
-      "/images/snowboards/trailblazer/trailblazer-back.jpg"
+      {
+        "lowRes": "/images/snowboards/trailblazer/trailblazer-both-small.jpg",
+        "highRes": "/images/snowboards/trailblazer/trailblazer-both.jpg"
+      },
+      {
+        "lowRes": "/images/snowboards/trailblazer/trailblazer-front-small.jpg",
+        "highRes": "/images/snowboards/trailblazer/trailblazer-front.jpg"
+      },
+      {
+        "lowRes": "/images/snowboards/trailblazer/trailblazer-back-small.jpg",
+        "highRes": "/images/snowboards/trailblazer/trailblazer-back.jpg"
+      }
     ],
     "type": "Snowboard",
     "category": "snowboard",
     "camber": "Traditional",
     "difficulty": "Beginner/Intermediate",
     "width": "24.5 cm",
-    "length": "149 cm",
+    "length": 149,
     "flex": "Medium"
   },
   {
@@ -45,7 +54,7 @@
     "camber": "Traditional",
     "difficulty": "Intermediate/Advanced",
     "width": "25.0 cm",
-    "length": "155 cm",
+    "length": 155,
     "flex": "Stiff"
   },
   {
@@ -60,22 +69,22 @@
     "camber": "Traditional",
     "difficulty": "Advanced",
     "width": "26.5 cm",
-    "length": "158 cm",
+    "length": 158,
     "flex": "Stiff"
   },
   {
     "id": 1,
     "name": "Koryfi Insulated Jacket",
     "price": 249.99,
-    "category": "jacket",
+    "category": ["clothing", "jacket"],
     "description": "Stay warm and stylish on the slopes with the Koryfi Insulated Jacket. This jacket features a waterproof, breathable fabric that will keep you dry and comfortable no matter the conditions. The high-loft insulation provides excellent warmth, making it the perfect choice for cold and wet weather. With a modern design and a range of colors to choose from, this jacket is sure to become a staple in your winter wardrobe.",
-    "images": "/imagess/jacket1.jpg"
+    "images": []
   },
   {
     "id": 2,
     "name": "Koryfi 3-in-1 Ski Jacket",
     "price": 329.99,
-    "category": "jacket",
+    "category": ["clothing", "jacket"],
     "description": "Get the versatility you need for a full day on the mountain with the Koryfi 3-in-1 Ski Jacket. This jacket features a removable inner layer, allowing you to adjust your warmth level based on the conditions. The waterproof, breathable outer shell provides protection from the elements, while the inner layer provides additional insulation. Whether you're facing a cold and wet day, or a milder one, this jacket has you covered.",
     "images": []
   },
@@ -83,7 +92,7 @@
     "id": 3,
     "name": "Koryfi Softshell Jacket",
     "price": 199.99,
-    "category": "jacket",
+    "category": ["clothing", "jacket"],
     "description": "Stay protected from the elements during milder conditions with the Koryfi Softshell Jacket. This jacket features a water-resistant and wind-resistant exterior, and a comfortable, stretchy interior. The adjustable hood, cuffs, and hem provide a customizable fit, while the zippered pockets provide secure storage for your essentials. Whether you're out for a casual day on the slopes, or just running errands around town, this jacket is the perfect choice.",
     "images": []
   },
@@ -91,7 +100,7 @@
     "id": 4,
     "name": "Koryfi Fleece Jacket",
     "price": 129.99,
-    "category": "jacket",
+    "category": ["clothing", "jacket"],
     "description": "Stay cozy and comfortable on the mountain or around town with the Koryfi Fleece Jacket. This jacket features a soft and warm fleece interior, and a stylish, modern design. The zippered pockets provide secure storage for your essentials, while the adjustable cuffs and hem allow for a customized fit. Whether you're layering up for a day on the slopes, or just looking for a comfortable and warm jacket for everyday wear, this fleece jacket is the perfect choice.",
     "images": []
   }

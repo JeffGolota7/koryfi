@@ -31,7 +31,6 @@
 .inactive {
   transform: translateX(-100vw);
 }
-
 .active {
   transform: translateX(0);
 }
@@ -44,7 +43,6 @@
   justify-content: space-evenly;
   z-index: 100;
 }
-
 .line {
   width: 100%;
   height: 2px;
@@ -78,7 +76,6 @@
   text-decoration: none;
   margin: 1rem;
 }
-
 .navbar svg {
   height: 40px;
   width: auto;

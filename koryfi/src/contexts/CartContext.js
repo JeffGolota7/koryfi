@@ -44,10 +44,22 @@ export function CartProvider({ children }) {
     updateCart(updatedCart);
   };
 
+  const updateCount = (index, value) => {
+    const updatedCart = [...cart];
+    console.log(updatedCart[index].count);
+    if (updatedCart[index].count + value > 0) {
+      updatedCart[index].count += value;
+      updateCart(updatedCart);
+    } else {
+      removeItem(index);
+    }
+  };
+
   const value = {
     cart,
     setCart,
     removeItem,
+    updateCount,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

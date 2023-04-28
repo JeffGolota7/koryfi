@@ -8,8 +8,8 @@ export default function Card(product) {
     <Link to="/product-information" state={{ product: prod }}>
       <div className="card">
         <div className="image">
-          {prod.images !== [] ? (
-            <img src={prod.images[0]} alt="" />
+          {prod.images.length > 0 ? (
+            <img src={prod.images[0].lowRes} alt="" />
           ) : (
             <div className="noPhoto"></div>
           )}

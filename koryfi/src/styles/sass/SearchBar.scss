@@ -13,15 +13,12 @@
   overflow-y: scroll;
   border-radius: 8px;
 }
-
 .results a {
   color: #3e3e3e;
 }
-
 .searchbar {
   position: relative;
 }
-
 .searchbar input {
   padding: 5px 17px;
   width: 200px;
@@ -29,13 +26,11 @@
   background-color: white;
   border: 1px solid #ffcc00;
 }
-
 .searchbar input:focus-visible,
 .searchbar input:focus-within,
 .searchbar input:active {
   outline-color: #ffcc00;
 }
-
 .searchbar svg {
   height: 100%;
 }

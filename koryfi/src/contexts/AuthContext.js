@@ -160,8 +160,8 @@ export function AuthProvider({ children }) {
     const docRef = doc(db, "users", user.uid);
     try {
       const docSnap = await getDoc(docRef);
-      if (docSnap) {
-        return await docSnap.data();
+      if (docSnap.exists()) {
+        return await docSnap;
       }
     } catch (e) {
       console.log(e);
@@ -183,14 +183,57 @@ export function AuthProvider({ children }) {
     }
   }
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        getUserFromDatabase(user).then((data) => {
-          user.firstName = data.firstName;
-          user.lastName = data.lastName;
-          user.cart = [{}];
+  async function addAddress(user, address) {
+    if (user) {
+      const userRef = doc(db, "users", user.uid);
+      try {
+        console.log(userRef.data());
+        // await updateDoc(userRef, {
+        //   [fieldName]: newValue,
+        // });
+        // alert("Value Updated");
+        // user[fieldName] = newValue;
+      } catch (e) {
+        alert(e);
+      }
+    }
+  }
+
+  async function addCardToAccount(user, card) {
+    if (user) {
+      const userRef = doc(db, "users", user.uid);
+      try {
+        const userSnap = await getDoc(userRef);
+        const user = userSnap.data();
+        let cards = [];
+
+        if (!user.paymentMethods) {
+          cards.push(card);
+        } else {
+          cards = user.paymentMethods;
+        }
+        console.log(userSnap.data());
+        console.log(card);
+        await updateDoc(userRef, {
+          paymentMethods: cards,
         });
+        alert("Card Successfully Added");
+        user.paymentMethods = cards;
+      } catch (e) {
+        alert(e);
+      }
+    }
+  }
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const data = await getUserFromDatabase(user);
+        if (data) {
+          let uid = user.uid;
+          user = data.data();
+          user.uid = uid;
+        }
       }
       setCurrentUser(user);
       setLoading(false);
@@ -199,11 +242,15 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, []);
 
-  useEffect(() => {}, [currentUser]);
+  useEffect(() => {
+    setCurrentUser(currentUser);
+  }, [currentUser]);
 
   const value = {
     currentUser,
     editDataField,
+    addAddress,
+    addCardToAccount,
     sendSignUpEmail,
     forgotPassword,
     login,

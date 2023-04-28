@@ -41,7 +41,6 @@ body {
   display: flex;
   width: 55%;
 }
-
 .info {
   white-space: pre-line;
 }
@@ -53,11 +52,9 @@ body {
 .pdp-container .zoom-container:hover .activeImage {
   transform: scale(1.25);
 }
-
 .snowboard-info {
   display: flex;
 }
-
 .right-column {
   display: flex;
   flex-direction: column;

@@ -5,7 +5,7 @@ import { useAuth } from "../contexts/AuthContext";
 import "../styles/Dropdown.css";
 
 export default function Dropdown({ toggleIsOpen, type, parentRef }) {
-  const { cart, removeItem } = useCart();
+  const { cart, removeItem, updateCount } = useCart();
   const { logout } = useAuth();
   const [total, setTotal] = useState(0);
 
@@ -15,7 +15,6 @@ export default function Dropdown({ toggleIsOpen, type, parentRef }) {
     let totalPrice = 0;
     cart.forEach((item) => {
       totalPrice += item.price * item.count;
-      console.log(item);
     });
     setTotal(totalPrice);
   }, [cart]);
@@ -43,7 +42,7 @@ export default function Dropdown({ toggleIsOpen, type, parentRef }) {
                     {item.images && (
                       <img
                         className="cartItemImg"
-                        src={item.images[0]}
+                        src={item.images[0].lowRes}
                         alt=""
                       />
                     )}
@@ -51,14 +50,26 @@ export default function Dropdown({ toggleIsOpen, type, parentRef }) {
                     <div className="nameAndButton">
                       <div className="nameAndPrice">
                         <div className="name">
-                          <h4 className="cartItemName">{item.name}</h4>
+                          <h5 className="cartItemName">{item.name}</h5>
                           {item.count && (
                             <div className="count">
-                              <span className="minus">-</span>
                               <h5 className="countAmount">x{item.count}</h5>
-                              <span className="plus">+</span>
                             </div>
                           )}
+                          <div className="countUpdate">
+                            <span
+                              className="minus"
+                              onClick={() => updateCount(index, -1)}
+                            >
+                              -
+                            </span>
+                            <span
+                              className="plus"
+                              onClick={() => updateCount(index, 1)}
+                            >
+                              +
+                            </span>
+                          </div>
                         </div>
                         <h6 className="cartItemPrice">{item.price}</h6>
                       </div>
@@ -76,7 +87,16 @@ export default function Dropdown({ toggleIsOpen, type, parentRef }) {
               })}
           </div>
           <div className="total">{total > 0 && total}</div>
-          <button className="checkOutButton">Check Out</button>
+          <Link to="/checkout">
+            <button
+              className="checkOutButton"
+              onClick={() => {
+                toggleIsOpen(false);
+              }}
+            >
+              Check Out
+            </button>
+          </Link>
         </div>
       ) : (
         <div className="dropdownContainer">

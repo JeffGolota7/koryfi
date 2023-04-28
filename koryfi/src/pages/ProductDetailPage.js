@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useCart } from "../contexts/CartContext.js";
 
@@ -6,6 +6,8 @@ import "../styles/ProductDetailPage.css";
 
 export default function ProductDetailPage() {
   const { cart, setCart } = useCart();
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [preloadImages, setPreloadImages] = useState(null);
   const location = useLocation();
   const { product } = location.state;
   const [activeImage, updateActiveImage] = useState(product.images[0]);
@@ -29,6 +31,32 @@ export default function ProductDetailPage() {
     }
   }
 
+  useEffect(() => {
+    const imagesToPreload = product.images.map((image) => image.highRes);
+    const preloadImages = [];
+    imagesToPreload.forEach((image) => {
+      const img = new Image();
+      img.src = image;
+      preloadImages.push(img);
+    });
+    setPreloadImages(preloadImages);
+
+    window.addEventListener("load", () => {
+      setIsLoaded(true);
+    });
+  }, []);
+
+  function handleImageLoad() {
+    setIsLoaded(true);
+  }
+
+  function handleThumbnailClick(index) {
+    setIsLoaded(false);
+    updateActiveImage(product.images[index]);
+  }
+
+  const aspectRatio = activeImage.highRes.width / activeImage.highRes.height;
+
   return (
     <div className="pdp-container">
       <div className="product-information">
@@ -36,18 +64,23 @@ export default function ProductDetailPage() {
           <div className="img-wrapper zoom-container">
             <img
               className="activeImage"
-              src={activeImage}
-              alt=""
+              src={isLoaded ? activeImage.lowRes : activeImage.lowRes}
+              srcSet={`${activeImage.lowRes} 500w, ${activeImage.highRes} 1000w`}
+              sizes={`(max-width: ${aspectRatio * 500}px) 100vw, ${
+                aspectRatio * 1000
+              }px`}
+              alt="Product Image"
               onMouseMove={handleMouseMove}
+              onLoad={handleImageLoad}
             />
           </div>
           <div className="thumbnails">
             {product.images.map((image, index) => (
               <img
-                src={image}
+                src={image.lowRes}
                 className="thumbnail"
                 onClick={() => {
-                  updateActiveImage(product.images[index]);
+                  handleThumbnailClick(index);
                 }}
               />
             ))}

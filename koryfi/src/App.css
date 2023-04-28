@@ -23,6 +23,19 @@ a {
   cursor: revert;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffcc00;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar:vertical:not(:hover) {
+  opacity: 0;
+}
+
 /* Remove list styles (bullets/numbers) */
 ol,
 ul,

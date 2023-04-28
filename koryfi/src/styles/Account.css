@@ -1,42 +1,93 @@
-.accountCard {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  width: 1000px;
-}
 .accountWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 90%;
 }
-
-.accountCard .leftSide {
+.accountWrapper svg {
+  width: auto;
+  height: 20px;
+  max-width: 100%;
+  max-height: 100%;
+}
+.accountWrapper .infoField .labelWrapper:hover .editIcon {
+  display: inline-block;
+}
+.accountWrapper .labelWrapper {
+  position: relative;
+}
+.accountWrapper .infoField .editIcon {
+  position: absolute;
+  right: 0;
+  display: none;
+  cursor: pointer;
+}
+.accountWrapper .accountCard {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  max-width: 1250px;
+}
+.accountWrapper .accountCard .leftSide {
   background-color: #ffcc00;
   border-radius: 8px 0 0 8px;
   align-self: normal;
   width: 35%;
 }
-.accountCard .rightSide {
+.accountWrapper .accountCard .rightSide {
   background-color: white;
   border-radius: 0 8px 8px 0;
   width: 65%;
+  height: 750px;
+  overflow-y: scroll;
 }
-
-.infoField {
+.accountWrapper .accountCard .rightSide .infoField {
   margin: 1rem 0;
 }
-
-.field {
+.accountWrapper .accountCard .rightSide .field {
   display: flex;
   align-items: center;
 }
-.field .infoValue {
+.accountWrapper .accountCard .rightSide .field .infoValue {
   width: 100%;
   padding: 14px 14px 7px 14px;
   border-bottom: 1px solid #ffcc00;
 }
-.field .infoValue:focus,
-.field .infoValue:focus-visble {
+.accountWrapper .accountCard .rightSide .field .infoValue:focus,
+.accountWrapper .accountCard .rightSide .field .infoValue:focus-visble {
   background-color: aqua;
+}
+.accountWrapper .accountCard .rightSide .paymentCard {
+  background-color: #3e3e3e;
+  width: 200px;
+  color: white;
+  padding: 0.3rem 0.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  white-space: break-spaces;
+}
+.accountWrapper .accountCard .rightSide .addCardForm .inputLabel {
+  margin-bottom: 10px;
+}
+.accountWrapper .accountCard .rightSide .addCardForm .firstLast,
+.accountWrapper .accountCard .rightSide .addCardForm .numCSV {
+  display: flex;
+  margin: 10px 0;
+}
+.accountWrapper .accountCard .rightSide .addCardForm .first,
+.accountWrapper .accountCard .rightSide .addCardForm .last,
+.accountWrapper .accountCard .rightSide .addCardForm .num,
+.accountWrapper .accountCard .rightSide .addCardForm .csv {
+  width: 50%;
+}
+.accountWrapper .accountCard .rightSide .addCardForm .last,
+.accountWrapper .accountCard .rightSide .addCardForm .csv {
+  margin-left: 10px;
+}
+.accountWrapper .accountCard .rightSide .addCardForm .expDate {
+  margin-bottom: 0.75rem;
+  width: 50%;
 }

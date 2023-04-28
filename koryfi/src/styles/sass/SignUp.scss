@@ -5,12 +5,10 @@ label {
 #name {
   display: flex;
 }
-
 .first {
   display: flex;
   flex-direction: column;
 }
-
 .last {
   display: flex;
   flex-direction: column;
@@ -35,7 +33,6 @@ label {
   outline: none;
   border-bottom: 1px solid #ffcc00;
 }
-
 .last {
   margin-left: 8px;
 }
