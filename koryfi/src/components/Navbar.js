@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Outlet, Link } from "react-router-dom";
 import "../styles/Navbar.css";
 import { useAuth } from "../contexts/AuthContext";
@@ -12,6 +12,7 @@ import { IsMobile } from "../helpers/isMobile";
 function Navbar() {
   const { currentUser } = useAuth();
   const [isHamOpen, toggleHamburger] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
   const { cart } = useCart();
   const mobile = IsMobile();
 
@@ -23,9 +24,29 @@ function Navbar() {
     }
   }
 
+  useEffect(() => {
+    function handleScroll() {
+      const position =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        0;
+      setScrollPosition(position);
+    }
+    window.addEventListener("scroll", handleScroll, { capture: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const navbarStyle = {
+    backgroundColor: scrollPosition > 0 ? "#f8f8f8" : "transparent",
+    transition: "background-color 0.5s ease-out",
+  };
+
   return (
     <>
-      <nav className="navbar">
+      <nav style={navbarStyle} className="navbar">
         <ul className="navbar-list">
           <Link to="/">
             <Logo />

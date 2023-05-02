@@ -44,9 +44,12 @@ export function CartProvider({ children }) {
     updateCart(updatedCart);
   };
 
+  const clearCart = () => {
+    updateCart([]);
+  };
+
   const updateCount = (index, value) => {
     const updatedCart = [...cart];
-    console.log(updatedCart[index].count);
     if (updatedCart[index].count + value > 0) {
       updatedCart[index].count += value;
       updateCart(updatedCart);
@@ -60,6 +63,7 @@ export function CartProvider({ children }) {
     setCart,
     removeItem,
     updateCount,
+    clearCart,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

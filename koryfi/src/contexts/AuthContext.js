@@ -212,8 +212,6 @@ export function AuthProvider({ children }) {
         } else {
           cards = user.paymentMethods;
         }
-        console.log(userSnap.data());
-        console.log(card);
         await updateDoc(userRef, {
           paymentMethods: cards,
         });

@@ -1,17 +1,24 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useCart } from "../contexts/CartContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import states from "../helpers/states.json";
 import "../styles/CheckoutPage.css";
 
 export default function CheckoutPage() {
-  const { cart, removeItem, updateCount } = useCart();
+  const { cart, removeItem, clearCart } = useCart();
   const { currentUser, addCardToAccount } = useAuth();
   const [cardNumber, setCardNumber] = useState();
   const [total, setTotal] = useState();
   const [expirationDate, setExpirationDate] = useState("");
   const [checkoutStage, updateStage] = useState(1);
+  const [currentAddress, updateCurrentAddress] = useState();
+  const [currentPayment, updateCurrentPayment] = useState();
+
+  let saveCard = false;
+  let saveAddress = false;
+
+  const navigate = useNavigate();
 
   const firstNameRef = useRef();
   const lastNameRef = useRef();
@@ -19,6 +26,7 @@ export default function CheckoutPage() {
   const csvRef = useRef();
   const expDateRef = useRef();
   const saveCardRef = useRef();
+  const saveAddressRef = useRef();
 
   useEffect(() => {
     let totalPrice = 0;
@@ -40,8 +48,29 @@ export default function CheckoutPage() {
     addCardToAccount(currentUser, card);
   }
 
+  function handlePaymentCard(card) {
+    setCardNumber(card.cardNumber);
+    setExpirationDate(card.expDate);
+    updateCurrentPayment(card);
+  }
+
   function handleStageChange(value) {
+    if (checkoutStage === 1) {
+      if (saveAddressRef.current.value) {
+        saveAddress = true;
+      }
+    } else if (checkoutStage === 2) {
+      if (saveCardRef.current.value) {
+        saveCard = true;
+      }
+    }
+
     updateStage(checkoutStage + value);
+  }
+
+  function handleCheckout() {
+    // Send Email
+    clearCart();
   }
 
   const handleExpirationDateChange = (event) => {
@@ -73,6 +102,10 @@ export default function CheckoutPage() {
     );
 
     setCardNumber(formattedCardNumber);
+  }
+
+  function handleAddressSelect(address) {
+    updateCurrentAddress(address);
   }
 
   return (
@@ -121,7 +154,9 @@ export default function CheckoutPage() {
         </div>
       </div>
       <div className="checkoutPageContent">
-        <div className="left-column">
+        <div
+          className={`left-column ${checkoutStage === 3 ? "thirdStage" : ""}`}
+        >
           {checkoutStage === 1 && (
             <>
               <div className="addressForm">
@@ -129,6 +164,30 @@ export default function CheckoutPage() {
                   <h1>Shipping Information</h1>
                 </div>
                 <hr></hr>
+                <div className="addressSelect">
+                  <label htmlFor="">Your Saved Addresses</label>
+                  <div className="addresses">
+                    {currentUser.shippingAddresses &&
+                      currentUser.shippingAddresses.length > 0 &&
+                      currentUser.shippingAddresses.map((address) => (
+                        <div
+                          className="address"
+                          onClick={() => handleAddressSelect(address)}
+                        >
+                          <div className="name">
+                            {`${address.firstName} ${address.lastName}`}
+                          </div>
+                          <div className="addressName">{address.address}</div>
+                        </div>
+                      ))}
+                  </div>
+                  <button
+                    className="clear"
+                    onClick={() => updateCurrentAddress(null)}
+                  >
+                    Clear All Fields
+                  </button>
+                </div>
                 <div className="firstAndLast">
                   <div className="first input">
                     <label htmlFor="">First Name</label>
@@ -136,9 +195,7 @@ export default function CheckoutPage() {
                       type="text"
                       placeholder="First Name"
                       value={`${
-                        currentUser && currentUser.firstName
-                          ? currentUser.firstName
-                          : ""
+                        currentAddress ? currentAddress.firstName : ""
                       }`}
                       required
                     />
@@ -148,11 +205,7 @@ export default function CheckoutPage() {
                     <input
                       type="text"
                       placeholder="Last Name"
-                      value={`${
-                        currentUser && currentUser.lastName
-                          ? currentUser.lastName
-                          : ""
-                      }`}
+                      value={`${currentAddress ? currentAddress.lastName : ""}`}
                       required
                     />
                   </div>
@@ -161,25 +214,18 @@ export default function CheckoutPage() {
                   <label htmlFor="">Email</label>
                   <input
                     type="text"
-                    placeholder="Email"
-                    value={`${
-                      currentUser && currentUser.email ? currentUser.email : ""
-                    }`}
+                    placeholder="Email Address"
+                    value={`${currentAddress ? currentAddress.email : ""}`}
                     required
                   />
                 </div>
                 <div className="addressFields">
-                  {currentUser.addresses}
                   <div className="address input">
                     <label htmlFor="">Address</label>
                     <input
                       type="text"
-                      placeholder="Address"
-                      value={`${
-                        currentUser && currentUser.address
-                          ? currentUser.address
-                          : ""
-                      }`}
+                      placeholder="### (Street Name)"
+                      value={`${currentAddress ? currentAddress.address : ""}`}
                       required
                     />
                   </div>
@@ -188,14 +234,8 @@ export default function CheckoutPage() {
                       <label htmlFor="">City</label>
                       <input
                         type="text"
-                        placeholder="City"
-                        value={`${
-                          currentUser &&
-                          currentUser.address &&
-                          currentUser.address.city
-                            ? currentUser.address.city
-                            : ""
-                        }`}
+                        placeholder="City Name"
+                        value={`${currentAddress ? currentAddress.city : ""}`}
                         required
                       />
                     </div>
@@ -206,51 +246,48 @@ export default function CheckoutPage() {
                         required
                       >
                         {states.map((state) =>
-                          currentUser.address !== undefined &&
-                          currentUser.address.state !== undefined &&
-                          currentUser.address.state === state.abbreviation ? (
+                          currentAddress &&
+                          currentAddress.state === state.abbreviation ? (
                             <option value={state.abbreviation} selected>
-                              {state.name}
+                              {state.abbreviation}
                             </option>
                           ) : (
                             <option value={state.abbreviation}>
-                              {state.name}
+                              {state.abbreviation}
                             </option>
                           )
                         )}
                       </select>
                     </div>
-                    <div className="zip input">
-                      <label htmlFor="">Zip Code</label>
-                      <input
-                        type="text"
-                        placeholder="Zipcode"
-                        value={`${
-                          currentUser &&
-                          currentUser.address &&
-                          currentUser.address.zip
-                            ? currentUser.address.zip
-                            : ""
-                        }`}
-                        required
-                      />
-                    </div>
                   </div>
-
+                  <div className="zip input">
+                    <label htmlFor="">Zip Code</label>
+                    <input
+                      type="text"
+                      placeholder="#####"
+                      value={`${currentAddress ? currentAddress.zip : ""}`}
+                      required
+                    />
+                  </div>
                   <div className="phone input">
                     <label htmlFor="">Phone Number</label>
                     <input
                       type="text"
-                      placeholder="Phone Number"
-                      value={`${
-                        currentUser && currentUser.phone
-                          ? currentUser.phone
-                          : ""
-                      }`}
+                      placeholder="(###) ###-####"
+                      value={`${currentAddress ? currentUser.phone : ""}`}
                       required
                     />
                   </div>
                 </div>
+              </div>
+              <div className="saveAddress">
+                <input
+                  ref={saveAddressRef}
+                  type="checkbox"
+                  name="save"
+                  id="saveAddress"
+                />
+                <label htmlFor="">Save address for future purchases?</label>
               </div>
               <div className="button">
                 <button
@@ -266,8 +303,15 @@ export default function CheckoutPage() {
           )}
           {checkoutStage === 2 && (
             <div>
+              <div className="heading">
+                <h1>Payment Information</h1>
+              </div>
+              <hr></hr>
               {currentUser.paymentMethods.map((card) => (
-                <div className="paymentCard">
+                <div
+                  className="paymentCard"
+                  onClick={() => handlePaymentCard(card)}
+                >
                   {"Icon"}
                   <h5 className="cardNumber">{`Card ending in: ${card.cardNumber
                     .toString()
@@ -277,52 +321,47 @@ export default function CheckoutPage() {
               <div className="paymentForm">
                 <form className="addCardForm">
                   <div className="firstLast">
-                    <div className="first">
+                    <div className="firstNameContainer">
                       <label className="inputLabel">First Name:</label>
-                      <div className="field">
-                        <input
-                          ref={firstNameRef}
-                          className="infoValue firstName"
-                          placeHolder={currentUser.firstName}
-                        />
-                      </div>
+                      <input
+                        ref={firstNameRef}
+                        className="infoValue firstName"
+                        placeholder="John"
+                        value={currentPayment ? currentPayment.firstName : ""}
+                      />
                     </div>
-                    <div className="last">
+                    <div className="lastNameContainer">
                       <label className="inputLabel">Last Name:</label>
-                      <div className="field">
-                        <input
-                          ref={lastNameRef}
-                          className="infoValue lastName"
-                          placeHolder={currentUser.lastName}
-                        />
-                      </div>
+                      <input
+                        ref={lastNameRef}
+                        className="infoValue lastName"
+                        placeholder="Smith"
+                        value={currentPayment ? currentPayment.lastName : ""}
+                      />
                     </div>
                   </div>
                   <div className="numCSV">
                     <div className="num">
                       <label className="inputLabel">Card Number:</label>
-                      <div className="field">
-                        <input
-                          maxLength={19}
-                          ref={cardNumberRef}
-                          className="infoValue cardNum"
-                          type="tel"
-                          pattern="\d{4} \d{4} \d{4} \d{1,4}"
-                          value={cardNumber}
-                          onChange={handleCardNumberChange}
-                          placeHolder={"**** **** **** ****"}
-                        />
-                      </div>
+                      <input
+                        maxLength={19}
+                        ref={cardNumberRef}
+                        className="infoValue cardNum"
+                        type="tel"
+                        pattern="\d{4} \d{4} \d{4} \d{1,4}"
+                        value={cardNumber}
+                        onChange={handleCardNumberChange}
+                        placeHolder={"**** **** **** ****"}
+                      />
                     </div>
-                    <div className="csv">
+                    <div className="cvv">
                       <label className="inputLabel">Security Code:</label>
-                      <div className="field">
-                        <input
-                          maxLength={3}
-                          ref={csvRef}
-                          className="infoValue csv"
-                        />
-                      </div>
+                      <input
+                        maxLength={3}
+                        ref={csvRef}
+                        className="infoValue csv"
+                        value={currentPayment ? currentPayment.csv : ""}
+                      />
                     </div>
                   </div>
                   <div className="expDate">
@@ -364,6 +403,13 @@ export default function CheckoutPage() {
               </div>
             </div>
           )}
+          {checkoutStage === 3 && (
+            <>
+              <h1>{"Now to make sure everything looks alright..."}</h1>
+              <div className="cartPreview"></div>
+              <div className="imgButton"></div>
+            </>
+          )}
         </div>
         <div className="right-column">
           <div className="summaryDisplay">
@@ -375,21 +421,32 @@ export default function CheckoutPage() {
                     <div key={index} className="summaryItem">
                       <h4>{item.name}</h4>
                       <h4>{item.price}</h4>
+                      <button
+                        className="remove"
+                        onClick={() => removeItem(index)}
+                      >
+                        X
+                      </button>
                     </div>
                   ))
                 )}
               </div>
             </div>
-            {total > 0 ? (
-              <>
-                <h1>{`Total: ${total.toFixed(2)}`}</h1>
-                <Link to="/">
-                  <button className="placeOrder">Place Your Order</button>
-                </Link>
-              </>
-            ) : (
-              <h4>Your Cart is Empty!</h4>
-            )}
+            <div className="summaryFooter">
+              {total > 0 && checkoutStage === 3 && (
+                <>
+                  <h1>{`Total: ${total.toFixed(2)}`}</h1>
+                  <Link to="/post-checkout" state={{ cart: cart }}>
+                    <button
+                      onClick={() => handleCheckout()}
+                      className="placeOrder"
+                    >
+                      Place Your Order
+                    </button>
+                  </Link>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>

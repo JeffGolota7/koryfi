@@ -3,6 +3,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  button {
+    color: #3e3e3e;
+  }
   .stage-progress {
     display: flex;
     width: 100%;
@@ -60,6 +63,121 @@
       padding: 1rem 2rem;
       margin: 0 0.5rem;
       border-radius: 8px;
+      .saveAddress {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        #saveAddress {
+          border: 1px solid #ffcc00;
+          margin-right: 0.75rem;
+        }
+      }
+      .paymentCard {
+        background-color: #3e3e3e;
+        color: white;
+        display: flex;
+        max-width: fit-content;
+        align-items: center;
+        gap: 10px;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-bottom: 1rem;
+      }
+      .saveCard {
+        display: flex;
+        align-items: center;
+        margin: 1.5rem 0;
+        #saveCard {
+          border: 1px solid #ffcc00;
+          margin-right: 0.75rem;
+        }
+      }
+      .imgButton {
+        position: relative;
+        width: 60%;
+        button {
+          position: absolute;
+          bottom: 80px;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 10;
+        }
+        .checkoutImg {
+          height: auto;
+          width: 100%;
+        }
+      }
+      .firstLast {
+        display: flex;
+        width: 100%;
+        .firstNameContainer {
+          width: 50%;
+          display: flex;
+          flex-direction: column;
+        }
+        .lastNameContainer {
+          width: 50%;
+          display: flex;
+          flex-direction: column;
+          margin-left: 0.5rem;
+        }
+      }
+      .numCSV {
+        display: flex;
+        width: 100%;
+        margin-top: 1rem;
+        .num {
+          display: flex;
+          width: 80%;
+          flex-direction: column;
+        }
+        .cvv {
+          width: 20%;
+          display: flex;
+          flex-direction: column;
+          margin-left: 0.5rem;
+        }
+      }
+      .expDate {
+        margin-top: 1rem;
+      }
+
+      .addressSelect {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        margin: 1rem 0;
+        label {
+          margin-bottom: 0.75rem;
+        }
+
+        .addresses {
+          overflow-x: scroll;
+          width: 100%;
+          gap: 10px;
+        }
+        .address {
+          background-color: #3e3e3e;
+          color: white;
+          display: flex;
+          max-width: fit-content;
+          flex-direction: column;
+          padding: 0.5rem 1rem;
+          border-radius: 8px;
+          cursor: pointer;
+          .name {
+            display: flex;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 12px;
+          }
+          .addressName {
+            font-size: 12px;
+          }
+        }
+      }
       .addressForm {
         margin: 2rem 0;
       }
@@ -77,7 +195,7 @@
           justify-content: center;
           align-items: center;
           .city {
-            width: 57.5%;
+            width: 90%;
           }
           .state {
             width: 15%;
@@ -100,22 +218,38 @@
         }
       }
     }
-
+    .thirdStage {
+      width: 60%;
+    }
     .right-column {
       width: 25%;
+      background-color: #ffcc00;
+      border-radius: 8px;
+      padding: 1rem;
       .summaryDisplay {
         min-height: 400px;
-        background-color: #ffcc00;
+        background-color: white;
         padding: 1rem 2rem;
         margin: 0 0.5rem;
         border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         .summaryItem {
           background-color: #f8f8f8;
           display: flex;
-          padding: 0.5rem;
+          align-items: center;
+          padding: 0.5rem 1rem;
           margin: 0.5rem 0;
           justify-content: space-between;
           border-radius: 8px;
+          .remove {
+            padding: 0.5rem;
+            line-height: 100%;
+          }
+        }
+        .summaryFooter {
+          justify-self: flex-end;
         }
       }
     }

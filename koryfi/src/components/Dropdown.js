@@ -34,69 +34,78 @@ export default function Dropdown({ toggleIsOpen, type, parentRef }) {
     <>
       {type === "cart" ? (
         <div className="dropdownContainer">
-          <div className="cart">
-            {cart !== undefined &&
-              cart.map((item, index) => {
-                return (
-                  <li className="cartItem">
-                    {item.images && (
-                      <img
-                        className="cartItemImg"
-                        src={item.images[0].lowRes}
-                        alt=""
-                      />
-                    )}
+          {cart.length > 0 ? (
+            <div className="cart">
+              {cart !== undefined &&
+                cart.map((item, index) => {
+                  return (
+                    <li className="cartItem">
+                      {item.images && (
+                        <img
+                          className="cartItemImg"
+                          src={item.images[0].lowRes}
+                          alt=""
+                        />
+                      )}
 
-                    <div className="nameAndButton">
-                      <div className="nameAndPrice">
-                        <div className="name">
-                          <h5 className="cartItemName">{item.name}</h5>
-                          {item.count && (
-                            <div className="count">
-                              <h5 className="countAmount">x{item.count}</h5>
+                      <div className="nameAndButton">
+                        <div className="nameAndPrice">
+                          <div className="name">
+                            <h5 className="cartItemName">{item.name}</h5>
+                            {item.count && (
+                              <div className="count">
+                                <h5 className="countAmount">x{item.count}</h5>
+                              </div>
+                            )}
+                            <div className="countUpdate">
+                              <span
+                                className="minus"
+                                onClick={() => updateCount(index, -1)}
+                              >
+                                -
+                              </span>
+                              <span
+                                className="plus"
+                                onClick={() => updateCount(index, 1)}
+                              >
+                                +
+                              </span>
                             </div>
-                          )}
-                          <div className="countUpdate">
-                            <span
-                              className="minus"
-                              onClick={() => updateCount(index, -1)}
-                            >
-                              -
-                            </span>
-                            <span
-                              className="plus"
-                              onClick={() => updateCount(index, 1)}
-                            >
-                              +
-                            </span>
                           </div>
+                          <h6 className="cartItemPrice">{item.price}</h6>
                         </div>
-                        <h6 className="cartItemPrice">{item.price}</h6>
+                        <div
+                          className="remove"
+                          onClick={() => {
+                            removeItem(index);
+                          }}
+                        >
+                          X
+                        </div>
                       </div>
-                      <div
-                        className="remove"
-                        onClick={() => {
-                          removeItem(index);
-                        }}
-                      >
-                        X
-                      </div>
-                    </div>
-                  </li>
-                );
-              })}
-          </div>
-          <div className="total">{total > 0 && total}</div>
-          <Link to="/checkout">
-            <button
-              className="checkOutButton"
-              onClick={() => {
-                toggleIsOpen(false);
-              }}
-            >
-              Check Out
-            </button>
-          </Link>
+                    </li>
+                  );
+                })}
+              <div className="total">{total > 0 && total}</div>
+              <Link to="/checkout">
+                <button
+                  className="checkOutButton"
+                  onClick={() => {
+                    toggleIsOpen(false);
+                  }}
+                >
+                  Check Out
+                </button>
+              </Link>
+            </div>
+          ) : (
+            <>
+              <h3>Add Some Items!</h3>
+              <Link to="/products">
+                <button>Browse our Catalog</button>
+              </Link>
+            </>
+          )}
         </div>
       ) : (
         <div className="dropdownContainer">
