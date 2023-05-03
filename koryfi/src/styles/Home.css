@@ -192,17 +192,20 @@
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
+    align-items: flex-start;
   }
   .hero .text {
-    top: 30%;
-    right: 50%;
+    position: inherit;
     white-space: nowrap;
     transform: translateX(50%);
   }
   .hero .text .landingText h4,
   .hero .text .landingText h3,
   .hero .text .landingText span {
-    font-size: 1.2rem !important;
+    font-size: 2rem !important;
+  }
+  .hero .text .landingText h4 {
+    transform: translateX(0);
   }
   .hero .text button {
     font-size: 0.8rem;
@@ -219,7 +222,14 @@
   .topPicks .topPicksGrid {
     grid-template-columns: 1fr !important;
     gap: 1rem;
-    width: 80%;
+    min-width: 70%;
+  }
+  .topPicks .topPicksGrid .card {
+    margin: 0;
+    width: 100%;
+  }
+  .topPicks .topPicksGrid .card h2 {
+    font-size: 1rem;
   }
   .whoWeAre {
     display: flex;
@@ -232,6 +242,9 @@
     position: inherit;
     font-size: 40px;
     right: auto;
+  }
+  .whoWeAre .header br {
+    display: none;
   }
   .whoWeAre .header span {
     margin: 0;
@@ -261,6 +274,9 @@
   .whoWeAre .aboutContent button {
     font-size: 0.8rem;
     padding: 0.5rem 1rem;
+  }
+  .testimonials {
+    height: auto !important;
   }
   .testimonials .heading {
     font-size: 1.25rem !important;

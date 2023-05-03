@@ -91,13 +91,18 @@ function Navbar() {
                 className={`linksMobile ${isHamOpen ? "active" : "inactive"}`}
               >
                 {currentUser ? (
-                  <Link to="/account" onClick={handleHamburger}>
-                    <IconAccount />
-                  </Link>
+                  <>
+                    <Link to="/account" onClick={handleHamburger}>
+                      <IconAccount />
+                    </Link>
+                    {`${currentUser.firstName} ${currentUser.lastName}`}
+                  </>
                 ) : (
                   <>
                     <li>
-                      <Link to="/sign-up">Sign Up</Link>
+                      <Link to="/sign-up" onClick={handleHamburger}>
+                        Sign Up
+                      </Link>
                     </li>
                   </>
                 )}
@@ -114,7 +119,7 @@ function Navbar() {
                 </li>
 
                 <Link to="/checkout" onClick={handleHamburger}>
-                  <Cart />
+                  {`Your Cart (${cart.length})`}
                 </Link>
               </div>
             </>

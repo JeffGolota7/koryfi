@@ -141,38 +141,48 @@ export default function ProductDetailPage() {
   const aspectRatio = activeImage.highRes.width / activeImage.highRes.height;
 
   return (
-    <div className="pdp-container">
+    <>
       {reviewModal && (
         <div className="reviewModal">
           <div className="modalContent">
-            <h1>Write a Review</h1>
+            <div className="heading">
+              <h1>Write a Review</h1>
+              <div className="close" onClick={() => toggleReviewModal(false)}>
+                X
+              </div>
+            </div>
+
             <h3>{`Rating: ${selectedStar + 1}/5`}</h3>
-            {[...Array(5)].map((_, index) => {
-              const isFilled = index <= (hoveredStar ?? selectedStar);
-              return isFilled ? (
-                <span>
-                  <HalfStar
-                    key={index}
-                    onMouseEnter={() => handleStarHover(index)}
-                    onClick={() => handleStarClick(index)}
-                  />
-                  <HalfStar
-                    className="flipped"
-                    key={index + 1}
-                    onMouseEnter={() => handleStarHover(index)}
-                    onClick={() => handleStarClick(index)}
-                  />
-                </span>
-              ) : (
-                <span>
-                  <StarOutline
-                    key={index}
-                    onMouseEnter={() => handleStarHover(index)}
-                    onClick={() => handleStarClick(index)}
-                  />
-                </span>
-              );
-            })}
+            <div onMouseLeave={() => setHoveredStar(null)}>
+              {[...Array(5)].map((_, index) => {
+                const isFilled = index <= (hoveredStar ?? selectedStar);
+                return isFilled ? (
+                  <span>
+                    <HalfStar
+                      className="star"
+                      key={index}
+                      onMouseEnter={() => handleStarHover(index)}
+                      onClick={() => handleStarClick(index)}
+                    />
+                    <HalfStar
+                      className="star flipped"
+                      key={index + 1}
+                      onMouseEnter={() => handleStarHover(index)}
+                      onClick={() => handleStarClick(index)}
+                    />
+                  </span>
+                ) : (
+                  <span>
+                    <StarOutline
+                      className="star"
+                      key={index}
+                      onMouseEnter={() => handleStarHover(index)}
+                      onClick={() => handleStarClick(index)}
+                    />
+                  </span>
+                );
+              })}
+            </div>
             <div className="firstLast">
               <div className="first">
                 <label htmlFor="">First Name</label>
@@ -205,116 +215,117 @@ export default function ProductDetailPage() {
           </div>
         </div>
       )}
-
-      <div className="product-information">
-        <div className="images">
-          <div className="img-wrapper zoom-container">
-            {product.images && (
-              <img
-                className="activeImage"
-                src={isLoaded ? activeImage.lowRes : activeImage.lowRes}
-                srcSet={`${activeImage.lowRes} 500w, ${activeImage.highRes} 1000w`}
-                sizes={`(max-width: ${aspectRatio * 500}px) 100vw, ${
-                  aspectRatio * 1000
-                }px`}
-                alt="Product Image"
-                onMouseMove={handleMouseMove}
-                onLoad={handleImageLoad}
-              />
-            )}
-          </div>
-          <div className="thumbnails">
-            {product.images.map((image, index) => (
-              <img
-                src={image.lowRes}
-                className="thumbnail"
-                onClick={() => {
-                  handleThumbnailClick(index);
-                }}
-              />
-            ))}
-          </div>
-        </div>
-        <div className="info">
-          <div className="header">
-            {product.category === "snowboard" && (
-              <h3 className="product-difficulty">{product.difficulty}</h3>
-            )}
-            <h2 className="product-name">{product.name}</h2>
-            <h1 className="product-price">{product.price}</h1>
-            {/* Rating */}
-          </div>
-          <div className="body">
-            <p className="product-description">{product.description}</p>
-            {/* Sizes */}
-            <button onClick={handleOnClick} className="addToCart">
-              Add to Cart
-            </button>
-          </div>
-        </div>
-      </div>
-      {product.category === "snowboard" && (
-        <div className="snowboard-info">
-          <div className="left-column">
-            <h2 className="header">Get to know it</h2>
-            <p></p>
-            <h4>Sizing Chart</h4>
-            <table></table>
-          </div>
-          <div className="right-column">
-            <h5>Camber Type:</h5>
-            <em>{product.camber}</em>
-            <img src="/images/snowboards/Camber.svg" alt="" />
-          </div>
-        </div>
-      )}
-      <div className="reviews">
-        <div className="heading">
-          <h1>What have others said?</h1>
-          <hr />
-        </div>
-        <div className="ratingStats">
-          <div className="rating">
-            <h3>Average Rating</h3>
-            <div className="score">
-              {`${product.avgRating ? product.avgRating.toString() : "--"}`}
-              {product.avgRating && renderStars(product.avgRating)}
+      <div className="pdp-container">
+        <div className="product-information">
+          <div className="images">
+            <div className="img-wrapper zoom-container">
+              {product.images && (
+                <img
+                  className="activeImage"
+                  src={isLoaded ? activeImage.lowRes : activeImage.lowRes}
+                  srcSet={`${activeImage.lowRes} 500w, ${activeImage.highRes} 1000w`}
+                  sizes={`(max-width: ${aspectRatio * 500}px) 100vw, ${
+                    aspectRatio * 1000
+                  }px`}
+                  alt="Product Image"
+                  onMouseMove={handleMouseMove}
+                  onLoad={handleImageLoad}
+                />
+              )}
+            </div>
+            <div className="thumbnails">
+              {product.images.map((image, index) => (
+                <img
+                  src={image.lowRes}
+                  className="thumbnail"
+                  onClick={() => {
+                    handleThumbnailClick(index);
+                  }}
+                />
+              ))}
             </div>
           </div>
-          <div className="rating">
-            <h3>Total Ratings</h3>
-            <div className="total">
-              {product.reviews ? product.reviews.length : 0}
+          <div className="info">
+            <div className="header">
+              {product.category === "snowboard" && (
+                <h3 className="product-difficulty">{product.difficulty}</h3>
+              )}
+              <h2 className="product-name">{product.name}</h2>
+              <h1 className="product-price">{product.price}</h1>
+              {/* Rating */}
+            </div>
+            <div className="body">
+              <p className="product-description">{product.description}</p>
+              {/* Sizes */}
+              <button onClick={handleOnClick} className="addToCart">
+                Add to Cart
+              </button>
             </div>
           </div>
-          <div className="rating">
-            {currentUser && (
-              <>
-                <h3>Bought this before?</h3>
-                <button className="giveRating" onClick={handleReview}>
-                  Give a Rating
-                </button>
-              </>
-            )}
-          </div>
         </div>
-        <hr />
+        {product.category === "snowboard" && (
+          <div className="snowboard-info">
+            <div className="left-column">
+              <h2 className="header">Get to know it</h2>
+              <p></p>
+              <h4>Sizing Chart</h4>
+              <table></table>
+            </div>
+            <div className="right-column">
+              <h5>Camber Type:</h5>
+              <em>{product.camber}</em>
+              <img src="/images/snowboards/Camber.svg" alt="" />
+            </div>
+          </div>
+        )}
         <div className="reviews">
-          {product.reviews &&
-            typeof product.reviews === "object" &&
-            product.reviews.map((review) => (
-              <div className="review">
-                <div className="img"></div>
-                <div className="content">
-                  <h2>{`${review.firstName} ${review.lastName}`}</h2>
-                  {renderStars(review.rating)}
-                  <hr />
-                  <p>{review.description}</p>
-                </div>
+          <div className="heading">
+            <h1>What have others said?</h1>
+            <hr />
+          </div>
+          <div className="ratingStats">
+            <div className="rating">
+              <h3>Average Rating</h3>
+              <div className="score">
+                {`${product.avgRating ? product.avgRating.toString() : "--"}`}
+                {product.avgRating && renderStars(product.avgRating)}
               </div>
-            ))}
+            </div>
+            <div className="rating">
+              <h3>Total Ratings</h3>
+              <div className="total">
+                {product.reviews ? product.reviews.length : 0}
+              </div>
+            </div>
+            <div className="rating">
+              {currentUser && (
+                <>
+                  <h3>Bought this before?</h3>
+                  <button className="giveRating" onClick={handleReview}>
+                    Give a Rating
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+          <hr />
+          <div className="reviews">
+            {product.reviews &&
+              typeof product.reviews === "object" &&
+              product.reviews.map((review) => (
+                <div className="review">
+                  <div className="img"></div>
+                  <div className="content">
+                    <h2>{`${review.firstName} ${review.lastName}`}</h2>
+                    {renderStars(review.rating)}
+                    <hr />
+                    <p>{review.description}</p>
+                  </div>
+                </div>
+              ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

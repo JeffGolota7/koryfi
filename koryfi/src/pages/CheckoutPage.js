@@ -7,7 +7,7 @@ import "../styles/CheckoutPage.css";
 
 export default function CheckoutPage() {
   const { cart, removeItem, clearCart } = useCart();
-  const { currentUser, addCardToAccount } = useAuth();
+  const { currentUser, addCardToAccount, updatePurchaseHistory } = useAuth();
   const [cardNumber, setCardNumber] = useState();
   const [total, setTotal] = useState();
   const [expirationDate, setExpirationDate] = useState("");
@@ -70,6 +70,7 @@ export default function CheckoutPage() {
 
   function handleCheckout() {
     // Send Email
+    updatePurchaseHistory(currentUser, cart);
     clearCart();
   }
 
@@ -394,9 +395,9 @@ export default function CheckoutPage() {
                     <button
                       className="continue"
                       onClick={() => {
-                        if (saveCardRef.current.value) {
-                          handleAddCard();
-                        }
+                        // if (saveCardRef.current.value) {
+                        //   handleAddCard();
+                        // }
                         handleStageChange(1);
                       }}
                     >

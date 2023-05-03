@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useProduct } from "../contexts/ProductContext.js";
+import { Link } from "react-router-dom";
 import { ReactComponent as Effect } from "../icons/Effect.svg";
 import "../styles/Home.css";
 
@@ -67,9 +68,11 @@ export default function Home() {
             </div>
           )}
 
-          <button className="heroButton">
-            {carousel[currentImgIndex].btnText}
-          </button>
+          <Link to="/products">
+            <button className="heroButton">
+              {carousel[currentImgIndex].btnText}
+            </button>
+          </Link>
         </div>
       </div>
 

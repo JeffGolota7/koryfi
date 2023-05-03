@@ -20,6 +20,16 @@
   border-radius: 34px;
   width: 100%;
 }
+
+.catalog {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.catalogHeader {
+  width: 80%;
+}
 .search {
   width: 100%;
 }
@@ -44,6 +54,21 @@
     width: 80%;
     .right-column {
       width: 100%;
+    }
+  }
+  .catalog {
+    margin-top: 160px;
+    .catalogHeader {
+      padding: 0 1rem;
+      width: 80%;
+    }
+    .product-gallery {
+      padding: 0;
+    }
+    .card {
+      h5 {
+        color: #3e3e3e;
+      }
     }
   }
 }

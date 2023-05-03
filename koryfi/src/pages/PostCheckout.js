@@ -1,6 +1,8 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import "../styles/PostCheckout.css";
+
 export default function PostCheckout() {
   const currentDate = new Date();
   const location = useLocation();
@@ -22,16 +24,28 @@ export default function PostCheckout() {
   }/${date.getDate()}/${date.getFullYear()}`;
 
   return (
-    <>
-      <img src={cart[0].images[0].lowRes} alt="" />
-      <h2>{`Estimated Delivery: ${formattedDate}`}</h2>
-      <img
-        className="checkoutImg"
-        src="/images/illustrations/order confirm.png"
-        alt=""
-      />
-      <button>Browse</button>
-      <button onClick={() => navigate("/")}>Return to Home</button>
-    </>
+    <div className="postCheckout">
+      <div className="content">
+        <div className="postCheckoutHeader">
+          <h1>The wait begins...</h1>
+          <img className="previewImg" src={cart[0].images[0].lowRes} alt="" />
+          <h2>{`Estimated Delivery: ${formattedDate}`}</h2>
+        </div>
+        <div className="postCheckoutFooter">
+          <img
+            className="checkoutImg"
+            src="/images/illustrations/order confirm.png"
+            alt=""
+          />
+          <h2>Don't let the fun end here...</h2>
+          <div className="buttons">
+            <button onClick={() => navigate("/products")}>
+              Browse More Products
+            </button>
+            <button onClick={() => navigate("/")}>Return to Home</button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

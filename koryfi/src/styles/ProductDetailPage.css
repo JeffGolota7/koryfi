@@ -2,6 +2,60 @@ body {
   background-color: #f8f8f8;
 }
 
+.reviewModal {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(62, 62, 62, 0.6235294118);
+  z-index: 10000000;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-80px);
+}
+.reviewModal .flipped {
+  transform: scaleX(-1) translateX(2px);
+}
+.reviewModal .star {
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+.reviewModal .modalContent {
+  width: 70%;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.reviewModal .modalContent .last {
+  margin: 0;
+  margin-top: 1rem;
+}
+.reviewModal .modalContent .description {
+  display: flex;
+  margin: 1rem 0;
+  flex-direction: column;
+}
+.reviewModal .modalContent .description label {
+  margin-bottom: 1rem;
+}
+.reviewModal .modalContent .heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.reviewModal .modalContent .heading .close {
+  background-color: #ffcc00;
+  display: flex;
+  cursor: pointer;
+  padding: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
 .pdp-container {
   display: flex;
   flex-direction: column;
@@ -11,23 +65,6 @@ body {
 }
 .pdp-container .flipped {
   transform: scaleX(-1) translateX(2px);
-}
-.pdp-container .reviewModal {
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(62, 62, 62, 0.6235294118);
-  z-index: 10000000;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: absolute;
-}
-.pdp-container .reviewModal .modalContent {
-  right: 50%;
-  top: 50%;
-  position: absolute;
-  background-color: white;
 }
 .pdp-container .product-information {
   display: flex;
@@ -169,5 +206,8 @@ body {
   }
   .reviews {
     width: 90% !important;
+  }
+  .modalContent {
+    width: 95% !important;
   }
 }

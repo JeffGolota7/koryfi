@@ -4,6 +4,7 @@ import { auth, db } from "../firebase/firebase";
 import { doc, setDoc, collection } from "firebase/firestore";
 import { useAuth, AuthProvider } from "../contexts/AuthContext";
 import { codeToMessage } from "../helpers/errorHandling";
+import { useBannerContext } from "../contexts/BannerProvider";
 
 import "../styles/SignUp.css";
 import "../styles/Form.css";
@@ -11,19 +12,19 @@ import Banner from "../components/Banner";
 
 function SignUp() {
   const [isLoading, setLoading] = useState(false);
-  const [isVisible, setVisible] = useState(false);
-  const [message, updateMessage] = useState("");
+  const [errorMessage, updateErrorMessage] = useState("");
+  const { isVisible, message, setVisible, setMessage } = useBannerContext();
   const emailRef = useRef();
   const passwordRef = useRef();
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const phoneRef = useRef();
   const confirmPasswordRef = useRef();
-  const { signup, currentUser } = useAuth();
+  const { signup, currentUser, sendSignUpEmail } = useAuth();
   const navigate = useNavigate();
 
   function showError(code) {
-    updateMessage(codeToMessage(code));
+    updateErrorMessage(codeToMessage(code));
     setVisible(true);
   }
 
@@ -49,7 +50,7 @@ function SignUp() {
                 alert("success!");
               })
               .catch((e) => {
-                updateMessage(e.message);
+                setMessage(e.message);
                 setVisible(true);
               });
           })
@@ -65,18 +66,8 @@ function SignUp() {
     }
   };
 
-  function handleTest() {
-    setVisible(true);
-    // sendSignUpEmail(emailRef.current.value);
-  }
   return (
     <div className="formWrapper">
-      <Banner
-        message={message}
-        duration={3000}
-        isVisible={isVisible}
-        setVisible={setVisible}
-      ></Banner>
       <div className="formCard">
         <div className="leftSide">
           <h2>Join Us</h2>

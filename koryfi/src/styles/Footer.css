@@ -66,13 +66,26 @@
   .footerContainer .footerContent a {
     display: block;
   }
+  .footerContainer .footerContent .newsletterInput {
+    justify-content: center;
+    text-align: center;
+  }
   .footerContainer .footerContent .links {
     margin: 0;
     flex-direction: row;
+    width: 80%;
   }
   .footerContainer .footerContent .links .left,
   .footerContainer .footerContent .links .right {
     width: 50%;
+    display: flex;
+    flex-direction: column;
+  }
+  .footerContainer .footerContent .links .left a {
+    margin: 0;
+  }
+  .footerContainer .footerContent .links .right {
+    text-align: right;
   }
   .footerContainer .footerContent .middle {
     width: 100%;

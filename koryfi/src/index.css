@@ -90,6 +90,18 @@ input {
   border-bottom: 1px solid #ffcc00;
 }
 
+input::placeholder {
+  color: #b0b0b0 !important;
+  font-weight: 300;
+  font-family: "Raleway";
+}
+label {
+  color: #b0b0b0 !important;
+
+  font-size: 16px;
+  font-weight: 300;
+}
+
 button {
   display: inline-block;
   position: relative;
@@ -109,6 +121,10 @@ button {
   border-radius: 8px;
   transition: all 0.3s ease-out;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.225);
+}
+
+hr {
+  border-top: 5px solid #ffcc00;
 }
 
 .inputField {

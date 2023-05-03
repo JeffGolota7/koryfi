@@ -36,10 +36,6 @@
   outline-color: #ffcc00;
 }
 
-.searchbar svg {
-  height: 100%;
-}
-
 .searchbar ::-webkit-scrollbar {
   width: 5px;
 }
@@ -47,4 +43,24 @@
 .searchbar ::-webkit-scrollbar-thumb {
   background: #ffcc00;
   border-radius: 8px;
+}
+
+#icon {
+  width: 15px;
+  height: auto;
+}
+
+.result {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 !important;
+  padding: 1rem;
+}
+.result h5 {
+  white-space: break-spaces;
+}
+
+.result:hover {
+  background-color: #f0f0f0;
 }

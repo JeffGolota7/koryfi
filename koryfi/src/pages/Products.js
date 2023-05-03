@@ -104,7 +104,11 @@ export default function Products() {
         </div>
         <div className="right-column">
           <div className="search">
-            <input type="text" onChange={(e) => handleSearch(e.target.value)} />
+            <input
+              type="text"
+              placeholder="Search for products"
+              onChange={(e) => handleSearch(e.target.value)}
+            />
           </div>
           <div className="product-gallery">
             {displayedProducts.length > 0 &&

@@ -20,6 +20,7 @@ import Account from "./pages/Account";
 import Products from "./pages/Products";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import useProductContext from "./contexts/ProductContext";
+import { BannerProvider } from "./contexts/BannerProvider";
 
 const ProductContext = createContext({});
 
@@ -41,21 +42,25 @@ function App() {
 
   return (
     <ProductContext.Provider value={products}>
-      <Navbar />
-      <div style={location.pathname !== "/" ? { marginTop: "80px" } : {}}></div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/checkout/confirm" element={<CheckoutPage />} />
-        <Route path="/post-checkout" element={<PostCheckout />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/account" element={<Account />} />
-        <Route path="/product-information" element={<ProductDetailPage />} />
-      </Routes>
-      <Footer />
+      <BannerProvider>
+        <Navbar />
+        <div
+          style={location.pathname !== "/" ? { marginTop: "80px" } : {}}
+        ></div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/checkout/confirm" element={<CheckoutPage />} />
+          <Route path="/post-checkout" element={<PostCheckout />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/account" element={<Account />} />
+          <Route path="/product-information" element={<ProductDetailPage />} />
+        </Routes>
+        <Footer />
+      </BannerProvider>
     </ProductContext.Provider>
   );
 }

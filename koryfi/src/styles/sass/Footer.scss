@@ -63,13 +63,28 @@
       a {
         display: block;
       }
+      .newsletterInput {
+        justify-content: center;
+        text-align: center;
+      }
       .links {
         margin: 0;
         flex-direction: row;
-
+        width: 80%;
         .left,
         .right {
           width: 50%;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .left {
+          a {
+            margin: 0;
+          }
+        }
+        .right {
+          text-align: right;
         }
       }
       .middle {

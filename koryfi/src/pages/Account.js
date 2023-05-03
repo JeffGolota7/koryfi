@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useAuth, AuthProvider } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as EditIcon } from "../icons/Edit-Icon.svg";
 import { ReactComponent as CreditCardIcon } from "../icons/creditcard.svg";
+import { ReactComponent as AddressIcon } from "../icons/house.svg";
 
 import "../styles/Account.css";
 
@@ -94,10 +95,9 @@ export default function Account() {
             <button onClick={handleLogout}>Log Out</button>
           </div>
           <div className="rightSide">
-            <h2>Account Settings</h2>
             <div className="personalInfo">
-              <h4>Personal Info</h4>
-              <ul>
+              <h2 className="header">Personal Info</h2>
+              <ul className="container">
                 <li className="infoField">
                   <div className="labelWrapper">
                     <label className="inputLabel">First Name:</label>
@@ -192,223 +192,275 @@ export default function Account() {
                 <a className="resetPassword">Reset Password</a>
               </ul>
             </div>
-            <div className="addresses">
-              <h4>Shipping Addresses Saved</h4>
-              {currentUser.addresses && currentUser.addresses.length > 0 ? (
+            <div className="savedInformation">
+              <h2 className="header">Your Saved Information</h2>
+              <div className="container">
                 <div className="addresses">
-                  {currentUser.addresses.map((address) => (
-                    <div className="address">
-                      <h5 className="cardNumber">{address.address}</h5>
+                  <h4>Shipping Addresses Saved</h4>
+                  {currentUser.shippingAddresses &&
+                  currentUser.shippingAddresses.length > 0 ? (
+                    <div className="addresses">
+                      {currentUser.shippingAddresses.map((address) => (
+                        <div className="address">
+                          <AddressIcon />
+                          <h5 className="cardNumber">{address.address}</h5>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="noAddresses">
-                  {!addAddress && (
-                    <>
-                      <h3 className="noAddressesTitle">No addresses saved!</h3>
+                  ) : (
+                    <div className="noAddresses">
+                      {!addAddress && (
+                        <>
+                          <h3 className="noAddressesTitle">
+                            No addresses saved!
+                          </h3>
 
-                      <button onClick={() => updateAddCard(true)}>
-                        Add an Address
-                      </button>
-                    </>
-                  )}
-                  {addAddress && (
-                    <form className="addAddressForm">
-                      <div className="firstLast">
-                        <div className="first">
-                          <label className="inputLabel">First Name:</label>
-                          <div className="field">
-                            <input
-                              ref={firstNameRef}
-                              className="infoValue firstName"
-                              placeHolder={currentUser.firstName}
-                            />
+                          <button onClick={() => updateAddCard(true)}>
+                            Add an Address
+                          </button>
+                        </>
+                      )}
+                      {addAddress && (
+                        <form className="addAddressForm">
+                          <div className="firstLast">
+                            <div className="first">
+                              <label className="inputLabel">First Name:</label>
+                              <div className="field">
+                                <input
+                                  ref={firstNameRef}
+                                  className="infoValue firstName"
+                                  placeHolder={currentUser.firstName}
+                                />
+                              </div>
+                            </div>
+                            <div className="last">
+                              <label className="inputLabel">Last Name:</label>
+                              <div className="field">
+                                <input
+                                  ref={lastNameRef}
+                                  className="infoValue lastName"
+                                  placeHolder={currentUser.lastName}
+                                />
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                        <div className="last">
-                          <label className="inputLabel">Last Name:</label>
-                          <div className="field">
-                            <input
-                              ref={lastNameRef}
-                              className="infoValue lastName"
-                              placeHolder={currentUser.lastName}
-                            />
+                          <div className="numCSV">
+                            <div className="num">
+                              <label className="inputLabel">Card Number:</label>
+                              <div className="field">
+                                <input
+                                  maxLength={19}
+                                  ref={cardNumberRef}
+                                  className="infoValue cardNum"
+                                  type="tel"
+                                  pattern="\d{4} \d{4} \d{4} \d{1,4}"
+                                  value={cardNumber}
+                                  onChange={handleCardNumberChange}
+                                  placeHolder={"**** **** **** ****"}
+                                />
+                              </div>
+                            </div>
+                            <div className="csv">
+                              <label className="inputLabel">
+                                Security Code:
+                              </label>
+                              <div className="field">
+                                <input
+                                  maxLength={3}
+                                  ref={csvRef}
+                                  className="infoValue csv"
+                                />
+                              </div>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                      <div className="numCSV">
-                        <div className="num">
-                          <label className="inputLabel">Card Number:</label>
-                          <div className="field">
-                            <input
-                              maxLength={19}
-                              ref={cardNumberRef}
-                              className="infoValue cardNum"
-                              type="tel"
-                              pattern="\d{4} \d{4} \d{4} \d{1,4}"
-                              value={cardNumber}
-                              onChange={handleCardNumberChange}
-                              placeHolder={"**** **** **** ****"}
-                            />
+                          <div className="expDate">
+                            <label className="inputLabel">
+                              Expiration Date:
+                            </label>
+                            <div className="field">
+                              <input
+                                maxLength={5}
+                                ref={expDateRef}
+                                value={expirationDate}
+                                onChange={handleExpirationDateChange}
+                                className="infoValue expDate"
+                                placeHolder={"Month/Year"}
+                              />
+                            </div>
                           </div>
-                        </div>
-                        <div className="csv">
-                          <label className="inputLabel">Security Code:</label>
-                          <div className="field">
-                            <input
-                              maxLength={3}
-                              ref={csvRef}
-                              className="infoValue csv"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="expDate">
-                        <label className="inputLabel">Expiration Date:</label>
-                        <div className="field">
-                          <input
-                            maxLength={5}
-                            ref={expDateRef}
-                            value={expirationDate}
-                            onChange={handleExpirationDateChange}
-                            className="infoValue expDate"
-                            placeHolder={"Month/Year"}
-                          />
-                        </div>
-                      </div>
-                      <button
-                        onClick={() => {
-                          handleAddCard();
-                          updateAddCard(false);
-                        }}
-                      >
-                        Save
-                      </button>
-                      <button
-                        onClick={() => {
-                          updateAddCard(false);
-                        }}
-                      >
-                        Cancel
-                      </button>
-                    </form>
+                          <button
+                            onClick={() => {
+                              handleAddCard();
+                              updateAddCard(false);
+                            }}
+                          >
+                            Save
+                          </button>
+                          <button
+                            onClick={() => {
+                              updateAddCard(false);
+                            }}
+                          >
+                            Cancel
+                          </button>
+                        </form>
+                      )}
+                    </div>
                   )}
                 </div>
-              )}
+                <div className="payment">
+                  <h4>Credit Cards Saved</h4>
+                  {currentUser.paymentMethods &&
+                  currentUser.paymentMethods.length > 0 ? (
+                    <div className="paymentMethods">
+                      {currentUser.paymentMethods.map((card) => (
+                        <div className="paymentCard">
+                          <CreditCardIcon />
+                          <h5 className="cardNumber">{`Card ending in: ${card.cardNumber
+                            .toString()
+                            .substring(
+                              card.cardNumber.toString().length - 4
+                            )}`}</h5>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="noPaymentMethods">
+                      {!addCard && (
+                        <>
+                          <h3 className="noMethodsTitle">
+                            Looks as if you have no cards saved!
+                          </h3>
+
+                          <button onClick={() => updateAddCard(true)}>
+                            Add a Card
+                          </button>
+                        </>
+                      )}
+                      {addCard && (
+                        <form className="addCardForm">
+                          <div className="firstLast">
+                            <div className="first">
+                              <label className="inputLabel">First Name:</label>
+                              <div className="field">
+                                <input
+                                  ref={firstNameRef}
+                                  className="infoValue firstName"
+                                  placeHolder={currentUser.firstName}
+                                />
+                              </div>
+                            </div>
+                            <div className="last">
+                              <label className="inputLabel">Last Name:</label>
+                              <div className="field">
+                                <input
+                                  ref={lastNameRef}
+                                  className="infoValue lastName"
+                                  placeHolder={currentUser.lastName}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="numCSV">
+                            <div className="num">
+                              <label className="inputLabel">Card Number:</label>
+                              <div className="field">
+                                <input
+                                  maxLength={19}
+                                  ref={cardNumberRef}
+                                  className="infoValue cardNum"
+                                  type="tel"
+                                  pattern="\d{4} \d{4} \d{4} \d{1,4}"
+                                  value={cardNumber}
+                                  onChange={handleCardNumberChange}
+                                  placeHolder={"**** **** **** ****"}
+                                />
+                              </div>
+                            </div>
+                            <div className="csv">
+                              <label className="inputLabel">
+                                Security Code:
+                              </label>
+                              <div className="field">
+                                <input
+                                  maxLength={3}
+                                  ref={csvRef}
+                                  className="infoValue csv"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="expDate">
+                            <label className="inputLabel">
+                              Expiration Date:
+                            </label>
+                            <div className="field">
+                              <input
+                                maxLength={5}
+                                ref={expDateRef}
+                                value={expirationDate}
+                                onChange={handleExpirationDateChange}
+                                className="infoValue expDate"
+                                placeHolder={"Month/Year"}
+                              />
+                            </div>
+                          </div>
+                          <button
+                            onClick={() => {
+                              handleAddCard();
+                              updateAddCard(false);
+                            }}
+                          >
+                            Save
+                          </button>
+                          <button
+                            onClick={() => {
+                              updateAddCard(false);
+                            }}
+                          >
+                            Cancel
+                          </button>
+                        </form>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
-            <div className="payment">
-              <h4>Credit Cards Saved</h4>
-              {currentUser.paymentMethods &&
-              currentUser.paymentMethods.length > 0 ? (
-                <div className="paymentMethods">
-                  {currentUser.paymentMethods.map((card) => (
-                    <div className="paymentCard">
-                      <CreditCardIcon />
-                      <h5 className="cardNumber">{`Card ending in: ${card.cardNumber
-                        .toString()
-                        .substring(
-                          card.cardNumber.toString().length - 4
-                        )}`}</h5>
+            <div className="purchaseHistory">
+              <h2 className="header">Purchase History</h2>
+              <div className="container">
+                {currentUser.purchaseHistory &&
+                currentUser.purchaseHistory.length > 0 ? (
+                  <>
+                    <div className="purchase">
+                      {currentUser.purchaseHistory.map((purchase) => (
+                        <>
+                          <h4>{`On ${purchase.date}:`}</h4>
+                          <div className="product">
+                            {purchase.itemsPurchased.map((product) => (
+                              <>
+                                <img src={product.images[0].lowRes} alt="" />
+                                <div className="nameAndPrice">
+                                  <h5>{product.name}</h5>
+                                  <h4>{product.price}</h4>
+                                </div>
+                              </>
+                            ))}
+                          </div>
+                        </>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="noPaymentMethods">
-                  {!addCard && (
-                    <>
-                      <h3 className="noMethodsTitle">
-                        Looks as if you have no cards saved!
-                      </h3>
-
-                      <button onClick={() => updateAddCard(true)}>
-                        Add a Card
-                      </button>
-                    </>
-                  )}
-                  {addCard && (
-                    <form className="addCardForm">
-                      <div className="firstLast">
-                        <div className="first">
-                          <label className="inputLabel">First Name:</label>
-                          <div className="field">
-                            <input
-                              ref={firstNameRef}
-                              className="infoValue firstName"
-                              placeHolder={currentUser.firstName}
-                            />
-                          </div>
-                        </div>
-                        <div className="last">
-                          <label className="inputLabel">Last Name:</label>
-                          <div className="field">
-                            <input
-                              ref={lastNameRef}
-                              className="infoValue lastName"
-                              placeHolder={currentUser.lastName}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="numCSV">
-                        <div className="num">
-                          <label className="inputLabel">Card Number:</label>
-                          <div className="field">
-                            <input
-                              maxLength={19}
-                              ref={cardNumberRef}
-                              className="infoValue cardNum"
-                              type="tel"
-                              pattern="\d{4} \d{4} \d{4} \d{1,4}"
-                              value={cardNumber}
-                              onChange={handleCardNumberChange}
-                              placeHolder={"**** **** **** ****"}
-                            />
-                          </div>
-                        </div>
-                        <div className="csv">
-                          <label className="inputLabel">Security Code:</label>
-                          <div className="field">
-                            <input
-                              maxLength={3}
-                              ref={csvRef}
-                              className="infoValue csv"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="expDate">
-                        <label className="inputLabel">Expiration Date:</label>
-                        <div className="field">
-                          <input
-                            maxLength={5}
-                            ref={expDateRef}
-                            value={expirationDate}
-                            onChange={handleExpirationDateChange}
-                            className="infoValue expDate"
-                            placeHolder={"Month/Year"}
-                          />
-                        </div>
-                      </div>
-                      <button
-                        onClick={() => {
-                          handleAddCard();
-                          updateAddCard(false);
-                        }}
-                      >
-                        Save
-                      </button>
-                      <button
-                        onClick={() => {
-                          updateAddCard(false);
-                        }}
-                      >
-                        Cancel
-                      </button>
-                    </form>
-                  )}
-                </div>
-              )}
+                  </>
+                ) : (
+                  <>
+                    <h4>Looks like you haven't puchased anything!</h4>
+                    <Link to="/products">
+                      <button>Browse our Products</button>
+                    </Link>
+                  </>
+                )}
+              </div>
             </div>
           </div>
         </div>

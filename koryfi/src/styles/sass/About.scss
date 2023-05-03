@@ -1,0 +1,134 @@
+.aboutContainer {
+  .aboutHero {
+    background: #ffcc00 url("/public/images/aboutbackground.png") no-repeat
+      center center/cover;
+    height: 90vh;
+    width: 100%;
+    position: relative;
+    .aboutImg {
+      position: absolute;
+    }
+    .aboutImg1 {
+      top: 15%;
+      left: 20%;
+    }
+    .aboutImg2 {
+      bottom: 15%;
+      left: 25%;
+    }
+    .aboutImg3 {
+      top: 15%;
+      right: 25%;
+    }
+    .aboutImg4 {
+      bottom: 15%;
+      right: 30%;
+    }
+  }
+  .aboutJourney {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .aboutJourneyContent {
+      min-width: 50%;
+      .aboutJourneyHeader {
+        text-align: center;
+        h2 {
+          font-size: 40px;
+          margin: 1rem 0;
+        }
+      }
+      .journeyBlurbs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        .blurbContainer {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: flex-start;
+        }
+        .blurb {
+          padding: 1.5rem;
+          border-radius: 8px;
+          width: 300px;
+        }
+        .blurb:nth-child(even) {
+          background-color: #ffcc00;
+          color: #3e3e3e;
+        }
+        .blurb:nth-child(odd) {
+          color: white;
+          background-color: #3e3e3e;
+        }
+        .blurb:nth-child(1) {
+          margin-left: 0;
+        }
+        .blurb:nth-child(2) {
+          margin-left: calc(25% - 75px);
+        }
+
+        .blurb:nth-child(3) {
+          margin-left: calc(50% - 150px);
+        }
+
+        .blurb:nth-child(4) {
+          margin-left: calc(75% - 225px);
+        }
+      }
+    }
+  }
+  .finalSection {
+    min-height: 80vh;
+    background: #ffcc00 url("/public/images/homepage2.png") no-repeat center
+      center/cover;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    .finalSectionText {
+      background-color: #f8f8f8;
+      border-radius: 8px;
+      padding: 0.75rem;
+      width: 500px;
+      max-height: 350px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    button {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .blurb {
+    width: 100% !important;
+    margin: 0 !important;
+
+    border-radius: 0 !important;
+  }
+  .aboutJourneyHeader {
+    h2 {
+      font-size: 24px !important;
+    }
+  }
+  .finalSectionText {
+    justify-content: flex-start !important;
+    max-height: none !important;
+    justify-content: space-between !important;
+  }
+  .aboutHero {
+    height: 20vh !important;
+    background: #ffcc00 url("/public/images/aboutbackground.png") !important;
+    background-size: cover !important;
+    background-position: center center !important;
+  }
+
+  .aboutImg {
+    display: none;
+  }
+}
