@@ -126,3 +126,34 @@
   justify-content: space-between;
   border-radius: 8px;
 }
+
+@media only screen and (max-width: 767px) {
+  .checkoutContainer {
+    flex-direction: column;
+    width: 100%;
+  }
+  .checkoutContainer .left-column {
+    width: 100%;
+  }
+  .checkoutContainer .left-column .cartDisplay {
+    padding: 1rem;
+  }
+  .checkoutContainer .left-column .cartItem {
+    align-items: center;
+    padding: 0;
+  }
+  .checkoutContainer .left-column .cartItemName {
+    font-size: 14px;
+  }
+  .checkoutContainer .left-column .nameAndPrice h3 {
+    margin: 0 1rem 0 0;
+  }
+  .checkoutContainer .left-column .cartItemImg {
+    width: 75px !important;
+    margin: 0.5rem !important;
+    height: 75px !important;
+  }
+  .checkoutContainer .right-column {
+    width: 100%;
+  }
+}

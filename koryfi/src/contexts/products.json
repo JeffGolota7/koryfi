@@ -73,7 +73,7 @@
     "flex": "Stiff"
   },
   {
-    "id": 1,
+    "id": 5,
     "name": "Koryfi Insulated Jacket",
     "price": 249.99,
     "category": ["clothing", "jacket"],
@@ -81,7 +81,7 @@
     "images": []
   },
   {
-    "id": 2,
+    "id": 6,
     "name": "Koryfi 3-in-1 Ski Jacket",
     "price": 329.99,
     "category": ["clothing", "jacket"],
@@ -89,7 +89,7 @@
     "images": []
   },
   {
-    "id": 3,
+    "id": 7,
     "name": "Koryfi Softshell Jacket",
     "price": 199.99,
     "category": ["clothing", "jacket"],
@@ -97,7 +97,7 @@
     "images": []
   },
   {
-    "id": 4,
+    "id": 8,
     "name": "Koryfi Fleece Jacket",
     "price": 129.99,
     "category": ["clothing", "jacket"],

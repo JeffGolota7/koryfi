@@ -126,3 +126,36 @@
     }
   }
 }
+
+@media only screen and (max-width: 767px) {
+  .checkoutContainer {
+    flex-direction: column;
+    width: 100%;
+    .left-column {
+      width: 100%;
+      .cartDisplay {
+        padding: 1rem;
+      }
+      .cartItem {
+        align-items: center;
+        padding: 0;
+      }
+      .cartItemName {
+        font-size: 14px;
+      }
+      .nameAndPrice {
+        h3 {
+          margin: 0 1rem 0 0;
+        }
+      }
+      .cartItemImg {
+        width: 75px !important;
+        margin: 0.5rem !important;
+        height: 75px !important;
+      }
+    }
+    .right-column {
+      width: 100%;
+    }
+  }
+}

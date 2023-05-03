@@ -42,6 +42,18 @@
       width: 65%;
       height: 750px;
       overflow-y: scroll;
+
+      .personalInfo {
+        .resetPassword {
+          text-decoration: underline;
+          color: #ffcc00;
+          font-weight: 700;
+          cursor: pointer;
+        }
+      }
+      .payment {
+        margin: 1rem 0;
+      }
       .infoField {
         margin: 1rem 0;
       }
@@ -65,6 +77,7 @@
         color: white;
         padding: 0.3rem 0.75rem;
         display: flex;
+        gap: 0.75rem;
         justify-content: center;
         align-items: center;
         border-radius: 100px;

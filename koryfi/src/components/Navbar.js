@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useLocation } from "react-router-dom";
 import "../styles/Navbar.css";
 import { useAuth } from "../contexts/AuthContext";
 import { useCart } from "../contexts/CartContext";
@@ -7,10 +7,12 @@ import SearchBar from "./SearchBar";
 import AccountIcon from "../components/AccountIcon.js";
 import Cart from "../components/Cart.js";
 import { ReactComponent as Logo } from "../icons/Koryfi Logo.svg";
+import { ReactComponent as IconAccount } from "../icons/Account-Icon.svg";
 import { IsMobile } from "../helpers/isMobile";
 
 function Navbar() {
   const { currentUser } = useAuth();
+  const location = useLocation();
   const [isHamOpen, toggleHamburger] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const { cart } = useCart();
@@ -46,7 +48,10 @@ function Navbar() {
 
   return (
     <>
-      <nav style={navbarStyle} className="navbar">
+      <nav
+        style={location.pathname === "/" ? navbarStyle : {}}
+        className="navbar"
+      >
         <ul className="navbar-list">
           <Link to="/">
             <Logo />
@@ -86,9 +91,9 @@ function Navbar() {
                 className={`linksMobile ${isHamOpen ? "active" : "inactive"}`}
               >
                 {currentUser ? (
-                  <li>
-                    <AccountIcon className="accountIcon" />
-                  </li>
+                  <Link to="/account" onClick={handleHamburger}>
+                    <IconAccount />
+                  </Link>
                 ) : (
                   <>
                     <li>
@@ -98,13 +103,19 @@ function Navbar() {
                 )}
                 <SearchBar />
                 <li>
-                  <Link to="/about">About Us</Link>
+                  <Link to="/about" onClick={handleHamburger}>
+                    About Us
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/products">Products</Link>
+                  <Link to="/products" onClick={handleHamburger}>
+                    Products
+                  </Link>
                 </li>
 
-                <Cart />
+                <Link to="/checkout" onClick={handleHamburger}>
+                  <Cart />
+                </Link>
               </div>
             </>
           )}

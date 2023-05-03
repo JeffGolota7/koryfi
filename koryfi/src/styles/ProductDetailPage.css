@@ -2,6 +2,113 @@ body {
   background-color: #f8f8f8;
 }
 
+.pdp-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.pdp-container .flipped {
+  transform: scaleX(-1) translateX(2px);
+}
+.pdp-container .reviewModal {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(62, 62, 62, 0.6235294118);
+  z-index: 10000000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+.pdp-container .reviewModal .modalContent {
+  right: 50%;
+  top: 50%;
+  position: absolute;
+  background-color: white;
+}
+.pdp-container .product-information {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+.pdp-container .images {
+  margin-right: 15px;
+  width: 55%;
+}
+.pdp-container .images .activeImage {
+  max-width: 610px;
+  max-height: 610px;
+  width: 100%;
+  transition: transform 0.25s ease-in-out;
+  transform-origin: center center;
+}
+.pdp-container .info {
+  white-space: pre-line;
+  width: 40%;
+}
+.pdp-container .reviews {
+  width: 70%;
+}
+.pdp-container .reviews hr {
+  border: 1px solid #ffcc00;
+}
+.pdp-container .reviews .heading {
+  color: #ffcc00;
+}
+.pdp-container .reviews .heading h1 {
+  font-weight: 900;
+}
+.pdp-container .reviews .review {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.pdp-container .reviews .review .img {
+  background-color: grey;
+  height: 125px;
+  width: 125px;
+}
+.pdp-container .reviews .review .content {
+  width: 90%;
+}
+.pdp-container .reviews .review hr {
+  border: 1px solid #3e3e3e;
+}
+.pdp-container .reviews .reviews {
+  max-height: 400px;
+  overflow-y: scroll;
+  width: 100%;
+}
+.pdp-container .reviews .ratingStats {
+  display: flex;
+  margin: 0.75rem 0;
+  justify-content: space-between;
+}
+.pdp-container .reviews .ratingStats h3 {
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+.pdp-container .reviews .ratingStats .score {
+  display: flex;
+  gap: 1rem;
+  font-weight: 900;
+  font-size: 30px;
+  color: #ffcc00;
+}
+.pdp-container .reviews .ratingStats .total {
+  font-weight: 900;
+  font-size: 30px;
+  color: #ffcc00;
+}
+
 .thumbnail {
   width: 120px;
   height: auto;
@@ -19,33 +126,6 @@ body {
   cursor: pointer;
 }
 
-.images {
-  margin-right: 15px;
-}
-
-.activeImage {
-  max-width: 610px;
-  max-height: 610px;
-  transition: transform 0.25s ease-in-out;
-  transform-origin: center center;
-}
-
-.pdp-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.pdp-container .product-information {
-  display: flex;
-  width: 55%;
-}
-
-.info {
-  white-space: pre-line;
-}
-
 .pdp-container .img-wrapper {
   overflow: hidden;
 }
@@ -61,4 +141,33 @@ body {
 .right-column {
   display: flex;
   flex-direction: column;
+}
+
+@media only screen and (max-width: 1024px) {
+  .product-information {
+    flex-direction: column;
+    width: 100% !important;
+  }
+  .product-information .images {
+    margin: 0;
+    width: 90%;
+  }
+  .product-information .images .thumbnails {
+    flex-wrap: wrap;
+  }
+  .product-information .info {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .product-information .images .thumbnails {
+    flex-wrap: nowrap;
+    width: 30%;
+  }
+  .ratingStats {
+    flex-direction: column;
+  }
+  .reviews {
+    width: 90% !important;
+  }
 }

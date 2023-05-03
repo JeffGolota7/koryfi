@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useAuth, AuthProvider } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as EditIcon } from "../icons/Edit-Icon.svg";
+import { ReactComponent as CreditCardIcon } from "../icons/creditcard.svg";
 
 import "../styles/Account.css";
 
@@ -192,6 +193,7 @@ export default function Account() {
               </ul>
             </div>
             <div className="addresses">
+              <h4>Shipping Addresses Saved</h4>
               {currentUser.addresses && currentUser.addresses.length > 0 ? (
                 <div className="addresses">
                   {currentUser.addresses.map((address) => (
@@ -296,12 +298,13 @@ export default function Account() {
               )}
             </div>
             <div className="payment">
+              <h4>Credit Cards Saved</h4>
               {currentUser.paymentMethods &&
               currentUser.paymentMethods.length > 0 ? (
                 <div className="paymentMethods">
                   {currentUser.paymentMethods.map((card) => (
                     <div className="paymentCard">
-                      {"Icon"}
+                      <CreditCardIcon />
                       <h5 className="cardNumber">{`Card ending in: ${card.cardNumber
                         .toString()
                         .substring(

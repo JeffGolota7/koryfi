@@ -249,3 +249,39 @@
 .checkoutPageContainer .checkoutPageContent .right-column .summaryDisplay .summaryFooter {
   justify-self: flex-end;
 }
+
+@media only screen and (max-width: 767px) {
+  .checkoutPageContent {
+    flex-direction: column;
+    width: 100% !important;
+  }
+  .checkoutPageContent .left-column {
+    width: 100% !important;
+    margin: 1rem 0 0 0 !important;
+  }
+  .checkoutPageContent .left-column .firstLast {
+    flex-direction: column;
+  }
+  .checkoutPageContent .left-column .firstLast .firstNameContainer,
+  .checkoutPageContent .left-column .firstLast .lastNameContainer {
+    width: 100% !important;
+  }
+  .checkoutPageContent .left-column .firstLast .lastNameContainer {
+    margin: 1rem 0 !important;
+  }
+  .checkoutPageContent .left-column .numCSV {
+    flex-direction: column;
+  }
+  .checkoutPageContent .left-column .numCSV .num,
+  .checkoutPageContent .left-column .numCSV .cvv {
+    width: 100% !important;
+  }
+  .checkoutPageContent .left-column .numCSV .cvv {
+    margin: 1rem 0 !important;
+  }
+  .checkoutPageContent .right-column {
+    width: 100% !important;
+    border-radius: 0 !important;
+    margin-bottom: 1rem;
+  }
+}

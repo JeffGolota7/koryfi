@@ -5,10 +5,8 @@ import React, {
   useState,
   useContext,
 } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
-import { db } from "./firebase/firebase";
-import { doc, getDoc } from "firebase/firestore";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -26,9 +24,8 @@ import useProductContext from "./contexts/ProductContext";
 const ProductContext = createContext({});
 
 function App() {
+  const location = useLocation();
   const [products, updateProducts] = useState();
-
-  const fetchProducts = useMemo(() => {});
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -45,6 +42,7 @@ function App() {
   return (
     <ProductContext.Provider value={products}>
       <Navbar />
+      <div style={location.pathname !== "/" ? { marginTop: "80px" } : {}}></div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/checkout" element={<Checkout />} />

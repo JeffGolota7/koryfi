@@ -11,6 +11,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: stretch;
+  border-radius: 8px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.225);
 }
 
@@ -34,4 +35,25 @@
 
 .rightSide input:-internal-autofill-selected {
   background-color: #fff4c6 !important;
+}
+
+@media only screen and (max-width: 767px) {
+  .formWrapper {
+    height: auto;
+    padding: 1rem 0;
+  }
+  .formCard {
+    flex-direction: column;
+    width: 90% !important;
+  }
+  .formCard .leftSide {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+  }
+  .formCard .rightSide {
+    border-radius: 0 0 8px 8px;
+  }
+  .formCard #name {
+    flex-direction: column;
+  }
 }

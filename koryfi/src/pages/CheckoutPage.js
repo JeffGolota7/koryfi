@@ -108,10 +108,11 @@ export default function CheckoutPage() {
     updateCurrentAddress(address);
   }
 
+  console.log(currentUser);
+
   return (
     <div className="checkoutPageContainer">
       <div className="stage-progress">
-        {/* Icon */}
         <div className={`backBtn ${checkoutStage === 1 && "inactive"}`}>
           <button
             onClick={() => {
@@ -164,30 +165,32 @@ export default function CheckoutPage() {
                   <h1>Shipping Information</h1>
                 </div>
                 <hr></hr>
-                <div className="addressSelect">
-                  <label htmlFor="">Your Saved Addresses</label>
-                  <div className="addresses">
-                    {currentUser.shippingAddresses &&
-                      currentUser.shippingAddresses.length > 0 &&
-                      currentUser.shippingAddresses.map((address) => (
-                        <div
-                          className="address"
-                          onClick={() => handleAddressSelect(address)}
-                        >
-                          <div className="name">
-                            {`${address.firstName} ${address.lastName}`}
+                {currentUser && (
+                  <div className="addressSelect">
+                    <label htmlFor="">Your Saved Addresses</label>
+                    <div className="addresses">
+                      {currentUser.shippingAddresses &&
+                        currentUser.shippingAddresses.length > 0 &&
+                        currentUser.shippingAddresses.map((address) => (
+                          <div
+                            className="address"
+                            onClick={() => handleAddressSelect(address)}
+                          >
+                            <div className="name">
+                              {`${address.firstName} ${address.lastName}`}
+                            </div>
+                            <div className="addressName">{address.address}</div>
                           </div>
-                          <div className="addressName">{address.address}</div>
-                        </div>
-                      ))}
+                        ))}
+                    </div>
+                    <button
+                      className="clear"
+                      onClick={() => updateCurrentAddress(null)}
+                    >
+                      Clear All Fields
+                    </button>
                   </div>
-                  <button
-                    className="clear"
-                    onClick={() => updateCurrentAddress(null)}
-                  >
-                    Clear All Fields
-                  </button>
-                </div>
+                )}
                 <div className="firstAndLast">
                   <div className="first input">
                     <label htmlFor="">First Name</label>
@@ -307,17 +310,18 @@ export default function CheckoutPage() {
                 <h1>Payment Information</h1>
               </div>
               <hr></hr>
-              {currentUser.paymentMethods.map((card) => (
-                <div
-                  className="paymentCard"
-                  onClick={() => handlePaymentCard(card)}
-                >
-                  {"Icon"}
-                  <h5 className="cardNumber">{`Card ending in: ${card.cardNumber
-                    .toString()
-                    .substring(card.cardNumber.toString().length - 4)}`}</h5>
-                </div>
-              ))}
+              {currentUser &&
+                currentUser.paymentMethods.map((card) => (
+                  <div
+                    className="paymentCard"
+                    onClick={() => handlePaymentCard(card)}
+                  >
+                    {"Icon"}
+                    <h5 className="cardNumber">{`Card ending in: ${card.cardNumber
+                      .toString()
+                      .substring(card.cardNumber.toString().length - 4)}`}</h5>
+                  </div>
+                ))}
               <div className="paymentForm">
                 <form className="addCardForm">
                   <div className="firstLast">

@@ -255,3 +255,39 @@
     }
   }
 }
+
+@media only screen and (max-width: 767px) {
+  .checkoutPageContent {
+    flex-direction: column;
+    width: 100% !important;
+    .left-column {
+      width: 100% !important;
+      margin: 1rem 0 0 0 !important;
+      .firstLast {
+        flex-direction: column;
+        .firstNameContainer,
+        .lastNameContainer {
+          width: 100% !important;
+        }
+        .lastNameContainer {
+          margin: 1rem 0 !important;
+        }
+      }
+      .numCSV {
+        flex-direction: column;
+        .num,
+        .cvv {
+          width: 100% !important;
+        }
+        .cvv {
+          margin: 1rem 0 !important;
+        }
+      }
+    }
+    .right-column {
+      width: 100% !important;
+      border-radius: 0 !important;
+      margin-bottom: 1rem;
+    }
+  }
+}

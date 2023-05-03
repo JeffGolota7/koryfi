@@ -19,6 +19,45 @@
   border-radius: 10px;
   border: 1px solid black;
 }
+.formCard {
+  width: 60%;
+}
+.leftSide {
+  width: 30%;
+  overflow: hidden;
+  position: relative;
+  img {
+    position: absolute;
+    width: 450px;
+    left: 0;
+    top: 20%;
+    max-width: none;
+    height: auto;
+  }
+  h2 {
+    font-weight: 800;
+    font-size: 30px;
+  }
+}
+.rightSide {
+  min-height: 500px;
+  .input {
+    margin: 1rem 0;
+    span {
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+  }
+  button {
+    margin-bottom: 1rem;
+  }
+  .signupLinkWrapper {
+    a {
+      color: #ffcc00;
+      font-weight: 700;
+    }
+  }
+}
 
 .login button {
   margin-top: 10px;

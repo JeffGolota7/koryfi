@@ -38,5 +38,16 @@
   width: 100%;
   padding: 2rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+@media only screen and (max-width: 767px) {
+  .product-page {
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+  }
+  .product-page .right-column {
+    width: 100%;
+  }
 }

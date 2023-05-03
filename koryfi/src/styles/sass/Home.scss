@@ -6,6 +6,7 @@
   position: relative;
   background-color: white;
   width: 100%;
+
   .heroImg {
     height: auto;
     min-width: 100%;
@@ -53,8 +54,9 @@
   .topPicksGrid {
     display: grid;
     width: 50%;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     .card {
+      flex-basis: calc(33.33% - 10px);
       padding: 1rem;
       .textAndButton {
         display: flex;
@@ -131,7 +133,7 @@
   background-color: #3d3d3d;
   .effect {
     position: absolute;
-    top: -50px;
+    top: -1px;
     width: 100%;
   }
   .testimonialsContainer {
@@ -175,7 +177,6 @@
       height: 175px;
       display: flex;
       justify-content: center;
-      align-items: center;
       font-size: 120px;
       margin-bottom: 1rem;
       position: absolute;
@@ -189,34 +190,73 @@
 @media only screen and (max-width: 767px) {
   .hero {
     height: 40vh;
+    background: url("../../public\\images\\homepage.png") no-repeat center
+      center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+
     .text {
       top: 30%;
       right: 50%;
       white-space: nowrap;
       transform: translateX(50%);
+      .landingText {
+        h4,
+        h3,
+        span {
+          font-size: 1.2rem !important;
+        }
+      }
       button {
         font-size: 0.8rem;
       }
     }
     .heroImg {
-      object-fit: fill;
+      display: none;
     }
   }
   .topPicks {
+    background: #3e3e3e;
     .topPicksHeader {
       font-size: 2rem;
     }
     .topPicksGrid {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr !important;
+
       gap: 1rem;
       width: 80%;
     }
   }
   .whoWeAre {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    .header {
+      position: inherit;
+      font-size: 40px;
+      right: auto;
+      span {
+        margin: 0;
+      }
+    }
     img {
-      width: 100%;
+      width: 300px !important;
+      margin: 1rem;
+      height: auto;
+      position: inherit;
+      top: auto;
+      left: auto;
     }
     .aboutContent {
+      position: inherit;
+      width: 90%;
+      height: 50%;
+      margin-bottom: 1rem;
+      bottom: auto;
+      right: auto;
       p {
         font-size: 0.9rem;
       }
@@ -230,12 +270,11 @@
     }
   }
   .testimonials {
-    height: inherit;
     .heading {
-      font-size: 2rem;
+      font-size: 1.25rem !important;
     }
     .effect {
-      transform: translateY(-35px);
+      display: none;
     }
     .quote {
       width: 75px !important;

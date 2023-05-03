@@ -31,7 +31,7 @@ export default function SearchBar() {
           {query.map((prod) => (
             <Link
               to="/product-information"
-              state={{ product: prod }}
+              state={{ productObject: prod }}
               onClick={() => setQuery([])}
               id="result"
             >

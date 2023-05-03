@@ -14,7 +14,7 @@ export default function Products() {
   const [allProducts, updateProducts] = useState([]);
   const [selectedFilters, updateSelectedFilters] = useState([
     {
-      name: "all",
+      name: "price",
       minprice: 0,
       maxprice: 1000,
       type: "price",
@@ -40,7 +40,6 @@ export default function Products() {
 
   function handleFilterChange(filter) {
     const index = selectedFilters.findIndex((f) => f.name === filter.name);
-
     const newFilters = [...selectedFilters];
     if (index === -1) {
       newFilters.push(filter);
@@ -51,25 +50,32 @@ export default function Products() {
         newFilters.splice(index, 1);
       }
     }
+
     updateSelectedFilters(newFilters);
   }
 
   useEffect(() => {
     const filteredProducts = [...allProducts].filter((product) => {
-      return selectedFilters.every((filter) => {
-        switch (filter.filterType) {
-          case "range":
-            return (
-              product[filter.type] >= filter[`min${filter.type}`] &&
-              product[filter.type] <= filter[`max${filter.type}`]
-            );
-          case "check":
-            return product.category.includes(filter.name);
-          default:
-            return true;
-        }
-      });
+      const rangeFilters = selectedFilters.filter(
+        (filter) => filter.filterType === "range"
+      );
+      const checkFilters = selectedFilters.filter(
+        (filter) => filter.filterType === "check"
+      );
+      const rangeFilterResult =
+        rangeFilters.length === 0 ||
+        rangeFilters.every((filter) => {
+          return (
+            product[filter.type] >= filter[`min${filter.type}`] &&
+            product[filter.type] <= filter[`max${filter.type}`]
+          );
+        });
+      const checkFilterResult =
+        checkFilters.length === 0 ||
+        checkFilters.some((filter) => product.category.includes(filter.name));
+      return rangeFilterResult && checkFilterResult;
     });
+    console.log(selectedFilters);
     updateDisplayedProducts(filteredProducts);
   }, [selectedFilters]);
 
@@ -84,22 +90,28 @@ export default function Products() {
   }, [products]);
 
   return (
-    <div className="product-page">
-      <div className="left-column">
-        <FilterContainer
-          updateSelectedFilters={handleFilterChange}
-          selectedFilters={selectedFilters}
-        />
+    <div className="catalog">
+      <div className="catalogHeader">
+        <h1>Product Catalog</h1>
+        <hr />
       </div>
-      <div className="right-column">
-        <div className="search">
-          <input type="text" onChange={(e) => handleSearch(e.target.value)} />
+      <div className="product-page">
+        <div className="left-column">
+          <FilterContainer
+            updateSelectedFilters={handleFilterChange}
+            selectedFilters={selectedFilters}
+          />
         </div>
-        <div className="product-gallery">
-          {displayedProducts.length > 0 &&
-            displayedProducts.map((p) => {
-              return <Card product={p} />;
-            })}
+        <div className="right-column">
+          <div className="search">
+            <input type="text" onChange={(e) => handleSearch(e.target.value)} />
+          </div>
+          <div className="product-gallery">
+            {displayedProducts.length > 0 &&
+              displayedProducts.map((p) => {
+                return <Card product={p} />;
+              })}
+          </div>
         </div>
       </div>
     </div>

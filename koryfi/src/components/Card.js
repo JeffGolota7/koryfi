@@ -5,7 +5,7 @@ import "../styles/Card.css";
 export default function Card(product) {
   const prod = product.product;
   return (
-    <Link to="/product-information" state={{ product: prod }}>
+    <Link to="/product-information" state={{ productObject: prod }}>
       <div className="card">
         <div className="image">
           {prod.images.length > 0 ? (

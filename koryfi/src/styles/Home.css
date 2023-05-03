@@ -52,9 +52,10 @@
 .topPicks .topPicksGrid {
   display: grid;
   width: 50%;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 .topPicks .topPicksGrid .card {
+  flex-basis: calc(33.33% - 10px);
   padding: 1rem;
 }
 .topPicks .topPicksGrid .card .textAndButton {
@@ -130,7 +131,7 @@
 }
 .testimonials .effect {
   position: absolute;
-  top: -50px;
+  top: -1px;
   width: 100%;
 }
 .testimonials .testimonialsContainer {
@@ -175,7 +176,6 @@
   height: 175px;
   display: flex;
   justify-content: center;
-  align-items: center;
   font-size: 120px;
   margin-bottom: 1rem;
   position: absolute;
@@ -188,6 +188,10 @@
 @media only screen and (max-width: 767px) {
   .hero {
     height: 40vh;
+    background: url("../../public\\images\\homepage.png") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
   }
   .hero .text {
     top: 30%;
@@ -195,22 +199,58 @@
     white-space: nowrap;
     transform: translateX(50%);
   }
+  .hero .text .landingText h4,
+  .hero .text .landingText h3,
+  .hero .text .landingText span {
+    font-size: 1.2rem !important;
+  }
   .hero .text button {
     font-size: 0.8rem;
   }
   .hero .heroImg {
-    object-fit: fill;
+    display: none;
+  }
+  .topPicks {
+    background: #3e3e3e;
   }
   .topPicks .topPicksHeader {
     font-size: 2rem;
   }
   .topPicks .topPicksGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
     gap: 1rem;
     width: 80%;
   }
+  .whoWeAre {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
+  .whoWeAre .header {
+    position: inherit;
+    font-size: 40px;
+    right: auto;
+  }
+  .whoWeAre .header span {
+    margin: 0;
+  }
   .whoWeAre img {
-    width: 100%;
+    width: 300px !important;
+    margin: 1rem;
+    height: auto;
+    position: inherit;
+    top: auto;
+    left: auto;
+  }
+  .whoWeAre .aboutContent {
+    position: inherit;
+    width: 90%;
+    height: 50%;
+    margin-bottom: 1rem;
+    bottom: auto;
+    right: auto;
   }
   .whoWeAre .aboutContent p {
     font-size: 0.9rem;
@@ -222,14 +262,11 @@
     font-size: 0.8rem;
     padding: 0.5rem 1rem;
   }
-  .testimonials {
-    height: inherit;
-  }
   .testimonials .heading {
-    font-size: 2rem;
+    font-size: 1.25rem !important;
   }
   .testimonials .effect {
-    transform: translateY(-35px);
+    display: none;
   }
   .testimonials .quote {
     width: 75px !important;

@@ -77,7 +77,6 @@ function SignUp() {
         isVisible={isVisible}
         setVisible={setVisible}
       ></Banner>
-      <button onClick={handleTest}>Test</button>
       <div className="formCard">
         <div className="leftSide">
           <h2>Join Us</h2>
