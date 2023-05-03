@@ -188,7 +188,7 @@
 @media only screen and (max-width: 767px) {
   .hero {
     height: 40vh;
-    background: url("../../public\\images\\homepage.png") no-repeat center center;
+    background: url("../../public/images/homepage.png") no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
