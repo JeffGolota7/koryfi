@@ -9,7 +9,14 @@ export default function Card(product) {
       <div className="card">
         <div className="image">
           {prod.images.length > 0 ? (
-            <img src={prod.images[0].lowRes} alt="" />
+            <img
+              src={`${
+                prod.category.includes("clothing")
+                  ? prod.images[0].images[0].lowRes
+                  : prod.images[0].lowRes
+              }`}
+              alt=""
+            />
           ) : (
             <div className="noPhoto"></div>
           )}

@@ -109,14 +109,44 @@ export function ProductProvider({ children }) {
       });
     }
     if (product.category.includes("clothing")) {
-      await setDoc(doc(db, "products", product.name), {
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        category: product.category,
-        description: product.description,
-        images: product.images,
-      });
+      if (product.category.includes("gloves")) {
+        await setDoc(doc(db, "products", product.name), {
+          name: product.name,
+          id: product.id,
+          category: product.category,
+          color: product.color,
+          size: product.size,
+          gender: product.gender,
+          features: product.features,
+          description: product.description,
+          price: product.price,
+          images: product.images,
+        });
+      }
+      if (product.category.includes("jacket")) {
+        await setDoc(doc(db, "products", product.name), {
+          id: product.id,
+          price: product.price,
+          gender: product.gender,
+          name: product.name,
+          description: product.description,
+          color: product.color,
+          images: product.images,
+          category: product.category,
+          sizes: product.sizes,
+          waterproof_rating: product.waterproof_rating,
+          breathability_rating: product.breathability_rating,
+          insulation: product.insulation,
+          seams: product.seams,
+          hood: product.hood,
+          pockets: product.pockets,
+          powder_skirt: product.powder_skirt,
+          cuffs: product.cuffs,
+          venting: product.venting,
+          hem: product.hem,
+          jacket_to_pant_interface: product.jacket_to_pant_interface,
+        });
+      }
     }
   });
 

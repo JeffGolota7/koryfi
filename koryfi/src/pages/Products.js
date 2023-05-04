@@ -22,18 +22,22 @@ export default function Products() {
     },
   ]);
   const { products } = useProduct();
+  const [numToShow, updateNumToShow] = useState(10);
 
   async function handleSearch(queryText) {
     if (queryText !== "") {
       getProductsFromDatabaseByText(queryText).then((response) => {
         response.shift();
         updateDisplayedProducts(response);
+        updateNumToShow(10);
       });
     } else {
       if (products) {
         updateDisplayedProducts(products);
+        updateNumToShow(10);
       } else {
         updateDisplayedProducts(getAllProductsFromDatabase());
+        updateNumToShow(10);
       }
     }
   }
@@ -41,6 +45,7 @@ export default function Products() {
   function handleFilterChange(filter) {
     const index = selectedFilters.findIndex((f) => f.name === filter.name);
     const newFilters = [...selectedFilters];
+
     if (index === -1) {
       newFilters.push(filter);
     } else {
@@ -50,6 +55,7 @@ export default function Products() {
         newFilters.splice(index, 1);
       }
     }
+    console.log(newFilters);
 
     updateSelectedFilters(newFilters);
   }
@@ -66,12 +72,7 @@ export default function Products() {
       const rangeFilterResult =
         rangeFilters.length === 0 ||
         rangeFilters.every((filter) => {
-          if (filter.type === "length") {
-            console.log(
-              product[filter.type] >= filter[`min${filter.type}`] &&
-                product[filter.type] <= filter[`max${filter.type}`]
-            );
-          }
+          console.log(product[filter.type]);
           return (
             product[filter.type] >= filter[`min${filter.type}`] &&
             product[filter.type] <= filter[`max${filter.type}`]
@@ -82,8 +83,8 @@ export default function Products() {
         checkFilters.some((filter) => product.category.includes(filter.name));
       return rangeFilterResult && checkFilterResult;
     });
-    updateDisplayedProducts(filteredProducts);
-  }, [selectedFilters]);
+    updateDisplayedProducts(filteredProducts.slice(0, numToShow));
+  }, [selectedFilters, numToShow]);
 
   useEffect(() => {
     if (products) {
@@ -93,7 +94,12 @@ export default function Products() {
       updateDisplayedProducts(getAllProductsFromDatabase());
       updateProducts(displayedProducts);
     }
+    updateNumToShow(10);
   }, [products]);
+
+  function handleLoadMore() {
+    updateNumToShow(numToShow + 10);
+  }
 
   return (
     <div className="catalog">
@@ -118,10 +124,13 @@ export default function Products() {
           </div>
           <div className="product-gallery">
             {displayedProducts.length > 0 &&
-              displayedProducts.map((p) => {
+              displayedProducts.slice(0, numToShow).map((p) => {
                 return <Card product={p} />;
               })}
           </div>
+          {displayedProducts.length > numToShow && (
+            <button onClick={handleLoadMore}>Load More</button>
+          )}
         </div>
       </div>
     </div>

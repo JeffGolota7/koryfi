@@ -104,8 +104,8 @@ export default function FilterContainer(props) {
                   value="Length"
                   type="length"
                   category="snowboard"
-                  min={70}
-                  max={170}
+                  min={100}
+                  max={200}
                 />
                 <label className="category" for="width">
                   Width
@@ -118,8 +118,8 @@ export default function FilterContainer(props) {
                   value="Width"
                   type="width"
                   category="snowboard"
-                  min={70}
-                  max={170}
+                  min={225}
+                  max={300}
                 />
                 <div className="filter">
                   <input
@@ -268,8 +268,8 @@ export default function FilterContainer(props) {
                         value="Width"
                         type="width"
                         category="snowboard"
-                        min={70}
-                        max={170}
+                        min={225}
+                        max={300}
                       />
                       <div className="filter">
                         <input

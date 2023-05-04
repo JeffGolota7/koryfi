@@ -21,6 +21,7 @@ import Products from "./pages/Products";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import useProductContext from "./contexts/ProductContext";
 import { BannerProvider } from "./contexts/BannerProvider";
+import ScrollToTop from "./helpers/ScrollToTop";
 
 const ProductContext = createContext({});
 
@@ -65,6 +66,7 @@ function App() {
           <Route path="/account" element={<Account />} />
           <Route path="/product-information" element={<ProductDetailPage />} />
         </Routes>
+        <ScrollToTop />
         <Footer />
       </BannerProvider>
     </ProductContext.Provider>

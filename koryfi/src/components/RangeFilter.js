@@ -17,7 +17,8 @@ function RangeFilter({
   const handleRangeChange = (value) => {
     setRange(value);
     updateSelectedFilters({
-      name: category,
+      name: name,
+      category: category,
       [`min${type}`]: range[0],
       [`max${type}`]: range[1],
       type: type,
