@@ -1,19 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/SearchBar.css";
 import { Link } from "react-router-dom";
 import { getProductsFromDatabaseByText } from "../contexts/ProductContext";
 import { ReactComponent as SnowboardIcon } from "../icons/snowboard.svg";
 import { ReactComponent as SkiIcon } from "../icons/ski.svg";
 
-export default function SearchBar() {
+export default function SearchBar({ isHamOpen }) {
   const [query, setQuery] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
 
   function handleChange(queryText) {
+    setSearchValue(queryText);
     getProductsFromDatabaseByText(queryText).then((response) => {
       response.shift();
       setQuery(response);
     });
   }
+
+  useEffect(() => {
+    setSearchValue("");
+
+    setQuery("");
+  }, [isHamOpen]);
+
   return (
     <div className="searchbar">
       <input
@@ -26,6 +35,7 @@ export default function SearchBar() {
             }
           }
         }}
+        value={searchValue}
         onChange={(e) => handleChange(e.target.value)}
       />
 

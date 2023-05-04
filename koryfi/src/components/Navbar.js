@@ -82,7 +82,11 @@ function Navbar() {
             </div>
           ) : (
             <>
-              <div className="hamburger" onClick={handleHamburger}>
+              <div
+                className="hamburger"
+                id="hamburger"
+                onClick={handleHamburger}
+              >
                 <div className="line"></div>
                 <div className="line"></div>
                 <div className="line"></div>
@@ -106,7 +110,7 @@ function Navbar() {
                     </li>
                   </>
                 )}
-                <SearchBar />
+                <SearchBar isHamOpen={isHamOpen} />
                 <li>
                   <Link to="/about" onClick={handleHamburger}>
                     About Us

@@ -222,7 +222,7 @@ export default function ProductDetailPage() {
               {product.images && (
                 <img
                   className="activeImage"
-                  src={isLoaded ? activeImage.lowRes : activeImage.lowRes}
+                  src={isLoaded ? activeImage.highRes : activeImage.lowRes}
                   srcSet={`${activeImage.lowRes} 500w, ${activeImage.highRes} 1000w`}
                   sizes={`(max-width: ${aspectRatio * 500}px) 100vw, ${
                     aspectRatio * 1000

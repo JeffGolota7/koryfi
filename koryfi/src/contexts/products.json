@@ -1,25 +1,39 @@
 [
   {
-    "id": 1,
+    "id": "1",
     "name": "The Summit",
-    "description": "The Summit is the ultimate snowboard for advanced riders looking for a high-performance board that can tackle any terrain. With a carbon fiber construction, this board is incredibly light and responsive, giving you the confidence to push your limits.",
-    "price": 499.99,
-    "rating": 4,
-    "images": [],
-    "type": "Snowboard",
+    "description": "The Summit is a powerful and agile snowboard that's perfect for experienced riders who love to carve down steep and challenging terrain. With its responsive camber profile and stiff flex, this board provides excellent edge hold and stability at high speeds, while still allowing for quick and easy turn initiation. The Summit is designed for advanced to expert riders who demand the very best from their gear.",
+    "price": 799.99,
+    "images": [
+      {
+        "lowRes": "/images/snowboards/summit/summit-both-small.jpg",
+        "highRes": "/images/snowboards/summit/summit-both.jpg"
+      },
+      {
+        "lowRes": "/images/snowboards/summit/summit-front-small.jpg",
+        "highRes": "/images/snowboards/summit/summit-front.jpg"
+      },
+      {
+        "lowRes": "/images/snowboards/summit/summit-back-small.jpg",
+        "highRes": "/images/snowboards/summit/summit-back.jpg"
+      }
+    ],
     "category": "snowboard",
-    "camber": "Traditional",
-    "difficulty": "Advanced",
-    "width": "25.5 cm",
-    "length": 153,
-    "flex": "Stiff"
+    "sizes": ["154cm", "157cm", "160cm", "163cm", "166cm"],
+    "bend": "camber",
+    "length": 160,
+    "sex": "unisex",
+    "width": 260,
+    "difficulty": "Advanced/Expert",
+    "terrain": ["all-mountain", "freeride", "backcountry"],
+    "flex": "medium",
+    "shape": "directional"
   },
   {
-    "id": 2,
+    "id": "2",
     "name": "The Trailblazer",
-    "description": "The Trailblazer is a versatile all-mountain snowboard that is perfect for riders looking to explore new terrain and push their limits. With its lightweight design and responsive camber profile, this board excels in a variety of conditions, from steep groomers to fresh powder. \n The board's advanced construction features a durable wood core and triax fiberglass laminate, which provide excellent stability and control at high speeds. The sintered base is ultra-fast and highly durable, ensuring that you'll be able to charge through any terrain without hesitation. \n In addition to its impressive performance, The Trailblazer also boasts a stunning aesthetic, with a bold graphic that features a mountain range against a gradient blue sky. This eye-catching design is sure to turn heads on the mountain and make you stand out from the crowd. \n Whether you're a seasoned veteran or just getting started, The Trailblazer is the perfect snowboard for riders who demand the best. So get out there and blaze your own trail with The Trailblazer!",
-    "price": 299.99,
-    "rating": 4,
+    "description": "The Trailblazer is an all-around snowboard that excels on any terrain. With its hybrid bend and medium flex, this board provides a perfect balance of control, pop, and forgiveness. The Trailblazer is designed for riders of all levels who want a versatile board that can handle anything the mountain throws their way.",
+    "price": 499.99,
     "images": [
       {
         "lowRes": "/images/snowboards/trailblazer/trailblazer-both-small.jpg",
@@ -34,44 +48,78 @@
         "highRes": "/images/snowboards/trailblazer/trailblazer-back.jpg"
       }
     ],
-    "type": "Snowboard",
     "category": "snowboard",
-    "camber": "Traditional",
+    "sizes": ["146cm", "149cm", "152cm", "155cm", "158cm", "161cm"],
+    "bend": "hybrid",
+    "length": 156,
+    "sex": "unisex",
+    "width": 260,
     "difficulty": "Beginner/Intermediate",
-    "width": "24.5 cm",
-    "length": 149,
-    "flex": "Medium"
+    "terrain": ["all-mountain", "freestyle", "park"],
+    "flex": "stiff",
+    "shape": "true twin"
   },
   {
-    "id": 3,
+    "id": "3",
     "name": "The Freeride",
-    "description": "The Freeride is a versatile snowboard for riders looking for a board that can handle any type of snow conditions. With a hybrid camber and a twin shape, this board is stable and responsive, giving you the confidence to charge down the mountain.",
-    "price": 399.99,
-    "rating": 4,
-    "images": [],
-    "type": "Snowboard",
+    "description": "The Freeride is a high-performance snowboard designed for advanced riders who want to explore the backcountry and ride deep powder. With its directional shape, rocker-camber profile, and stiff flex, this board delivers excellent float and stability in all conditions. The Freeride is built to handle the most challenging terrain and give riders the confidence they need to push their limits and ride harder than ever before.",
+    "price": 749.99,
+    "images": [
+      {
+        "lowRes": "/images/snowboards/freeride/freeride-both-small.jpg",
+        "highRes": "/images/snowboards/freeride/freeride-both.jpg"
+      },
+      {
+        "lowRes": "/images/snowboards/freeride/freeride-front-small.jpg",
+        "highRes": "/images/snowboards/freeride/freeride-front.jpg"
+      },
+      {
+        "lowRes": "/images/snowboards/freeride/freeride-back-small.jpg",
+        "highRes": "/images/snowboards/freeride/freeride-back.jpg"
+      }
+    ],
     "category": "snowboard",
-    "camber": "Traditional",
-    "difficulty": "Intermediate/Advanced",
-    "width": "25.0 cm",
-    "length": 155,
-    "flex": "Stiff"
+    "sizes": ["154cm", "158cm", "162cm", "166cm"],
+    "bend": "rocker-camber",
+    "length": 160,
+    "sex": "unisex",
+    "width": 260,
+    "difficulty": "Advanced",
+    "terrain": ["freeride", "backcountry", "powder"],
+    "flex": "stiff",
+    "shape": "directional"
   },
   {
-    "id": 4,
+    "id": "4",
     "name": "The Powder Hound",
-    "description": "The Powder Hound is a specialized snowboard for riders looking for a board that excels in deep powder. With a wide nose and a swallowtail, this board floats effortlessly in the snow and gives you the ability to surf the mountain.",
-    "price": 499.99,
-    "rating": 4,
-    "images": [],
-    "type": "Snowboard",
+    "description": "The Powder Hound is an expert-level snowboard built to handle the deepest powder and steepest terrain. With a rocker-camber-rocker profile, it provides exceptional float in powder while maintaining edge hold on variable snow. A stiff flex and directional shape give you the power and control you need to charge through anything the mountain can throw at you.",
+    "price": 799.99,
+    "images": [
+      {
+        "lowRes": "/images/snowboards/powderhound/powderhound-both-small.jpg",
+        "highRes": "/images/snowboards/powderhound/powderhound-both.jpg"
+      },
+      {
+        "lowRes": "/images/snowboards/powderhound/powderhound-front-small.jpg",
+        "highRes": "/images/snowboards/powderhound/powderhound-front.jpg"
+      },
+      {
+        "lowRes": "/images/snowboards/powderhound/powderhound-back-small.jpg",
+        "highRes": "/images/snowboards/powderhound/powderhound-back.jpg"
+      }
+    ],
     "category": "snowboard",
-    "camber": "Traditional",
-    "difficulty": "Advanced",
-    "width": "26.5 cm",
-    "length": 158,
-    "flex": "Stiff"
+    "sizes": ["156cm", "159cm", "162cm", "165cm", "168cm"],
+    "bend": "rocker-camber-rocker",
+    "length": 162,
+    "sex": "unisex",
+    "width": 260,
+    "difficulty": "Expert",
+    "terrain": ["powder", "steep terrain", "backcountry"],
+    "flex": "medium-stiff",
+    "shape": "directional"
   },
+
   {
     "id": 5,
     "name": "Koryfi Insulated Jacket",
@@ -103,5 +151,155 @@
     "category": ["clothing", "jacket"],
     "description": "Stay cozy and comfortable on the mountain or around town with the Koryfi Fleece Jacket. This jacket features a soft and warm fleece interior, and a stylish, modern design. The zippered pockets provide secure storage for your essentials, while the adjustable cuffs and hem allow for a customized fit. Whether you're layering up for a day on the slopes, or just looking for a comfortable and warm jacket for everyday wear, this fleece jacket is the perfect choice.",
     "images": []
+  },
+  {
+    "id": 9,
+    "name": "The Flare",
+    "description": "The Flare is a high-performance all-mountain snowboard that's perfect for riders who demand precision and control in any terrain. With its responsive camber and medium flex, this board delivers excellent edge-to-edge transition and stability at high speeds, while still allowing for easy turn initiation and playful riding. The Flare is designed for intermediate to advanced riders who want to push their limits and take their riding to the next level.",
+    "price": 599.99,
+    "images": [
+      {
+        "lowRes": "/images/snowboards/flare/flare-both-small.jpg",
+        "highRes": "/images/snowboards/flare/flare-both.jpg"
+      },
+      {
+        "lowRes": "/images/snowboards/flare/flare-front-small.jpg",
+        "highRes": "/images/snowboards/flare/flare-front.jpg"
+      },
+      {
+        "lowRes": "/images/snowboards/flare/flare-back-small.jpg",
+        "highRes": "/images/snowboards/flare/flare-back.jpg"
+      }
+    ],
+    "category": "snowboard",
+    "sizes": ["149cm", "152cm", "155cm", "158cm", "161cm"],
+    "bend": "camber",
+    "length": 154,
+    "sex": "unisex",
+    "width": 250,
+    "difficulty": "Intermediate/Advanced",
+    "terrain": ["all-mountain", "freeride", "powder"],
+    "flex": "medium",
+    "shape": "directional twin"
+  },
+  {
+    "id": 10,
+    "name": "The Trip",
+    "description": "The Trip is a versatile all-mountain snowboard designed to take you on a journey through any terrain. With a directional shape and medium flex, this board provides stability and control for carving on groomers, while its rocker profile and tapered tail offer float and maneuverability in powder. The Trip is suitable for intermediate to advanced riders looking for a one-board quiver to explore the mountain.",
+    "price": 699.99,
+    "images": [
+      {
+        "lowRes": "/images/snowboards/trip/trip-both-small.jpg",
+        "highRes": "/images/snowboards/trip/trip-both.jpg"
+      },
+      {
+        "lowRes": "/images/snowboards/trip/trip-front-small.jpg",
+        "highRes": "/images/snowboards/trip/trip-front.jpg"
+      },
+      {
+        "lowRes": "/images/snowboards/trip/trip-back-small.jpg",
+        "highRes": "/images/snowboards/trip/trip-back.jpg"
+      }
+    ],
+    "category": "snowboard",
+    "sizes": ["152cm", "155cm", "158cm", "161cm"],
+    "bend": "rocker",
+    "length": 156,
+    "sex": "unisex",
+    "width": 255,
+    "difficulty": "Intermediate/Advanced",
+    "terrain": ["all-mountain", "freestyle"],
+    "flex": "medium",
+    "shape": "directional"
+  },
+  {
+    "id": 11,
+    "name": "The Ultraviolet",
+    "description": "The Ultraviolet is a true twin, freestyle snowboard that's built for the park and beyond. Its hybrid camber profile and medium flex provide the perfect balance of stability, pop, and forgiveness for all types of riding. The board's centered stance and symmetrical shape make it easy to ride switch and perfect for jibbing and spinning. Whether you're hitting rails or launching off jumps, The Ultraviolet will help you take your freestyle game to the next level.",
+    "price": 449.99,
+    "images": [
+      {
+        "lowRes": "/images/snowboards/ultraviolet/ultraviolet-both-small.jpg",
+        "highRes": "/images/snowboards/ultraviolet/ultraviolet-both.jpg"
+      },
+      {
+        "lowRes": "/images/snowboards/ultraviolet/ultraviolet-front-small.jpg",
+        "highRes": "/images/snowboards/ultraviolet/ultraviolet-front.jpg"
+      },
+      {
+        "lowRes": "/images/snowboards/ultraviolet/ultraviolet-back-small.jpg",
+        "highRes": "/images/snowboards/ultraviolet/ultraviolet-back.jpg"
+      }
+    ],
+    "category": "snowboard",
+    "sizes": ["144cm", "147cm", "150cm", "153cm", "156cm"],
+    "bend": "hybrid camber",
+    "length": 149,
+    "sex": "unisex",
+    "width": 255,
+    "difficulty": "Intermediate/Advanced",
+    "terrain": ["park", "all-mountain"],
+    "flex": "medium",
+    "shape": "twin"
+  },
+  {
+    "id": 12,
+    "name": "The Maverick",
+    "description": "The Maverick is a versatile all-mountain ski that's perfect for intermediate to advanced skiers looking to tackle any terrain. With its combination of camber underfoot and early rise rocker in the tip and tail, this ski offers great edge hold on hardpack and stability in variable conditions, while still being playful and easy to maneuver in softer snow. The Maverick is designed for skiers who want a ski that can handle anything the mountain throws at them.",
+    "price": 699.99,
+    "images": [
+      {
+        "lowRes": "/images/skis/maverick/maverick-1-small.jpg",
+        "highRes": "/images/skis/maverick/maverick-1.jpg"
+      },
+      {
+        "lowRes": "/images/skis/maverick/maverick-2-small.jpg",
+        "highRes": "/images/skis/maverick/maverick-2.jpg"
+      },
+      {
+        "lowRes": "/images/skis/maverick/maverick-3-small.jpg",
+        "highRes": "/images/skis/maverick/maverick-3.jpg"
+      },
+      {
+        "lowRes": "/images/skis/maverick/maverick-4-small.jpg",
+        "highRes": "/images/skis/maverick/maverick-4.jpg"
+      }
+    ],
+    "category": "skis",
+    "sex": "unisex",
+    "length": 180,
+    "width": 100,
+    "rockerType": "early rise",
+    "turnRadius": 18,
+    "flex": "medium",
+    "terrain": ["all-mountain", "powder"]
+  },
+  {
+    "id": 12,
+    "name": "The Apex",
+    "description": "The Apex is an all-mountain ski designed for advanced skiers who demand the best. With its combination of early rise rocker in the tip and tail and camber underfoot, this ski offers excellent edge hold on hardpack and stability at high speeds. The Apex is also capable in softer snow thanks to its medium flex and versatile turn radius. This ski is perfect for skiers who want one pair of skis that can handle any condition on the mountain.",
+    "price": 799.99,
+    "images": [
+      {
+        "lowRes": "/images/skis/apex/apex-both-small.jpg",
+        "highRes": "/images/skis/apex/apex-both.jpg"
+      },
+      {
+        "lowRes": "/images/skis/apex/apex-top-small.jpg",
+        "highRes": "/images/skis/apex/apex-top-small.jpg"
+      },
+      {
+        "lowRes": "/images/skis/apex/apex-bottom-small.jpg",
+        "highRes": "/images/skis/apex/apex-bottom.jpg"
+      }
+    ],
+    "category": "skis",
+    "sex": "unisex",
+    "length": 190,
+    "width": 110,
+    "rockerType": "early rise",
+    "turnRadius": 20,
+    "flex": "medium",
+    "terrain": ["all-mountain", "powder"]
   }
 ]

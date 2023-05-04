@@ -71,35 +71,54 @@ export async function getAllProductsFromDatabase() {
 export function ProductProvider({ children }) {
   const [products, updateProducts] = useState();
   const [isLoading, setLoading] = useState(true);
-  // data.forEach(async (product) => {
-  //   if (product.category === "snowboard") {
-  //     await setDoc(doc(db, "products", product.name), {
-  //       id: product.id,
-  //       name: product.name,
-  //       description: product.description,
-  //       price: product.price,
-  //       rating: product.rating,
-  //       images: product.images,
-  //       type: product.type,
-  //       camber: product.camber,
-  //       category: product.category,
-  //       difficulty: product.difficulty,
-  //       width: product.width,
-  //       length: product.length,
-  //       flex: product.flex,
-  //     });
-  //   }
-  //   if (product.category.includes("clothing")) {
-  //     await setDoc(doc(db, "products", product.name), {
-  //       id: product.id,
-  //       name: product.name,
-  //       price: product.price,
-  //       category: product.category,
-  //       description: product.description,
-  //       images: product.images,
-  //     });
-  //   }
-  // });
+  data.forEach(async (product) => {
+    if (product.category === "snowboard") {
+      await setDoc(doc(db, "products", product.name), {
+        id: product.id,
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        images: product.images,
+        category: product.category,
+        sizes: product.sizes,
+        bend: product.bend,
+        length: product.length,
+        sex: product.sex,
+        width: product.width,
+        difficulty: product.difficulty,
+        terrain: product.terrain,
+        flex: product.flex,
+        shape: product.shape,
+      });
+    }
+    if (product.category.includes("skis")) {
+      await setDoc(doc(db, "products", product.name), {
+        id: product.id,
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        images: product.images,
+        category: product.category,
+        sex: product.sex,
+        length: product.length,
+        width: product.width,
+        rockerType: product.rockerType,
+        flex: product.flex,
+        turnRadius: product.turnRadius,
+        terrain: product.terrain,
+      });
+    }
+    if (product.category.includes("clothing")) {
+      await setDoc(doc(db, "products", product.name), {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        category: product.category,
+        description: product.description,
+        images: product.images,
+      });
+    }
+  });
 
   async function getAllProductsFromDatabase() {
     if (!products) {

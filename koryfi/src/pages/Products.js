@@ -62,9 +62,16 @@ export default function Products() {
       const checkFilters = selectedFilters.filter(
         (filter) => filter.filterType === "check"
       );
+
       const rangeFilterResult =
         rangeFilters.length === 0 ||
         rangeFilters.every((filter) => {
+          if (filter.type === "length") {
+            console.log(
+              product[filter.type] >= filter[`min${filter.type}`] &&
+                product[filter.type] <= filter[`max${filter.type}`]
+            );
+          }
           return (
             product[filter.type] >= filter[`min${filter.type}`] &&
             product[filter.type] <= filter[`max${filter.type}`]
@@ -75,7 +82,6 @@ export default function Products() {
         checkFilters.some((filter) => product.category.includes(filter.name));
       return rangeFilterResult && checkFilterResult;
     });
-    console.log(selectedFilters);
     updateDisplayedProducts(filteredProducts);
   }, [selectedFilters]);
 

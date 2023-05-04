@@ -240,11 +240,7 @@ export default function FilterContainer(props) {
                 </div>
                 <div className="conditionalFilters">
                   {props.selectedFilters.some(
-                    (filter) =>
-                      filter.name === "snowboard" &&
-                      props.selectedFilters.filter(
-                        (filter) => filter.filterType === "check"
-                      ).length === 1
+                    (filter) => filter.name === "snowboard"
                   ) && (
                     <>
                       <label className="category" for="length">
@@ -258,8 +254,8 @@ export default function FilterContainer(props) {
                         value="Length"
                         type="length"
                         category="snowboard"
-                        min={70}
-                        max={170}
+                        min={100}
+                        max={200}
                       />
                       <label className="category" for="width">
                         Width
