@@ -147,6 +147,17 @@ export function ProductProvider({ children }) {
           jacket_to_pant_interface: product.jacket_to_pant_interface,
         });
       }
+      if (product.category.includes("beanies")) {
+        await setDoc(doc(db, "products", product.name), {
+          name: product.name,
+          id: product.id,
+          category: product.category,
+          color: product.color,
+          description: product.description,
+          price: product.price,
+          images: product.images,
+        });
+      }
     }
   });
 

@@ -461,5 +461,42 @@
         ]
       }
     ]
+  },
+  {
+    "id": 16,
+    "name": "Cozy Knit Beanie",
+    "description": "Stay warm and stylish this winter with our Cozy Knit Beanie. Made from a soft and durable acrylic yarn, this beanie features a classic ribbed design and a cute pom-pom on top. It's available in three colors to match any winter outfit.",
+    "price": 29.99,
+    "color": ["black", "gray", "navy"],
+    "images": [
+      {
+        "color": "black",
+        "images": [
+          {
+            "lowRes": "/images/beanie/black/beanie-1-small.jpg",
+            "highRes": "/images/beanie/black/beanie-1.jpg"
+          }
+        ]
+      },
+      {
+        "color": "gray",
+        "images": [
+          {
+            "lowRes": "/images/beanie/grey/beanie-1-small.jpg",
+            "highRes": "/images/beanie/grey/beanie-1.jpg"
+          }
+        ]
+      },
+      {
+        "color": "navy",
+        "images": [
+          {
+            "lowRes": "/images/beanie/navy/beanie-1-small.jpg",
+            "highRes": "/images/beanie/navy/beanie-1.jpg"
+          }
+        ]
+      }
+    ],
+    "category": ["clothing", "beanies"]
   }
 ]
