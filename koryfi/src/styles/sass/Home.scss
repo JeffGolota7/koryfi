@@ -60,8 +60,13 @@
       padding: 1rem;
       .textAndButton {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
+        width: 100%;
+        button {
+          font-size: 1rem;
+          padding: 0.5rem;
+        }
       }
     }
   }

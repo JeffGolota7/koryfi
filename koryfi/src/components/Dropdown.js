@@ -7,7 +7,7 @@ import { useBannerContext } from "../contexts/BannerProvider.js";
 
 export default function Dropdown({ toggleIsOpen, type, parentRef }) {
   const { cart, removeItem, updateCount } = useCart();
-  const { logout } = useAuth();
+  const { logout, currentUser } = useAuth();
   const [total, setTotal] = useState(0);
   const { setVisible, setMessage } = useBannerContext();
 
@@ -112,7 +112,12 @@ export default function Dropdown({ toggleIsOpen, type, parentRef }) {
           ) : (
             <>
               <h3>Add Some Items!</h3>
-              <Link to="/products">
+              <Link
+                to="/products"
+                onClick={() => {
+                  toggleIsOpen(false);
+                }}
+              >
                 <button>Browse our Catalog</button>
               </Link>
             </>
@@ -120,12 +125,19 @@ export default function Dropdown({ toggleIsOpen, type, parentRef }) {
         </div>
       ) : (
         <div className="dropdownContainer">
-          <div
-            onClick={() => {
-              toggleIsOpen(false);
-            }}
-          >
-            <Link to="/account">Account Settings</Link>
+          <div className="header">
+            <h4>{`Hey ${currentUser.firstName}!`}</h4>
+          </div>
+          <div className="content">
+            <Link
+              to="/account"
+              onClick={() => {
+                toggleIsOpen(false);
+              }}
+              className="accountSettings"
+            >
+              View Your Account Settings
+            </Link>
           </div>
           <div>
             <button className="button" onClick={handleLogout}>

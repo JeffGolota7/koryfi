@@ -85,6 +85,20 @@
   font-weight: bold;
   cursor: pointer;
 }
+.dropdownContainer .header {
+  background-color: #3e3e3e;
+  border-radius: 8px 8px 0 0;
+  color: white;
+}
+.dropdownContainer .content {
+  background-color: #f8f8f8;
+  padding: 2rem 0.5rem;
+  border-radius: 8px;
+}
+.dropdownContainer .content .accountSettings {
+  width: 100%;
+  margin: 0;
+}
 .dropdownContainer .cartItemPrice {
   margin: 0;
 }

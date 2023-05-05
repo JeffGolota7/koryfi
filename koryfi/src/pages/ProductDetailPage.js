@@ -1,13 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useCart } from "../contexts/CartContext.js";
-import { IsMobile } from "../helpers/isMobile.js";
 import { useProduct } from "../contexts/ProductContext.js";
 import { useAuth } from "../contexts/AuthContext";
 import { ReactComponent as HalfStar } from "../icons/halfstar.svg";
-import { ReactComponent as Star } from "../icons/fullstar.svg";
 import { ReactComponent as StarOutline } from "../icons/fullstar outline.svg";
-import { ReactComponent as HalfStarOutline } from "../icons/halfstar outline.svg";
 import { useBannerContext } from "../contexts/BannerProvider.js";
 import "../styles/ProductDetailPage.css";
 
@@ -28,7 +25,6 @@ export default function ProductDetailPage() {
   let { productObject } = location.state;
   const [product, updateProduct] = useState(productObject);
   const [activeImage, updateActiveImage] = useState();
-  const isMobile = IsMobile();
 
   useEffect(() => {
     if (typeof products !== "number" && products && product) {

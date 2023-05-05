@@ -81,3 +81,16 @@
   height: 40px;
   width: auto;
 }
+.navbar .links svg {
+  path {
+    transition: all 0.15s ease-in-out;
+  }
+  &:hover {
+    path[fill] {
+      fill: #ffcc00;
+    }
+    path[stroke] {
+      stroke: #ffcc00;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import { ReactComponent as Logo } from "../icons/Logo White.svg";
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { IsMobile } from "../helpers/isMobile.js";
 import "../styles/Footer.css";
 

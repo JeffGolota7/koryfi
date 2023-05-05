@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useMemo,
-  useEffect,
-  useState,
-  useContext,
-} from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
@@ -19,7 +13,6 @@ import CheckoutPage from "./pages/CheckoutPage";
 import Account from "./pages/Account";
 import Products from "./pages/Products";
 import ProductDetailPage from "./pages/ProductDetailPage";
-import useProductContext from "./contexts/ProductContext";
 import { BannerProvider } from "./contexts/BannerProvider";
 import ScrollToTop from "./helpers/ScrollToTop";
 

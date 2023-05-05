@@ -1,32 +1,24 @@
 import React, { useState, useRef } from "react";
-import { Outlet, Link, useNavigate } from "react-router-dom";
-import { auth, db } from "../firebase/firebase";
-import { doc, setDoc, collection } from "firebase/firestore";
-import { useAuth, AuthProvider } from "../contexts/AuthContext";
-import { codeToMessage } from "../helpers/errorHandling";
+import { Link, useNavigate } from "react-router-dom";
+import { db } from "../firebase/firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { useAuth } from "../contexts/AuthContext";
 import { useBannerContext } from "../contexts/BannerProvider";
 
 import "../styles/SignUp.css";
 import "../styles/Form.css";
-import Banner from "../components/Banner";
 
 function SignUp() {
   const [isLoading, setLoading] = useState(false);
-  const [errorMessage, updateErrorMessage] = useState("");
-  const { isVisible, message, setVisible, setMessage } = useBannerContext();
+  const { setVisible, setMessage } = useBannerContext();
   const emailRef = useRef();
   const passwordRef = useRef();
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const phoneRef = useRef();
   const confirmPasswordRef = useRef();
-  const { signup, currentUser, sendSignUpEmail } = useAuth();
+  const { signup } = useAuth();
   const navigate = useNavigate();
-
-  function showError(code) {
-    updateErrorMessage(codeToMessage(code));
-    setVisible(true);
-  }
 
   const register = async (e) => {
     e.preventDefault();

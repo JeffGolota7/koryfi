@@ -216,6 +216,10 @@ body {
   width: 120px;
   height: auto;
   cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+.thumbnail:hover {
+  transform: scale(1.05);
 }
 
 .thumbnails {

@@ -7,7 +7,7 @@ import {
   db,
 } from "../firebase/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { sendPasswordResetEmail, updateCurrentUser } from "firebase/auth";
+import { sendPasswordResetEmail } from "firebase/auth";
 import { useBannerContext } from "./BannerProvider.js";
 const AuthContext = React.createContext();
 

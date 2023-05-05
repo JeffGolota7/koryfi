@@ -60,8 +60,13 @@
 }
 .topPicks .topPicksGrid .card .textAndButton {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
+}
+.topPicks .topPicksGrid .card .textAndButton button {
+  font-size: 1rem;
+  padding: 0.5rem;
 }
 
 .whoWeAre {

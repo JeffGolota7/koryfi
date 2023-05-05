@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Card from "../components/Card.js";
 import {
   getProductsFromDatabaseByText,
   getAllProductsFromDatabase,
   useProduct,
 } from "../contexts/ProductContext";
-import "../styles/Products.css";
 import FilterContainer from "../components/FilterContainer.js";
+import "../styles/Products.css";
 
 export default function Products() {
   const [displayedProducts, updateDisplayedProducts] = useState([]);
@@ -55,7 +54,6 @@ export default function Products() {
         newFilters.splice(index, 1);
       }
     }
-    console.log(newFilters);
 
     updateSelectedFilters(newFilters);
   }

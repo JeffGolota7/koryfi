@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+
 import { useCart } from "../contexts/CartContext";
-import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as CardIcon } from "../icons/creditcard.svg";
 import { useAuth } from "../contexts/AuthContext";
 import states from "../helpers/states.json";
+
 import "../styles/CheckoutPage.css";
 
 export default function CheckoutPage() {

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useProduct } from "../contexts/ProductContext.js";
 import { Link } from "react-router-dom";
+
+import { useProduct } from "../contexts/ProductContext.js";
 import { ReactComponent as Effect } from "../icons/Effect.svg";
+
 import "../styles/Home.css";
 
 export default function Home() {
@@ -48,7 +50,7 @@ export default function Home() {
 
             <div className="textAndButton">
               <div className="nameAndPrice">
-                <h2>{item.name}</h2>
+                <h3>{item.name}</h3>
                 <h4>{item.price}</h4>
               </div>
               <button>View Details</button>
@@ -111,7 +113,9 @@ export default function Home() {
             </p>
             <div className="bottom">
               <div className="stripe">Don't Believe Us?</div>
-              <button>Read our Journey</button>
+              <Link to="/about">
+                <button>Read our Journey</button>
+              </Link>
             </div>
           </div>
         </div>

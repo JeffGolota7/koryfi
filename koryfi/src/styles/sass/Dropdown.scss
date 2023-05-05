@@ -84,7 +84,20 @@
     font-weight: bold;
     cursor: pointer;
   }
-
+  .header {
+    background-color: #3e3e3e;
+    border-radius: 8px 8px 0 0;
+    color: white;
+  }
+  .content {
+    background-color: #f8f8f8;
+    padding: 2rem 0.5rem;
+    border-radius: 8px;
+    .accountSettings {
+      width: 100%;
+      margin: 0;
+    }
+  }
   .cartItemPrice {
     margin: 0;
   }

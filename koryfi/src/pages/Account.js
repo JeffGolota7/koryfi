@@ -1,10 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
-import { useAuth, AuthProvider } from "../contexts/AuthContext";
+import React, { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
+import { useAuth } from "../contexts/AuthContext";
 import { ReactComponent as EditIcon } from "../icons/Edit-Icon.svg";
 import { ReactComponent as CreditCardIcon } from "../icons/creditcard.svg";
 import { ReactComponent as AddressIcon } from "../icons/house.svg";
 import { useBannerContext } from "../contexts/BannerProvider.js";
+
 import "../styles/Account.css";
 
 export default function Account() {

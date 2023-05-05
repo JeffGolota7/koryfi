@@ -43,3 +43,11 @@
   gap: 1rem;
   margin-bottom: 2rem;
 }
+
+@media only screen and (max-width: 767px) {
+  .content {
+    flex-direction: column;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+}

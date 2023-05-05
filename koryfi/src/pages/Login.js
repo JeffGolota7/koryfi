@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { auth } from "../firebase/firebase";
 import { useAuth } from "../contexts/AuthContext";
 import { IsMobile } from "../helpers/isMobile.js";
 import { useBannerContext } from "../contexts/BannerProvider.js";
@@ -28,7 +27,6 @@ function Login() {
           navigate("/");
         })
         .catch((e) => {
-          // Have an error state variable that changes based on the feedback
           alert(e.message);
         });
       setLoading(false);

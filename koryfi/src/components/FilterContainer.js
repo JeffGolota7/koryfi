@@ -125,21 +125,6 @@ export default function FilterContainer(props) {
                   min={225}
                   max={300}
                 />
-                <label className="category" for="bend">
-                  Bend
-                </label>
-                <div className="filter">
-                  <input
-                    type="checkbox"
-                    id="Clothes"
-                    className="checkbox"
-                    name="camber"
-                    value="bend"
-                  />
-                  <label className="label" for="clothes">
-                    Camber
-                  </label>
-                </div>
               </>
             )}
           </div>
@@ -160,9 +145,12 @@ export default function FilterContainer(props) {
                       })
                     }
                   >
-                    {`${filter.name.charAt(0).toUpperCase()}${filter.name.slice(
-                      1
-                    )}`}
+                    <p>X</p>
+                    <p>
+                      {`${filter.name
+                        .charAt(0)
+                        .toUpperCase()}${filter.name.slice(1)}`}
+                    </p>
                   </div>
                 ))}
               </div>

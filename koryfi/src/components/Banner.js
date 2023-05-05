@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "../styles/Banner.css";
 
-function Banner({ message, type, duration, isVisible, setVisible }) {
+function Banner({ message, duration, isVisible, setVisible }) {
   useEffect(() => {
     let timer;
     if (isVisible) {
       timer = setTimeout(() => {
         setVisible(false);
-      }, duration + 300); // add 300ms delay to allow for animation
+      }, duration + 300);
     }
 
     return () => clearTimeout(timer);
