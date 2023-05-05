@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+## Koryfi Sports
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is an e-commerce website for a fictional winter sports gear company called KoryfiSports. The website allows users to browse and purchase products, leave reviews, and view their cart and checkout.
 
-## Available Scripts
+### Technologies Used
 
-In the project directory, you can run:
+- React.js
+- HTML/CSS
+- SASS
+- JavaScript
+- SMTP.js
 
-### `npm start`
+### Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Browse and purchase products
+- Leave reviews for products
+- View and edit cart
+- Checkout and receive estimated delivery date
+- View post-checkout page with options to browse more products or return to home
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Code Examples
 
-### `npm test`
+#### Rendering Star Ratings for Reviews
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+function renderStars(rating) {
+  const fullStars = Math.floor(rating);
+  const halfStars = Math.round((rating - fullStars) * 2);
 
-### `npm run build`
+  return (
+    <div className="star-rating">
+    {[...Array(fullStars)].map((, i) => (
+    <span>
+    <HalfStar className="normal" />
+    <HalfStar className="flipped" />
+    </span>
+    ))}
+    {[...Array(halfStars)].map((, i) => (
+    <span>
+    <HalfStar className="normal" />
+    </span>
+    ))}
+    </div>
+  );
+}
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Dynamically Choosing Top Picks for Home Page
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+function chooseTopPicks() {
+if (products.products !== undefined) {
+const shuffled = products.products.sort(() => 0.5 - Math.random());
+const selected = shuffled.slice(0, 6);
+return selected.map((item) => (
+<Link to="/product-information" state={{ productObject: item }}>
+<div className="card">
+{!item.category.includes("clothing") ? (
+item.images.length > 0 ? (
+<img src={item.images[0].lowRes} alt="" />
+) : (
+<div className="noPhoto">no photo</div>
+)
+) : item.images.length > 0 ? (
+<img src={item.images[0].images[0].lowRes} alt="" />
+) : (
+<div className="noPhoto">no photo</div>
+)}
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation
 
-### `npm run eject`
+1. Clone the repository
+2. Install dependencies with `npm install`
+3. Start the server with `npm start`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Credits
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Special thanks to Professor Field, Ocean, & Diehl for teaching me everything I need to be a great developer and special thanks to all the wonderful classmates I met and shared so many memories with along the way
