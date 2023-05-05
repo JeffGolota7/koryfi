@@ -75,98 +75,98 @@ export function ProductProvider({ children }) {
   const [isLoading, setLoading] = useState(true);
   const { setVisible, setMessage } = useBannerContext();
 
-  data.forEach(async (product) => {
-    if (product.category === "snowboard") {
-      await setDoc(doc(db, "products", product.name), {
-        id: product.id,
-        name: product.name,
-        description: product.description,
-        price: product.price,
-        images: product.images,
-        category: product.category,
-        size: product.size,
-        bend: product.bend,
-        length: product.length,
-        sex: product.sex,
-        width: product.width,
-        difficulty: product.difficulty,
-        terrain: product.terrain,
-        flex: product.flex,
-        shape: product.shape,
-      });
-    }
-    if (product.category.includes("skis")) {
-      await setDoc(doc(db, "products", product.name), {
-        id: product.id,
-        name: product.name,
-        description: product.description,
-        price: product.price,
-        images: product.images,
-        category: product.category,
-        sex: product.sex,
-        length: product.length,
-        width: product.width,
-        rockerType: product.rockerType,
-        flex: product.flex,
-        turnRadius: product.turnRadius,
-        terrain: product.terrain,
-      });
-    }
-    if (product.category.includes("clothing")) {
-      if (
-        product.category.includes("gloves") ||
-        product.category.includes("fleece")
-      ) {
-        await setDoc(doc(db, "products", product.name), {
-          name: product.name,
-          id: product.id,
-          category: product.category,
-          color: product.color,
-          size: product.size,
-          sex: product.sex,
-          features: product.features,
-          description: product.description,
-          price: product.price,
-          images: product.images,
-        });
-      }
-      if (product.category.includes("jacket")) {
-        await setDoc(doc(db, "products", product.name), {
-          id: product.id,
-          price: product.price,
-          sex: product.sex,
-          name: product.name,
-          description: product.description,
-          color: product.color,
-          images: product.images,
-          category: product.category,
-          size: product.size,
-          waterproof_rating: product.waterproof_rating,
-          breathability_rating: product.breathability_rating,
-          insulation: product.insulation,
-          seams: product.seams,
-          hood: product.hood,
-          pockets: product.pockets,
-          powder_skirt: product.powder_skirt,
-          cuffs: product.cuffs,
-          venting: product.venting,
-          hem: product.hem,
-          jacket_to_pant_interface: product.jacket_to_pant_interface,
-        });
-      }
-      if (product.category.includes("beanies")) {
-        await setDoc(doc(db, "products", product.name), {
-          name: product.name,
-          id: product.id,
-          category: product.category,
-          color: product.color,
-          description: product.description,
-          price: product.price,
-          images: product.images,
-        });
-      }
-    }
-  });
+  // data.forEach(async (product) => {
+  //   if (product.category === "snowboard") {
+  //     await setDoc(doc(db, "products", product.name), {
+  //       id: product.id,
+  //       name: product.name,
+  //       description: product.description,
+  //       price: product.price,
+  //       images: product.images,
+  //       category: product.category,
+  //       size: product.size,
+  //       bend: product.bend,
+  //       length: product.length,
+  //       sex: product.sex,
+  //       width: product.width,
+  //       difficulty: product.difficulty,
+  //       terrain: product.terrain,
+  //       flex: product.flex,
+  //       shape: product.shape,
+  //     });
+  //   }
+  //   if (product.category.includes("skis")) {
+  //     await setDoc(doc(db, "products", product.name), {
+  //       id: product.id,
+  //       name: product.name,
+  //       description: product.description,
+  //       price: product.price,
+  //       images: product.images,
+  //       category: product.category,
+  //       sex: product.sex,
+  //       length: product.length,
+  //       width: product.width,
+  //       rockerType: product.rockerType,
+  //       flex: product.flex,
+  //       turnRadius: product.turnRadius,
+  //       terrain: product.terrain,
+  //     });
+  //   }
+  //   if (product.category.includes("clothing")) {
+  //     if (
+  //       product.category.includes("gloves") ||
+  //       product.category.includes("fleece")
+  //     ) {
+  //       await setDoc(doc(db, "products", product.name), {
+  //         name: product.name,
+  //         id: product.id,
+  //         category: product.category,
+  //         color: product.color,
+  //         size: product.size,
+  //         sex: product.sex,
+  //         features: product.features,
+  //         description: product.description,
+  //         price: product.price,
+  //         images: product.images,
+  //       });
+  //     }
+  //     if (product.category.includes("jacket")) {
+  //       await setDoc(doc(db, "products", product.name), {
+  //         id: product.id,
+  //         price: product.price,
+  //         sex: product.sex,
+  //         name: product.name,
+  //         description: product.description,
+  //         color: product.color,
+  //         images: product.images,
+  //         category: product.category,
+  //         size: product.size,
+  //         waterproof_rating: product.waterproof_rating,
+  //         breathability_rating: product.breathability_rating,
+  //         insulation: product.insulation,
+  //         seams: product.seams,
+  //         hood: product.hood,
+  //         pockets: product.pockets,
+  //         powder_skirt: product.powder_skirt,
+  //         cuffs: product.cuffs,
+  //         venting: product.venting,
+  //         hem: product.hem,
+  //         jacket_to_pant_interface: product.jacket_to_pant_interface,
+  //       });
+  //     }
+  //     if (product.category.includes("beanies")) {
+  //       await setDoc(doc(db, "products", product.name), {
+  //         name: product.name,
+  //         id: product.id,
+  //         category: product.category,
+  //         color: product.color,
+  //         description: product.description,
+  //         price: product.price,
+  //         images: product.images,
+  //       });
+  //     }
+  //   }
+  // });
 
   async function getAllProductsFromDatabase() {
     if (!products) {

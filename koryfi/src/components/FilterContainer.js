@@ -8,8 +8,12 @@ export default function FilterContainer(props) {
   const mobile = IsMobile();
   const [mobileMenu, updateMobileMenu] = useState(false);
   function handleOnChange(event) {
-    const { name } = event.target;
-    props.updateSelectedFilters({ name: name, filterType: "check" });
+    const { name, value } = event.target;
+    props.updateSelectedFilters({
+      name: name,
+      filterType: "check",
+      value: value,
+    });
   }
 
   function handleMobileMenu() {
@@ -34,7 +38,7 @@ export default function FilterContainer(props) {
                 id="snowboard"
                 className="checkbox"
                 name="snowboard"
-                value="Snowboard"
+                value="category"
                 onChange={(event) => handleOnChange(event)}
               />
               <label className="label" for="snowboard">
@@ -46,7 +50,7 @@ export default function FilterContainer(props) {
                 type="checkbox"
                 id="skis"
                 name="skis"
-                value="Skis"
+                value="category"
                 className="checkbox"
                 onChange={(event) => handleOnChange(event)}
               />
@@ -60,7 +64,7 @@ export default function FilterContainer(props) {
                 id="Clothes"
                 className="checkbox"
                 name="clothing"
-                value="Clothes"
+                value="category"
                 onChange={(event) => handleOnChange(event)}
               />
               <label className="label" for="clothes">
@@ -121,16 +125,19 @@ export default function FilterContainer(props) {
                   min={225}
                   max={300}
                 />
+                <label className="category" for="bend">
+                  Bend
+                </label>
                 <div className="filter">
                   <input
                     type="checkbox"
                     id="Clothes"
                     className="checkbox"
-                    name="clothes"
-                    value="Clothes"
+                    name="camber"
+                    value="bend"
                   />
                   <label className="label" for="clothes">
-                    Clothes
+                    Camber
                   </label>
                 </div>
               </>

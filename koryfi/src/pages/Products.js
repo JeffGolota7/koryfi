@@ -72,7 +72,6 @@ export default function Products() {
       const rangeFilterResult =
         rangeFilters.length === 0 ||
         rangeFilters.every((filter) => {
-          console.log(product[filter.type]);
           return (
             product[filter.type] >= filter[`min${filter.type}`] &&
             product[filter.type] <= filter[`max${filter.type}`]
