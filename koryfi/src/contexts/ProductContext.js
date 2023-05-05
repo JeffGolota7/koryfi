@@ -282,10 +282,15 @@ export function ProductProvider({ children }) {
               });
 
               updateProducts(updatedProducts);
+              setMessage("Review Added");
+              setVisible(true);
             }
+          } else {
+            setMessage(
+              "Sorry! You can only review something you have purchased"
+            );
+            setVisible(true);
           }
-          setMessage("Review Added");
-          setVisible(true);
         }
       } catch (e) {
         alert(e);

@@ -22,8 +22,9 @@ export default function CheckoutPage() {
     city: "",
     state: "",
     zip: "",
-    phone: "",
+    phone: 0,
   });
+
   const [currentPayment, updateCurrentPayment] = useState({
     firstName: "",
     lastName: "",
@@ -31,11 +32,6 @@ export default function CheckoutPage() {
     csv: "",
     expDate: "",
   });
-
-  let saveCard = false;
-  let saveAddress = false;
-
-  const navigate = useNavigate();
 
   const firstNameRef = useRef();
   const lastNameRef = useRef();
@@ -76,26 +72,29 @@ export default function CheckoutPage() {
   function handleAddAddress() {
     const address = {
       firstName: firstNameAddRef.current.value,
+      lastName: lastNameAddRef.current.value,
+      email: emailRef.current.value,
+      address: addressRef.current.value,
+      city: cityRef.current.value,
+      state: stateRef.current.value,
+      zip: zipRef.current.value,
+      phone: phoneRef.current.value,
     };
+
+    addAddress(currentUser, address);
   }
 
   function handlePaymentCard(card) {
     setCardNumber(card.cardNumber);
     setExpirationDate(card.expDate);
-    updateCurrentPayment(card);
+    firstNameRef.current.value = card.firstName;
+    lastNameRef.current.value = card.lastName;
+    cardNumberRef.current.value = cardNumber;
+    expDateRef.current.value = expirationDate;
+    csvRef.current.value = card.csv;
   }
 
   function handleStageChange(value) {
-    if (checkoutStage === 1) {
-      if (saveAddressRef.current.value) {
-        saveAddress = true;
-      }
-    } else if (checkoutStage === 2) {
-      if (saveCardRef.current.value) {
-        saveCard = true;
-      }
-    }
-
     updateStage(checkoutStage + value);
   }
 
@@ -138,11 +137,20 @@ export default function CheckoutPage() {
   }
 
   function handleAddressSelect(address) {
-    updateCurrentAddress(address);
+    firstNameAddRef.current.value = address.firstName;
+    lastNameAddRef.current.value = address.lastName;
+    emailRef.current.value = address.email;
+    addressRef.current.value = address.address;
+    cityRef.current.value = address.city;
+    stateRef.current.value = address.state;
+    zipRef.current.value = address.zip;
+    phoneRef.current.value = address.phone;
   }
 
   function handleInputChange(name, e) {
-    updateCurrentAddress((currentAddress[name] = e.target.value));
+    let currAddress = currentAddress;
+    currAddress[name] = currAddress[name] + e.target.value;
+    updateCurrentAddress(currAddress);
   }
 
   return (
@@ -220,18 +228,16 @@ export default function CheckoutPage() {
                     </div>
                     <button
                       className="clear"
-                      onClick={() =>
-                        updateCurrentAddress({
-                          firstName: "",
-                          lastName: "",
-                          email: "",
-                          address: "",
-                          city: "",
-                          state: "",
-                          zip: "",
-                          phone: "",
-                        })
-                      }
+                      onClick={() => {
+                        firstNameAddRef.current.value = "";
+                        lastNameAddRef.current.value = "";
+                        emailRef.current.value = "";
+                        addressRef.current.value = "";
+                        cityRef.current.value = "";
+                        stateRef.current.value = "";
+                        zipRef.current.value = "";
+                        phoneRef.current.value = "";
+                      }}
                     >
                       Clear All Fields
                     </button>
@@ -244,7 +250,6 @@ export default function CheckoutPage() {
                       type="text"
                       placeholder="First Name"
                       ref={firstNameAddRef}
-                      value={currentAddress.firstName}
                       onChange={(e) => handleInputChange("firstName", e)}
                       required
                     />
@@ -255,7 +260,6 @@ export default function CheckoutPage() {
                       type="text"
                       placeholder="Last Name"
                       ref={lastNameAddRef}
-                      value={currentAddress.lastName}
                       onChange={(e) => handleInputChange("lastName", e)}
                       required
                     />
@@ -266,7 +270,6 @@ export default function CheckoutPage() {
                   <input
                     type="text"
                     placeholder="Email Address"
-                    value={currentAddress.email}
                     ref={emailRef}
                     onChange={(e) => handleInputChange("email", e)}
                     required
@@ -278,7 +281,6 @@ export default function CheckoutPage() {
                     <input
                       type="text"
                       placeholder="### (Street Name)"
-                      value={currentAddress.address}
                       ref={addressRef}
                       onChange={(e) => handleInputChange("address", e)}
                       required
@@ -291,7 +293,6 @@ export default function CheckoutPage() {
                         type="text"
                         placeholder="City Name"
                         ref={cityRef}
-                        value={currentAddress.city}
                         onChange={(e) => handleInputChange("city", e)}
                         required
                       />
@@ -323,7 +324,6 @@ export default function CheckoutPage() {
                     <input
                       type="text"
                       placeholder="#####"
-                      value={currentAddress.zip}
                       ref={zipRef}
                       onChange={(e) => handleInputChange("zip", e)}
                       required
@@ -334,7 +334,6 @@ export default function CheckoutPage() {
                     <input
                       type="text"
                       placeholder="(###) ###-####"
-                      value={currentAddress.phone}
                       ref={phoneRef}
                       onChange={(e) => handleInputChange("phone", e)}
                       required
@@ -357,7 +356,7 @@ export default function CheckoutPage() {
                 <button
                   className="continue"
                   onClick={() => {
-                    if (saveAddressRef.current.value) {
+                    if (saveAddressRef.current.checked) {
                       handleAddAddress();
                     }
                     handleStageChange(1);
@@ -386,6 +385,19 @@ export default function CheckoutPage() {
                       .substring(card.cardNumber.toString().length - 4)}`}</h5>
                   </div>
                 ))}
+              <button
+                className="clear"
+                style={{ marginBottom: "1rem" }}
+                onClick={() => {
+                  firstNameRef.current.value = "";
+                  lastNameRef.current.value = "";
+                  cardNumberRef.current.value = "";
+                  csvRef.current.value = "";
+                  expDateRef.current.value = "";
+                }}
+              >
+                Clear All Fields
+              </button>
               <div className="paymentForm">
                 <form className="addCardForm">
                   <div className="firstLast">
@@ -395,7 +407,6 @@ export default function CheckoutPage() {
                         ref={firstNameRef}
                         className="infoValue firstName"
                         placeholder="John"
-                        value={currentPayment.firstName}
                         onChange={(e) => handleInputChange("firstName", e)}
                       />
                     </div>
@@ -405,7 +416,6 @@ export default function CheckoutPage() {
                         ref={lastNameRef}
                         className="infoValue lastName"
                         placeholder="Smith"
-                        value={currentPayment.lastName}
                         onChange={(e) => handleInputChange("lastName", e)}
                       />
                     </div>
@@ -421,7 +431,7 @@ export default function CheckoutPage() {
                         pattern="\d{4} \d{4} \d{4} \d{1,4}"
                         value={cardNumber}
                         onChange={handleCardNumberChange}
-                        placeHolder={"**** **** **** ****"}
+                        placeholder={"**** **** **** ****"}
                       />
                     </div>
                     <div className="cvv">
@@ -430,7 +440,6 @@ export default function CheckoutPage() {
                         maxLength={3}
                         ref={csvRef}
                         className="infoValue csv"
-                        value={currentPayment.csv}
                         onChange={(e) => handleInputChange("csv", e)}
                       />
                     </div>
@@ -444,7 +453,7 @@ export default function CheckoutPage() {
                         value={expirationDate}
                         onChange={handleExpirationDateChange}
                         className="infoValue expDate"
-                        placeHolder={"Month/Year"}
+                        placeholder={"Month/Year"}
                       />
                     </div>
                   </div>
@@ -463,7 +472,7 @@ export default function CheckoutPage() {
                     <button
                       className="continue"
                       onClick={() => {
-                        if (saveCardRef.current.value) {
+                        if (saveCardRef.current.checked) {
                           handleAddCard();
                         }
                         handleStageChange(1);

@@ -111,7 +111,7 @@ export default function Home() {
             </p>
             <div className="bottom">
               <div className="stripe">Don't Believe Us?</div>
-              <button>Reac our Journey</button>
+              <button>Read our Journey</button>
             </div>
           </div>
         </div>

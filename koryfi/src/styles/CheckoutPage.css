@@ -287,6 +287,7 @@
   .checkoutPageContent .right-column {
     width: 100% !important;
     border-radius: 0 !important;
-    margin-bottom: 1rem;
+    margin: 0 !important;
+    margin-bottom: 1rem !important;
   }
 }
