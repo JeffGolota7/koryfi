@@ -27,12 +27,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: url("/public/images/journey.png") no-repeat center center/cover;
 }
 .aboutContainer .aboutJourney .aboutJourneyContent {
   min-width: 50%;
 }
 .aboutContainer .aboutJourney .aboutJourneyContent .aboutJourneyHeader {
   text-align: center;
+  background-color: white;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 8px;
 }
 .aboutContainer .aboutJourney .aboutJourneyContent .aboutJourneyHeader h2 {
   font-size: 40px;

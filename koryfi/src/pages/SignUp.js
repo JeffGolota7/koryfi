@@ -47,7 +47,8 @@ function SignUp() {
               password: passwordRef.current.value,
             })
               .then(() => {
-                alert("success!");
+                setMessage("Success! Welcome");
+                setVisible(true);
               })
               .catch((e) => {
                 setMessage(e.message);
@@ -58,11 +59,13 @@ function SignUp() {
             navigate("/");
           });
       } catch (e) {
-        showError(e.code);
+        setMessage(e.code);
+        setVisible(true);
       }
       setLoading(false);
     } else {
-      alert("User Name and/or Password Cannot be Blank!");
+      setMessage("User Name and/or Password Cannot be Blank!");
+      setVisible(true);
     }
   };
 

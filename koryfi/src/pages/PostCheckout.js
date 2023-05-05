@@ -28,7 +28,15 @@ export default function PostCheckout() {
       <div className="content">
         <div className="postCheckoutHeader">
           <h1>The wait begins...</h1>
-          <img className="previewImg" src={cart[0].images[0].lowRes} alt="" />
+          <img
+            className="previewImg"
+            src={
+              cart[0].category.includes("clothing")
+                ? cart[0].images[0].images[0].lowRes
+                : cart[0].images[0].lowRes
+            }
+            alt=""
+          />
           <h2>{`Estimated Delivery: ${formattedDate}`}</h2>
         </div>
         <div className="postCheckoutFooter">

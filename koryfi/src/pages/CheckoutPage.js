@@ -1,19 +1,36 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useCart } from "../contexts/CartContext";
 import { Link, useNavigate } from "react-router-dom";
+import { ReactComponent as CardIcon } from "../icons/creditcard.svg";
 import { useAuth } from "../contexts/AuthContext";
 import states from "../helpers/states.json";
 import "../styles/CheckoutPage.css";
 
 export default function CheckoutPage() {
   const { cart, removeItem, clearCart } = useCart();
-  const { currentUser, addCardToAccount, updatePurchaseHistory } = useAuth();
+  const { currentUser, addCardToAccount, updatePurchaseHistory, addAddress } =
+    useAuth();
   const [cardNumber, setCardNumber] = useState();
   const [total, setTotal] = useState();
   const [expirationDate, setExpirationDate] = useState("");
   const [checkoutStage, updateStage] = useState(1);
-  const [currentAddress, updateCurrentAddress] = useState();
-  const [currentPayment, updateCurrentPayment] = useState();
+  const [currentAddress, updateCurrentAddress] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    address: "",
+    city: "",
+    state: "",
+    zip: "",
+    phone: "",
+  });
+  const [currentPayment, updateCurrentPayment] = useState({
+    firstName: "",
+    lastName: "",
+    cardNumber: "",
+    csv: "",
+    expDate: "",
+  });
 
   let saveCard = false;
   let saveAddress = false;
@@ -27,6 +44,14 @@ export default function CheckoutPage() {
   const expDateRef = useRef();
   const saveCardRef = useRef();
   const saveAddressRef = useRef();
+  const firstNameAddRef = useRef();
+  const lastNameAddRef = useRef();
+  const emailRef = useRef();
+  const addressRef = useRef();
+  const cityRef = useRef();
+  const stateRef = useRef();
+  const zipRef = useRef();
+  const phoneRef = useRef();
 
   useEffect(() => {
     let totalPrice = 0;
@@ -46,6 +71,12 @@ export default function CheckoutPage() {
     };
 
     addCardToAccount(currentUser, card);
+  }
+
+  function handleAddAddress() {
+    const address = {
+      firstName: firstNameAddRef.current.value,
+    };
   }
 
   function handlePaymentCard(card) {
@@ -70,6 +101,7 @@ export default function CheckoutPage() {
 
   function handleCheckout() {
     // Send Email
+
     updatePurchaseHistory(currentUser, cart);
     clearCart();
   }
@@ -109,7 +141,9 @@ export default function CheckoutPage() {
     updateCurrentAddress(address);
   }
 
-  console.log(currentUser);
+  function handleInputChange(name, e) {
+    updateCurrentAddress((currentAddress[name] = e.target.value));
+  }
 
   return (
     <div className="checkoutPageContainer">
@@ -186,7 +220,18 @@ export default function CheckoutPage() {
                     </div>
                     <button
                       className="clear"
-                      onClick={() => updateCurrentAddress(null)}
+                      onClick={() =>
+                        updateCurrentAddress({
+                          firstName: "",
+                          lastName: "",
+                          email: "",
+                          address: "",
+                          city: "",
+                          state: "",
+                          zip: "",
+                          phone: "",
+                        })
+                      }
                     >
                       Clear All Fields
                     </button>
@@ -198,9 +243,9 @@ export default function CheckoutPage() {
                     <input
                       type="text"
                       placeholder="First Name"
-                      value={`${
-                        currentAddress ? currentAddress.firstName : ""
-                      }`}
+                      ref={firstNameAddRef}
+                      value={currentAddress.firstName}
+                      onChange={(e) => handleInputChange("firstName", e)}
                       required
                     />
                   </div>
@@ -209,7 +254,9 @@ export default function CheckoutPage() {
                     <input
                       type="text"
                       placeholder="Last Name"
-                      value={`${currentAddress ? currentAddress.lastName : ""}`}
+                      ref={lastNameAddRef}
+                      value={currentAddress.lastName}
+                      onChange={(e) => handleInputChange("lastName", e)}
                       required
                     />
                   </div>
@@ -219,7 +266,9 @@ export default function CheckoutPage() {
                   <input
                     type="text"
                     placeholder="Email Address"
-                    value={`${currentAddress ? currentAddress.email : ""}`}
+                    value={currentAddress.email}
+                    ref={emailRef}
+                    onChange={(e) => handleInputChange("email", e)}
                     required
                   />
                 </div>
@@ -229,7 +278,9 @@ export default function CheckoutPage() {
                     <input
                       type="text"
                       placeholder="### (Street Name)"
-                      value={`${currentAddress ? currentAddress.address : ""}`}
+                      value={currentAddress.address}
+                      ref={addressRef}
+                      onChange={(e) => handleInputChange("address", e)}
                       required
                     />
                   </div>
@@ -239,7 +290,9 @@ export default function CheckoutPage() {
                       <input
                         type="text"
                         placeholder="City Name"
-                        value={`${currentAddress ? currentAddress.city : ""}`}
+                        ref={cityRef}
+                        value={currentAddress.city}
+                        onChange={(e) => handleInputChange("city", e)}
                         required
                       />
                     </div>
@@ -247,6 +300,7 @@ export default function CheckoutPage() {
                       <select
                         placeholder="State"
                         className="stateSelect"
+                        ref={stateRef}
                         required
                       >
                         {states.map((state) =>
@@ -269,7 +323,9 @@ export default function CheckoutPage() {
                     <input
                       type="text"
                       placeholder="#####"
-                      value={`${currentAddress ? currentAddress.zip : ""}`}
+                      value={currentAddress.zip}
+                      ref={zipRef}
+                      onChange={(e) => handleInputChange("zip", e)}
                       required
                     />
                   </div>
@@ -278,25 +334,32 @@ export default function CheckoutPage() {
                     <input
                       type="text"
                       placeholder="(###) ###-####"
-                      value={`${currentAddress ? currentUser.phone : ""}`}
+                      value={currentAddress.phone}
+                      ref={phoneRef}
+                      onChange={(e) => handleInputChange("phone", e)}
                       required
                     />
                   </div>
                 </div>
               </div>
-              <div className="saveAddress">
-                <input
-                  ref={saveAddressRef}
-                  type="checkbox"
-                  name="save"
-                  id="saveAddress"
-                />
-                <label htmlFor="">Save address for future purchases?</label>
-              </div>
+              {currentUser && (
+                <div className="saveAddress">
+                  <input
+                    ref={saveAddressRef}
+                    type="checkbox"
+                    name="save"
+                    id="saveAddress"
+                  />
+                  <label htmlFor="">Save address for future purchases?</label>
+                </div>
+              )}
               <div className="button">
                 <button
                   className="continue"
                   onClick={() => {
+                    if (saveAddressRef.current.value) {
+                      handleAddAddress();
+                    }
                     handleStageChange(1);
                   }}
                 >
@@ -317,7 +380,7 @@ export default function CheckoutPage() {
                     className="paymentCard"
                     onClick={() => handlePaymentCard(card)}
                   >
-                    {"Icon"}
+                    <CardIcon />
                     <h5 className="cardNumber">{`Card ending in: ${card.cardNumber
                       .toString()
                       .substring(card.cardNumber.toString().length - 4)}`}</h5>
@@ -332,7 +395,8 @@ export default function CheckoutPage() {
                         ref={firstNameRef}
                         className="infoValue firstName"
                         placeholder="John"
-                        value={currentPayment ? currentPayment.firstName : ""}
+                        value={currentPayment.firstName}
+                        onChange={(e) => handleInputChange("firstName", e)}
                       />
                     </div>
                     <div className="lastNameContainer">
@@ -341,7 +405,8 @@ export default function CheckoutPage() {
                         ref={lastNameRef}
                         className="infoValue lastName"
                         placeholder="Smith"
-                        value={currentPayment ? currentPayment.lastName : ""}
+                        value={currentPayment.lastName}
+                        onChange={(e) => handleInputChange("lastName", e)}
                       />
                     </div>
                   </div>
@@ -365,7 +430,8 @@ export default function CheckoutPage() {
                         maxLength={3}
                         ref={csvRef}
                         className="infoValue csv"
-                        value={currentPayment ? currentPayment.csv : ""}
+                        value={currentPayment.csv}
+                        onChange={(e) => handleInputChange("csv", e)}
                       />
                     </div>
                   </div>
@@ -382,22 +448,24 @@ export default function CheckoutPage() {
                       />
                     </div>
                   </div>
-                  <div className="saveCard">
-                    <input
-                      ref={saveCardRef}
-                      type="checkbox"
-                      name="save"
-                      id="saveCard"
-                    />
-                    <label htmlFor="">Save card for future purchases?</label>
-                  </div>
+                  {currentUser && (
+                    <div className="saveCard">
+                      <input
+                        ref={saveCardRef}
+                        type="checkbox"
+                        name="save"
+                        id="saveCard"
+                      />
+                      <label htmlFor="">Save card for future purchases?</label>
+                    </div>
+                  )}
                   <div className="button">
                     <button
                       className="continue"
                       onClick={() => {
-                        // if (saveCardRef.current.value) {
-                        //   handleAddCard();
-                        // }
+                        if (saveCardRef.current.value) {
+                          handleAddCard();
+                        }
                         handleStageChange(1);
                       }}
                     >

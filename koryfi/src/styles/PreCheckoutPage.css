@@ -6,6 +6,7 @@
 }
 .checkoutContainer .left-column {
   width: 50%;
+  margin: 2rem 0;
 }
 .checkoutContainer .left-column .cartDisplay {
   background-color: white;
@@ -110,6 +111,7 @@
 }
 .checkoutContainer .right-column {
   width: 25%;
+  margin: 2rem 0;
 }
 .checkoutContainer .right-column .summaryDisplay {
   min-height: 400px;

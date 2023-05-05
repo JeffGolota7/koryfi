@@ -3,11 +3,13 @@ import { Outlet, Link, useNavigate } from "react-router-dom";
 import { useCart } from "../contexts/CartContext";
 import { useAuth } from "../contexts/AuthContext";
 import "../styles/Dropdown.css";
+import { useBannerContext } from "../contexts/BannerProvider.js";
 
 export default function Dropdown({ toggleIsOpen, type, parentRef }) {
   const { cart, removeItem, updateCount } = useCart();
   const { logout } = useAuth();
   const [total, setTotal] = useState(0);
+  const { setVisible, setMessage } = useBannerContext();
 
   const navigate = useNavigate();
 
@@ -22,10 +24,12 @@ export default function Dropdown({ toggleIsOpen, type, parentRef }) {
   async function handleLogout() {
     await logout()
       .then((auth) => {
-        alert("Success!");
+        setMessage("Success");
+        setVisible(true);
       })
       .catch((e) => {
-        alert(e.message);
+        setMessage(e.message);
+        setVisible(true);
       });
     navigate("/");
   }
@@ -43,7 +47,11 @@ export default function Dropdown({ toggleIsOpen, type, parentRef }) {
                       {item.images && (
                         <img
                           className="cartItemImg"
-                          src={item.images[0].lowRes}
+                          src={
+                            !item.category.includes("clothing")
+                              ? item.images[0].lowRes
+                              : item.images[0].images[0].lowRes
+                          }
                           alt=""
                         />
                       )}
@@ -57,22 +65,23 @@ export default function Dropdown({ toggleIsOpen, type, parentRef }) {
                                 <h5 className="countAmount">x{item.count}</h5>
                               </div>
                             )}
-                            <div className="countUpdate">
-                              <span
-                                className="minus"
-                                onClick={() => updateCount(index, -1)}
-                              >
-                                -
-                              </span>
-                              <span
-                                className="plus"
-                                onClick={() => updateCount(index, 1)}
-                              >
-                                +
-                              </span>
-                            </div>
                           </div>
-                          <h6 className="cartItemPrice">{item.price}</h6>
+
+                          <h4 className="cartItemPrice">{item.price}</h4>
+                        </div>
+                        <div className="countUpdate">
+                          <span
+                            className="minus"
+                            onClick={() => updateCount(index, -1)}
+                          >
+                            -
+                          </span>
+                          <span
+                            className="plus"
+                            onClick={() => updateCount(index, 1)}
+                          >
+                            +
+                          </span>
                         </div>
                         <div
                           className="remove"
@@ -86,17 +95,19 @@ export default function Dropdown({ toggleIsOpen, type, parentRef }) {
                     </li>
                   );
                 })}
-              <div className="total">{total > 0 && total}</div>
-              <Link to="/checkout">
-                <button
-                  className="checkOutButton"
-                  onClick={() => {
-                    toggleIsOpen(false);
-                  }}
-                >
-                  Check Out
-                </button>
-              </Link>
+              <div className="footer">
+                <div className="total">{total > 0 && total}</div>
+                <Link to="/checkout">
+                  <button
+                    className="checkOutButton"
+                    onClick={() => {
+                      toggleIsOpen(false);
+                    }}
+                  >
+                    Check Out
+                  </button>
+                </Link>
+              </div>
             </div>
           ) : (
             <>

@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { auth } from "../firebase/firebase";
 import { useAuth } from "../contexts/AuthContext";
 import { IsMobile } from "../helpers/isMobile.js";
+import { useBannerContext } from "../contexts/BannerProvider.js";
 
 import "../styles/Login.css";
 import "../styles/Form.css";
@@ -14,6 +15,7 @@ function Login() {
   const { login, forgotPassword } = useAuth();
   const navigate = useNavigate();
   const mobile = IsMobile();
+  const { setVisible, setMessage } = useBannerContext();
 
   const register = (e) => {
     e.preventDefault();
@@ -21,7 +23,8 @@ function Login() {
       setLoading(true);
       login(emailRef.current.value, passwordRef.current.value)
         .then((auth) => {
-          alert("Success!");
+          setMessage("Success");
+          setVisible(true);
           navigate("/");
         })
         .catch((e) => {
@@ -30,7 +33,8 @@ function Login() {
         });
       setLoading(false);
     } else {
-      alert("User Name and/or Password Cannot be Blank!");
+      setMessage("User Name and/or Password Cannot be Blank!");
+      setVisible(true);
     }
   };
 
@@ -39,7 +43,8 @@ function Login() {
     if (emailRegex.test(email)) {
       forgotPassword(email);
     } else {
-      alert("Enter a valid email");
+      setMessage("Enter a valid email");
+      setVisible(true);
     }
   }
 

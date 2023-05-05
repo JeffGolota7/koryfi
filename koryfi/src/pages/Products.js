@@ -128,9 +128,8 @@ export default function Products() {
                 return <Card product={p} />;
               })}
           </div>
-          {displayedProducts.length > numToShow && (
-            <button onClick={handleLoadMore}>Load More</button>
-          )}
+
+          <button onClick={handleLoadMore}>Load More</button>
         </div>
       </div>
     </div>

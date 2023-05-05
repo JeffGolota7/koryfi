@@ -29,10 +29,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: url("/public/images/journey.png") no-repeat center center/cover;
     .aboutJourneyContent {
       min-width: 50%;
       .aboutJourneyHeader {
         text-align: center;
+        background-color: white;
+        padding: 1rem;
+        margin-top: 1rem;
+        border-radius: 8px;
         h2 {
           font-size: 40px;
           margin: 1rem 0;

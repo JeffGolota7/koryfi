@@ -110,7 +110,10 @@ function Navbar() {
                     </li>
                   </>
                 )}
-                <SearchBar isHamOpen={isHamOpen} />
+                <SearchBar
+                  toggleHamburger={toggleHamburger}
+                  isHamOpen={isHamOpen}
+                />
                 <li>
                   <Link to="/about" onClick={handleHamburger}>
                     About Us

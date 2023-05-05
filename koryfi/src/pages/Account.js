@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as EditIcon } from "../icons/Edit-Icon.svg";
 import { ReactComponent as CreditCardIcon } from "../icons/creditcard.svg";
 import { ReactComponent as AddressIcon } from "../icons/house.svg";
-
+import { useBannerContext } from "../contexts/BannerProvider.js";
 import "../styles/Account.css";
 
 export default function Account() {
@@ -15,6 +15,7 @@ export default function Account() {
   const [addCard, updateAddCard] = useState(false);
   const [addAddress, updateAddAddress] = useState(false);
   const navigate = useNavigate();
+  const { setVisible, setMessage } = useBannerContext();
 
   const firstNameRef = useRef();
   const lastNameRef = useRef();
@@ -25,7 +26,8 @@ export default function Account() {
   async function handleLogout() {
     await logout()
       .then((auth) => {
-        alert("Success!");
+        setMessage("Success");
+        setVisible(true);
       })
       .catch((e) => {
         alert(e.message);
@@ -67,7 +69,8 @@ export default function Account() {
       editDataField(currentUser, fieldName, field.value);
       updateIsEditing(false);
     } else {
-      alert("this value cannot be empty");
+      setMessage("This value cannot be empty");
+      setVisible(true);
     }
   }
 

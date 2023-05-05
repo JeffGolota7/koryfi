@@ -13,6 +13,7 @@ export function CartProvider({ children }) {
   const [cart, updateCart] = useState(initialCart);
 
   function setCart(product) {
+    console.log(product);
     const existingProduct = cart.find((item) => item.name === product.name);
     if (existingProduct) {
       const updatedCart = cart.map((item) =>

@@ -11,6 +11,8 @@ import {
   where,
 } from "firebase/firestore";
 import data from "./products.json";
+import { useBannerContext } from "./BannerProvider.js";
+
 export const ProductContext = React.createContext();
 
 export function useProduct() {
@@ -71,6 +73,8 @@ export async function getAllProductsFromDatabase() {
 export function ProductProvider({ children }) {
   const [products, updateProducts] = useState();
   const [isLoading, setLoading] = useState(true);
+  const { setVisible, setMessage } = useBannerContext();
+
   data.forEach(async (product) => {
     if (product.category === "snowboard") {
       await setDoc(doc(db, "products", product.name), {
@@ -80,7 +84,7 @@ export function ProductProvider({ children }) {
         price: product.price,
         images: product.images,
         category: product.category,
-        sizes: product.sizes,
+        size: product.size,
         bend: product.bend,
         length: product.length,
         sex: product.sex,
@@ -109,14 +113,17 @@ export function ProductProvider({ children }) {
       });
     }
     if (product.category.includes("clothing")) {
-      if (product.category.includes("gloves")) {
+      if (
+        product.category.includes("gloves") ||
+        product.category.includes("fleece")
+      ) {
         await setDoc(doc(db, "products", product.name), {
           name: product.name,
           id: product.id,
           category: product.category,
           color: product.color,
           size: product.size,
-          gender: product.gender,
+          sex: product.sex,
           features: product.features,
           description: product.description,
           price: product.price,
@@ -127,13 +134,13 @@ export function ProductProvider({ children }) {
         await setDoc(doc(db, "products", product.name), {
           id: product.id,
           price: product.price,
-          gender: product.gender,
+          sex: product.sex,
           name: product.name,
           description: product.description,
           color: product.color,
           images: product.images,
           category: product.category,
-          sizes: product.sizes,
+          size: product.size,
           waterproof_rating: product.waterproof_rating,
           breathability_rating: product.breathability_rating,
           insulation: product.insulation,
@@ -176,7 +183,8 @@ export function ProductProvider({ children }) {
           return await prods;
         }
       } catch (e) {
-        console.log(e);
+        setMessage(e);
+        setVisible(true);
       }
     } else {
       return products;
@@ -276,8 +284,8 @@ export function ProductProvider({ children }) {
               updateProducts(updatedProducts);
             }
           }
-
-          alert("Review Added");
+          setMessage("Review Added");
+          setVisible(true);
         }
       } catch (e) {
         alert(e);

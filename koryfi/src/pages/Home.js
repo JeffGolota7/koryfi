@@ -32,20 +32,29 @@ export default function Home() {
       const shuffled = products.products.sort(() => 0.5 - Math.random());
       const selected = shuffled.slice(0, 6);
       return selected.map((item) => (
-        <div className="card">
-          {item.images.length > 0 ? (
-            <img src={item.images[0].lowRes} alt="" />
-          ) : (
-            <div className="noPhoto">no photo</div>
-          )}
-          <div className="textAndButton">
-            <div className="nameAndPrice">
-              <h2>{item.name}</h2>
-              <h4>{item.price}</h4>
+        <Link to="/product-information" state={{ productObject: item }}>
+          <div className="card">
+            {!item.category.includes("clothing") ? (
+              item.images.length > 0 ? (
+                <img src={item.images[0].lowRes} alt="" />
+              ) : (
+                <div className="noPhoto">no photo</div>
+              )
+            ) : item.images.length > 0 ? (
+              <img src={item.images[0].images[0].lowRes} alt="" />
+            ) : (
+              <div className="noPhoto">no photo</div>
+            )}
+
+            <div className="textAndButton">
+              <div className="nameAndPrice">
+                <h2>{item.name}</h2>
+                <h4>{item.price}</h4>
+              </div>
+              <button>View Details</button>
             </div>
-            <button>View Details</button>
           </div>
-        </div>
+        </Link>
       ));
     }
   }
@@ -82,24 +91,28 @@ export default function Home() {
       </div>
 
       <div className="whoWeAre">
-        <h1 className="header">
-          Who <br />
-          <span>We Are</span>
-        </h1>
-        <img src="./images/whoweare.png" alt="" />
-        <div className="aboutContent">
-          <p className="text">
-            Koryfi was founded in 2020 by a group of snow sports enthusiasts who
-            wanted to bring high-quality gear and apparel to fellow enthusiasts.
-            Our mission is to provide the best gear and apparel for people and
-            make it accessible to everyone. Our values are rooted in the thrill
-            of adventure, passion for the mountains and the love of the sport.
-            We are committed to providing excellent customer service and being a
-            responsible and sustainable company.
-          </p>
-          <div className="bottom">
-            <div className="stripe">Don't Believe Us?</div>
-            <button>See For Yourself</button>
+        <div className="left-column">
+          <h1 className="header">
+            Who <br />
+            <span>We Are</span>
+          </h1>
+          <img src="./images/whoweare.png" alt="" />
+        </div>
+        <div className="right-column">
+          <div className="aboutContent">
+            <p className="text">
+              Koryfi was founded in 2020 by a group of snow sports enthusiasts
+              who wanted to bring high-quality gear and apparel to fellow
+              enthusiasts. Our mission is to provide the best gear and apparel
+              for people and make it accessible to everyone. Our values are
+              rooted in the thrill of adventure, passion for the mountains and
+              the love of the sport. We are committed to providing excellent
+              customer service and being a responsible and sustainable company.
+            </p>
+            <div className="bottom">
+              <div className="stripe">Don't Believe Us?</div>
+              <button>Reac our Journey</button>
+            </div>
           </div>
         </div>
       </div>

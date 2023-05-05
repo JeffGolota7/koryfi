@@ -8,6 +8,7 @@ import {
 } from "../firebase/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { sendPasswordResetEmail, updateCurrentUser } from "firebase/auth";
+import { useBannerContext } from "./BannerProvider.js";
 const AuthContext = React.createContext();
 
 export function useAuth() {
@@ -15,6 +16,7 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
+  const { setVisible, setMessage } = useBannerContext();
   const [currentUser, setCurrentUser] = useState();
   const [isLoading, setLoading] = useState(true);
 
@@ -34,10 +36,12 @@ export function AuthProvider({ children }) {
   function forgotPassword(email) {
     sendPasswordResetEmail(auth, email)
       .then(() => {
-        alert("email sent");
+        setMessage("Email Sent");
+        setVisible(true);
       })
       .catch((e) => {
-        alert(e);
+        setMessage(e.error);
+        setVisible(true);
       });
   }
 
@@ -600,7 +604,10 @@ export function AuthProvider({ children }) {
     };
 
     if (window.Email) {
-      window.Email.send(emailConfig).then((message) => alert(message));
+      window.Email.send(emailConfig).then((message) => {
+        setMessage(message);
+        setVisible(true);
+      });
     }
   }
 
@@ -623,10 +630,12 @@ export function AuthProvider({ children }) {
         await updateDoc(userRef, {
           [fieldName]: newValue,
         });
-        alert("Value Updated");
+        setMessage("Field Updated");
+        setVisible(true);
         user[fieldName] = newValue;
       } catch (e) {
-        alert(e);
+        setMessage(e);
+        setVisible(true);
       }
     }
   }
@@ -635,12 +644,20 @@ export function AuthProvider({ children }) {
     if (user) {
       const userRef = doc(db, "users", user.uid);
       try {
-        console.log(userRef.data());
-        // await updateDoc(userRef, {
-        //   [fieldName]: newValue,
-        // });
-        // alert("Value Updated");
-        // user[fieldName] = newValue;
+        const userSnap = await getDoc(userRef);
+        const user = userSnap.data();
+        let addresses = [];
+
+        if (user.shippingAddresses) {
+          addresses = user.shippingAddresses;
+        }
+        addresses.push(address);
+        await updateDoc(userRef, {
+          shippingAddresses: addresses,
+        });
+        setMessage("Address Successfully Added");
+        setVisible(true);
+        user.shippingAddresses = addresses;
       } catch (e) {
         alert(e);
       }
@@ -663,7 +680,8 @@ export function AuthProvider({ children }) {
         await updateDoc(userRef, {
           paymentMethods: cards,
         });
-        alert("Card Successfully Added");
+        setMessage("Card Successfully Added");
+        setVisible(true);
         user.paymentMethods = cards;
       } catch (e) {
         alert(e);
@@ -697,7 +715,7 @@ export function AuthProvider({ children }) {
         };
 
         purchaseHistoryTemp.push(purchase);
-
+        console.log(purchaseHistoryTemp);
         await updateDoc(userRef, {
           purchaseHistory: purchaseHistoryTemp,
         });

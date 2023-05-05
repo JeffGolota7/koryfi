@@ -66,25 +66,36 @@
 
 .whoWeAre {
   height: 90vh;
-  position: relative;
   background-color: #f0f0f0;
+  display: flex;
+  padding: 2rem 0;
+  width: 100%;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1rem;
+}
+.whoWeAre .left-column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.whoWeAre .left-column img {
+  width: 500px;
+  height: auto;
 }
 .whoWeAre .header {
   right: 30%;
   font-size: 84px;
-  position: absolute;
   z-index: 11;
+  margin: 0.5rem 0;
   text-shadow: -5px 5px rgba(208, 208, 208, 0.5);
 }
 .whoWeAre .header span {
   margin-left: 100px;
 }
-.whoWeAre img {
-  width: 700px;
-  height: auto;
-  position: absolute;
-  left: 20%;
-  top: 8%;
+.whoWeAre .right-column {
+  height: 90%;
+  margin-top: 5rem;
 }
 .whoWeAre .aboutContent {
   background-color: white;
@@ -95,7 +106,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  position: absolute;
   bottom: 8%;
   right: 20%;
 }
@@ -238,6 +248,23 @@
     align-items: center;
     height: auto;
   }
+  .whoWeAre .left-column {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  .whoWeAre .right-column {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  .whoWeAre .right-column .aboutContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 97%;
+    margin: 0 0.5rem;
+  }
   .whoWeAre .header {
     position: inherit;
     font-size: 40px;
@@ -250,7 +277,7 @@
     margin: 0;
   }
   .whoWeAre img {
-    width: 300px !important;
+    width: 400px !important;
     margin: 1rem;
     height: auto;
     position: inherit;

@@ -19,7 +19,7 @@
       }
     ],
     "category": "snowboard",
-    "sizes": ["154cm", "157cm", "160cm", "163cm", "166cm"],
+    "size": ["154cm", "157cm", "160cm", "163cm", "166cm"],
     "bend": "camber",
     "length": 160,
     "sex": "unisex",
@@ -49,7 +49,7 @@
       }
     ],
     "category": "snowboard",
-    "sizes": ["146cm", "149cm", "152cm", "155cm", "158cm", "161cm"],
+    "size": ["146cm", "149cm", "152cm", "155cm", "158cm", "161cm"],
     "bend": "hybrid",
     "length": 156,
     "sex": "unisex",
@@ -79,7 +79,7 @@
       }
     ],
     "category": "snowboard",
-    "sizes": ["154cm", "158cm", "162cm", "166cm"],
+    "size": ["154cm", "158cm", "162cm", "166cm"],
     "bend": "rocker-camber",
     "length": 160,
     "sex": "unisex",
@@ -109,7 +109,7 @@
       }
     ],
     "category": "snowboard",
-    "sizes": ["156cm", "159cm", "162cm", "165cm", "168cm"],
+    "size": ["156cm", "159cm", "162cm", "165cm", "168cm"],
     "bend": "rocker-camber-rocker",
     "length": 162,
     "sex": "unisex",
@@ -122,7 +122,7 @@
   {
     "id": 6,
     "price": 349.99,
-    "gender": "unisex",
+    "sex": "unisex",
     "name": "Koryfi 3-in-1 Ski Jacket",
     "description": "The Koryfi 3-in-1 Ski Jacket is a versatile and stylish option for all your winter adventures. With a waterproof rating of XX and a breathability rating of XX, this jacket will keep you warm and dry in the harshest weather conditions. The jacket features a removable inner layer that can be worn on its own for milder weather, or combined with the outer layer for extra insulation on colder days. The adjustable hood, cuffs, and hem, as well as the powder skirt and jacket-to-pant interface, provide extra protection against the elements. The Koryfi 3-in-1 Ski Jacket also comes with multiple pockets, including two chest pockets, two hand pockets, one sleeve pocket, and two internal pockets, allowing you to keep your essentials close at hand. Finally, the pit zips and mesh lining offer ventilation options for when you need to regulate your temperature.",
     "color": ["koryfi", "glacier", "neon"],
@@ -156,7 +156,7 @@
       }
     ],
     "category": ["clothing", "jacket"],
-    "sizes": ["S", "M", "L", "XL"],
+    "size": ["S", "M", "L", "XL"],
     "waterproof_rating": 20000,
     "breathability_rating": 20000,
     "insulation": "synthetic",
@@ -200,7 +200,7 @@
       }
     ],
     "category": "snowboard",
-    "sizes": ["149cm", "152cm", "155cm", "158cm", "161cm"],
+    "size": ["149cm", "152cm", "155cm", "158cm", "161cm"],
     "bend": "camber",
     "length": 154,
     "sex": "unisex",
@@ -230,7 +230,7 @@
       }
     ],
     "category": "snowboard",
-    "sizes": ["152cm", "155cm", "158cm", "161cm"],
+    "size": ["152cm", "155cm", "158cm", "161cm"],
     "bend": "rocker",
     "length": 156,
     "sex": "unisex",
@@ -260,8 +260,8 @@
       }
     ],
     "category": "snowboard",
-    "sizes": ["144cm", "147cm", "150cm", "153cm", "156cm"],
-    "bend": "hybrid camber",
+    "size": ["144cm", "147cm", "150cm", "153cm", "156cm"],
+    "bend": "hybrid",
     "length": 149,
     "sex": "unisex",
     "width": 255,
@@ -404,28 +404,11 @@
     "category": ["clothing", "gloves"],
     "color": ["red", "black", "gray"],
     "size": ["S", "M", "L", "XL"],
-    "gender": "Men",
+    "sex": "Men",
     "features": ["Waterproof", "Windproof", "Breathable"],
     "description": "Keep your hands warm and dry with these top-quality snow gloves. Made from a durable blend of nylon and polyester with leather accents, these gloves are built to withstand the toughest winter conditions. They are fully waterproof and windproof, so your hands stay dry and comfortable all day long. The breathable fabric ensures optimal ventilation and comfort, while the adjustable wrist strap provides a snug and secure fit. Available in a range of sizes and colors to suit any style or preference.",
-    "price": 69.99,
+    "price": 49.99,
     "images": [
-      {
-        "color": "red",
-        "images": [
-          {
-            "lowRes": "/images/gloves/glove/red/glove-1-small.jpg",
-            "highRes": "/images/gloves/glove/red/glove-1.jpg"
-          },
-          {
-            "lowRes": "/images/gloves/glove/red/glove-2-small.jpg",
-            "highRes": "/images/gloves/glove/red/glove-2.jpg"
-          },
-          {
-            "lowRes": "/images/gloves/glove/red/glove-3-small.jpg",
-            "highRes": "/images/gloves/glove/red/glove-3.jpg"
-          }
-        ]
-      },
       {
         "color": "black",
         "images": [
@@ -444,19 +427,37 @@
         ]
       },
       {
+        "color": "red",
+        "images": [
+          {
+            "lowRes": "/images/gloves/glove/red/glove-1-small.jpg",
+            "highRes": "/images/gloves/glove/red/glove-1.jpg"
+          },
+          {
+            "lowRes": "/images/gloves/glove/red/glove-2-small.jpg",
+            "highRes": "/images/gloves/glove/red/glove-2.jpg"
+          },
+          {
+            "lowRes": "/images/gloves/glove/red/glove-3-small.jpg",
+            "highRes": "/images/gloves/glove/red/glove-3.jpg"
+          }
+        ]
+      },
+
+      {
         "color": "gray",
         "images": [
           {
-            "lowRes": "/images/gloves/snow/gray/glove-1-small.jpg",
-            "highRes": "/images/gloves/snow/gray/glove-1.jpg"
+            "lowRes": "/images/gloves/glove/gray/glove-1-small.jpg",
+            "highRes": "/images/gloves/glove/gray/glove-1.jpg"
           },
           {
-            "lowRes": "/images/gloves/snow/gray/glove-2-small.jpg",
-            "highRes": "/images/gloves/snow/gray/glove-2.jpg"
+            "lowRes": "/images/gloves/glove/gray/glove-2-small.jpg",
+            "highRes": "/images/gloves/glove/gray/glove-2.jpg"
           },
           {
-            "lowRes": "/images/gloves/snow/gray/glove-3-small.jpg",
-            "highRes": "/images/gloves/snow/gray/glove-3.jpg"
+            "lowRes": "/images/gloves/glove/gray/glove-3-small.jpg",
+            "highRes": "/images/gloves/glove/gray/glove-3.jpg"
           }
         ]
       }
@@ -498,5 +499,92 @@
       }
     ],
     "category": ["clothing", "beanies"]
+  },
+  {
+    "name": "Women's Snow Gloves",
+    "id": 17,
+    "category": ["clothing", "gloves"],
+    "color": ["white", "pink", "teal"],
+    "size": ["S", "M", "L"],
+    "sex": "Women",
+    "features": ["Waterproof", "Windproof", "Breathable"],
+    "description": "Keep your hands warm and dry with these top-quality snow gloves. Made from a durable blend of nylon and polyester with leather accents, these gloves are built to withstand the toughest winter conditions. They are fully waterproof and windproof, so your hands stay dry and comfortable all day long. The breathable fabric ensures optimal ventilation and comfort, while the adjustable wrist strap provides a snug and secure fit. Available in a range of sizes and colors to suit any style or preference.",
+    "price": 69.99,
+    "images": [
+      {
+        "color": "white",
+        "images": [
+          {
+            "lowRes": "/images/gloves/women/white/glove-1-small.jpg",
+            "highRes": "/images/gloves/women/white/glove-1.jpg"
+          },
+          {
+            "lowRes": "/images/gloves/women/white/glove-2-small.jpg",
+            "highRes": "/images/gloves/women/white/glove-2.jpg"
+          },
+          {
+            "lowRes": "/images/gloves/women/white/glove-3-small.jpg",
+            "highRes": "/images/gloves/women/white/glove-3.jpg"
+          }
+        ]
+      },
+      {
+        "color": "pink",
+        "images": [
+          {
+            "lowRes": "/images/gloves/women/pink/glove-1-small.jpg",
+            "highRes": "/images/gloves/women/pink/glove-1.jpg"
+          },
+          {
+            "lowRes": "/images/gloves/women/pink/glove-2-small.jpg",
+            "highRes": "/images/gloves/women/pink/glove-2.jpg"
+          },
+          {
+            "lowRes": "/images/gloves/women/pink/glove-3-small.jpg",
+            "highRes": "/images/gloves/women/pink/glove-3.jpg"
+          }
+        ]
+      },
+
+      {
+        "color": "teal",
+        "images": [
+          {
+            "lowRes": "/images/gloves/women/teal/glove-1-small.jpg",
+            "highRes": "/images/gloves/women/teal/glove-1.jpg"
+          },
+          {
+            "lowRes": "/images/gloves/women/teal/glove-2-small.jpg",
+            "highRes": "/images/gloves/women/teal/glove-2.jpg"
+          },
+          {
+            "lowRes": "/images/gloves/women/teal/glove-3-small.jpg",
+            "highRes": "/images/gloves/women/teal/glove-3.jpg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Koryfi Fleece Jacket",
+    "id": 18,
+    "category": ["clothing", "jacket", "fleece"],
+    "color": ["grey"],
+    "size": ["S", "M", "L", "XL"],
+    "sex": "Unisex",
+    "features": ["Warm", "Soft", "Breathable"],
+    "description": "Stay warm and comfortable with the Koryfi Fleece Jacket. Made from a high-quality blend of polyester and spandex, this jacket is soft, breathable, and provides excellent insulation. It features a full-zip front, two zippered hand pockets, and a stand-up collar to keep you protected from the elements. Available in a range of sizes and colors to suit any style or preference.",
+    "price": 89.99,
+    "images": [
+      {
+        "color": "grey",
+        "images": [
+          {
+            "lowRes": "/images/jackets/fleece/grey/fleece-1-small.jpg",
+            "highRes": "/images/jackets/fleece/grey/fleece-1.jpg"
+          }
+        ]
+      }
+    ]
   }
 ]

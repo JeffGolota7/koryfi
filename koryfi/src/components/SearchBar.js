@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "../styles/SearchBar.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { getProductsFromDatabaseByText } from "../contexts/ProductContext";
 import { ReactComponent as SnowboardIcon } from "../icons/snowboard.svg";
 import { ReactComponent as SkiIcon } from "../icons/ski.svg";
 
-export default function SearchBar({ isHamOpen }) {
+export default function SearchBar({ toggleHamburger, isHamOpen }) {
   const [query, setQuery] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const { pathname } = useLocation();
 
   function handleChange(queryText) {
     setSearchValue(queryText);
@@ -21,7 +22,7 @@ export default function SearchBar({ isHamOpen }) {
     setSearchValue("");
 
     setQuery("");
-  }, [isHamOpen]);
+  }, [isHamOpen, pathname]);
 
   return (
     <div className="searchbar">
@@ -45,7 +46,13 @@ export default function SearchBar({ isHamOpen }) {
             <Link
               to="/product-information"
               state={{ productObject: prod }}
-              onClick={() => setQuery([])}
+              onClick={() => {
+                if (isHamOpen) {
+                  toggleHamburger(false);
+                }
+                setQuery([]);
+                setSearchValue("");
+              }}
               id="result"
               className="result"
             >

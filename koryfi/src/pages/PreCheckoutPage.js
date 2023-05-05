@@ -28,7 +28,11 @@ export default function Checkout() {
                   {item.images && (
                     <img
                       className="cartItemImg"
-                      src={item.images[0].lowRes}
+                      src={
+                        item.category.includes("clothing")
+                          ? item.images[0].images[0].lowRes
+                          : item.images[0].lowRes
+                      }
                       alt=""
                     />
                   )}

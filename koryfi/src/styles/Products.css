@@ -4,6 +4,14 @@
   justify-content: center;
   margin: auto;
 }
+.product-page .right-column {
+  width: 80%;
+  padding: 1rem;
+}
+.product-page .left-column {
+  width: 20%;
+  min-width: 300px;
+}
 
 .filter-section {
   display: flex;
@@ -34,22 +42,20 @@
 
 .search {
   width: 100%;
+  margin-bottom: 0.5rem;
 }
-
-.right-column {
-  width: 80%;
-}
-
-.left-column {
-  width: 20%;
-  min-width: 300px;
+.search input {
+  padding: 1rem;
+  border-radius: 8px;
 }
 
 .product-gallery {
   width: 100%;
   padding: 2rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  max-height: 1050px;
+  overflow-y: scroll;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
 @media only screen and (max-width: 767px) {
