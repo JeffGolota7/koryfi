@@ -38,7 +38,6 @@ export default function ProductDetailPage() {
 
   useEffect(() => {
     if (productObject) {
-      console.log(productObject);
       updateProduct(productObject);
       if (productObject.category.includes("clothing")) {
         updateActiveImage(productObject.images[0].images[0]);
@@ -133,7 +132,6 @@ export default function ProductDetailPage() {
   }
 
   function handleAddReview() {
-    console.log("Test");
     if (
       firstNameRef.current.value !== "" &&
       lastNameRef.current.value !== "" &&

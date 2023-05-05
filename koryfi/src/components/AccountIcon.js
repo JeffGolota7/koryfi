@@ -5,7 +5,6 @@ import "../styles/AccountIcon.css";
 
 export default function AccountIcon() {
   const [isOpen, toggleIsOpen] = useState(false);
-
   const accountDropdownRef = useRef(null);
 
   function useOutsideClick(ref) {
