@@ -97,6 +97,7 @@ export default function CheckoutPage() {
   }
 
   function handleStageChange(value) {
+    console.log("test");
     updateStage(checkoutStage + value);
   }
 
@@ -358,7 +359,11 @@ export default function CheckoutPage() {
                 <button
                   className="continue"
                   onClick={() => {
-                    if (saveAddressRef.current.checked) {
+                    if (
+                      saveAddressRef &&
+                      saveAddressRef.current &&
+                      saveAddressRef.current.checked
+                    ) {
                       handleAddAddress();
                     }
                     handleStageChange(1);
@@ -474,7 +479,11 @@ export default function CheckoutPage() {
                     <button
                       className="continue"
                       onClick={() => {
-                        if (saveCardRef.current.checked) {
+                        if (
+                          saveCardRef &&
+                          saveCardRef.current &&
+                          saveCardRef.current.checked
+                        ) {
                           handleAddCard();
                         }
                         handleStageChange(1);
